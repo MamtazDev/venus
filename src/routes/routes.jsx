@@ -3,6 +3,7 @@ import Login from "../Authentication/Login/Login";
 import Signup from "../Authentication/Signup/Signup";
 import Layout from "../Layout/Layout";
 import DashBoard from "../pages/DashBoard/DashBoard";
+import EmailVerification from "../Authentication/EmailVerification/EmailVerification";
 
 
 export const router = createBrowserRouter([
@@ -23,5 +24,9 @@ export const router = createBrowserRouter([
     {
         path: "/signup",
         element: <Signup />,
+    },
+    {
+        path: "/emailVerification",
+        element: <EmailVerification />,
     },
 ]);
