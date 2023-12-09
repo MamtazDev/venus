@@ -5,7 +5,7 @@ const Signup = () => {
         <>
             <div className="grid gap-0 lg:grid-cols-2">
                 <div>
-                    <img className='w-full h-screen' src={loginImage} alt="login image" />
+                    <img className='hidden w-full h-screen lg:block' src={loginImage} alt="login image" />
                 </div>
                 <div>
                     <div className='flex justify-end p-30'>
@@ -16,7 +16,7 @@ const Signup = () => {
                     </div>
                     <div className='login_wrapper'>
                         <div className="flex flex-col items-center justify-center ">
-                            <h1 className='text-5xl font-semibold text-primary'>Lets Get Started!</h1>
+                            <h1 className='text-2xl font-semibold lg:text-5xl text-primary'>Lets Get Started!</h1>
                             <p className='text-base text222color'>Fill up all the required information</p>
                         </div>
 
