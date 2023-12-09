@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif !important;
+}
+
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  margin-bottom: 0 !important;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  margin: 0;
+}
+
+a {
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+
+button {
+  cursor: pointer;
+  box-shadow: none;
+}
+
+a:hover {
+  color: var(--color_222);
+}
+
+:root {
+  --primary: #000080;
+  --secondary: #9AA8D1;
+  --sky: #f4f7fe;
+  --yellow: #FFA500;
+  --color_222: #222;
+  --color_333: #333;
+
+}
+
+/* color */
+.text222color {
+  color: var(--color_222);
+}
+
+
+/* color */
+
+
+/* font size */
+
+h1 {
+  font-size: 48px !important;
+}
+
+h2 {
+  font-size: 28px !important;
+}
+
+h3 {
+  font-size: 24px !important;
+}
+
+h4 {
+  font-size: 20px !important;
+}
+
+h5 {
+  font-size: 16px !important;
+}
+
+span {
+  font-size: 14px !important;
+}
+
+/* font size end */
+/* buttons start */
+button:focus {
+  border: none;
+  outline: none;
+}
+
+button:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.button1 {
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.button2 {
+  padding: 10px 23px;
+  border-radius: 3px;
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.btn_blue_bg {
+  background-color: var(--primary);
+  border: none;
+}
+
+/* gap start */
+
+.gap_20 {
+  gap: 20px;
+}
+
+.gap_6 {
+  gap: 6px;
+}
+
+
+/* gap end */
+
+/* buttons end */
