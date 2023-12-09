@@ -5,6 +5,12 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [
+    require("daisyui"),
+  ],
+  daisyui: {
+    themes: [],
+  },
   theme: {
     colors: {
       'primary': '#000080',
@@ -17,23 +23,14 @@ module.exports = {
     padding: {
       '30': '30px',
       '14': '14px',
-      '45': '45px'
+      '45': '45px',
+      '21': "21px",
+      
     },
     fontFamily: {
       sans: ['Work Sans', 'sans-serif'],
     },
-    // fontSize: {
-      
-    // },
-    // fs: {
-    //   '3xl': '48px',
-    //   'xxl': '28px',
-    //   'xl': '24px',
-    //   'lg': '20px',
-    //   'base': '16px',
-    //   'sm': '18px',
-    //   'xm': '14px',
-    // },
+
     extend: {
       gap: {
         '6': '6px',
