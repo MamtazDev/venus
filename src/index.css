@@ -1,8 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
   margin: 0;
@@ -11,11 +10,8 @@
 }
 
 body {
-  font-family: 'Work Sans', sans-serif !important;
+  font-family: "Work Sans", sans-serif !important;
 }
-
-
-
 
 h1,
 h2,
@@ -41,7 +37,6 @@ a {
   cursor: pointer !important;
 }
 
-
 button {
   cursor: pointer;
   box-shadow: none;
@@ -53,12 +48,11 @@ a:hover {
 
 :root {
   --primary: #000080;
-  --secondary: #9AA8D1;
+  --secondary: #9aa8d1;
   --sky: #f4f7fe;
-  --yellow: #FFA500;
+  --yellow: #ffa500;
   --color_222: #222;
   --color_333: #333;
-
 }
 
 /* color */
@@ -66,10 +60,9 @@ a:hover {
   color: var(--color_222);
 }
 
-
 input {
   border-radius: 3px;
-  border: 1px solid #A4B2B9;
+  border: 1px solid #a4b2b9;
   opacity: 0.3;
 }
 
@@ -78,9 +71,7 @@ select:focus {
   outline: none !important;
 }
 
-
 /* color */
-
 
 /* font size */
 
@@ -128,7 +119,7 @@ button:focus-visible {
 .button2 {
   padding: 10px 23px;
   border-radius: 3px;
-  color: #FFF;
+  color: #fff;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -138,7 +129,7 @@ button:focus-visible {
 .btn_blue_bg {
   background-color: var(--primary);
   border: none;
-  color: #FFF;
+  color: #fff;
   border-radius: 3px !important;
 }
 
@@ -151,7 +142,6 @@ button:focus-visible {
 .gap_6 {
   gap: 6px;
 }
-
 
 /* gap end */
 
