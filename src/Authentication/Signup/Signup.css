@@ -12,6 +12,14 @@
     padding: 50px 120px 0;
 }
 
+
+@media(max-width:768px) {
+
+    .login_wrapper {
+
+        padding: 50px 30px 0;
+    }
+}
 .login_wrapper h1 {
     color: #000080;
     margin-bottom: 8px !important;

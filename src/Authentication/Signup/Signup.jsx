@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import loginImage from '../../assets/login.png'
 import './Signup.css'
 const Signup = () => {
@@ -5,18 +6,18 @@ const Signup = () => {
         <>
             <div className="grid gap-0 lg:grid-cols-2">
                 <div>
-                    <img className='w-full h-screen' src={loginImage} alt="login image" />
+                    <img className='hidden w-full h-screen lg:block' src={loginImage} alt="login image" />
                 </div>
                 <div>
                     <div className='flex justify-end p-30'>
                         <div className='flex items-center gap-30'>
                             <h4 className='text-lg text_dark_grey '>Already have any account?</h4>
-                            <button className='text-white px-45 py-14 btn_blue_bg'>LogIn</button>
+                            <Link to="/login"><button className='text-white px-45 py-14 btn_blue_bg'>LogIn</button></Link>
                         </div>
                     </div>
                     <div className='login_wrapper'>
                         <div className="flex flex-col items-center justify-center ">
-                            <h1 className='text-5xl font-semibold text-primary'>Lets Get Started!</h1>
+                            <h1 className='text-2xl font-semibold lg:text-5xl text-primary'>Lets Get Started!</h1>
                             <p className='text-base text222color'>Fill up all the required information</p>
                         </div>
 
