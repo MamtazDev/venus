@@ -72,7 +72,7 @@ a:hover {
 
 /* font size */
 
-h1 {
+/* h1 {
   font-size: 48px !important;
 }
 
@@ -94,7 +94,7 @@ h5 {
 
 span {
   font-size: 14px !important;
-}
+} */
 
 /* font size end */
 /* buttons start */
@@ -126,6 +126,7 @@ button:focus-visible {
 .btn_blue_bg {
   background-color: var(--primary);
   border: none;
+  color: #FFF;
 }
 
 /* gap start */
