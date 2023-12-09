@@ -1,13 +1,13 @@
 import './Login.css'
-import loginImage from '../../assets/login.png'
+import loginImage from '../../assets/images/login.svg'
 import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
         <>
             <div className="grid gap-0 lg:grid-cols-2">
-                <div>
-                    <img className='hidden w-full h-screen lg:block' src={loginImage} alt="login image" />
+                <div className='login_img'>
+                    <img className='hidden h-screen lg:block' src={loginImage} alt="login image" />
                 </div>
                 <div>
                     <div className='flex justify-end p-30'>

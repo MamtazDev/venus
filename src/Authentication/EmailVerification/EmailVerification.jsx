@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import loginImage from '../../assets/login.png'
+import loginImage from '../../assets/images/login.svg'
 
 const EmailVerification = () => {
     return (
