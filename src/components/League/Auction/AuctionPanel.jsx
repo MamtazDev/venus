@@ -6,7 +6,7 @@ const AuctionPanel = () => {
     return (
         <>
             <div className="px-20 pt-[24px] pb-20 bg-white">
-                <div className='flex justify-between items-center'>
+                <div className='flex flex-col lg:flex-row lg:gap-0 gap-20 justify-between items-center'>
                     <div className='flex items-center gap-8'>
                         <img src={auction1} alt="" />
                         <p className='text-lg font-semibold text-text_dark_grey'>Alabama</p>
@@ -62,7 +62,7 @@ const AuctionPanel = () => {
                     </div>
                 </div>
             </div>
-            
+
             <BidMember />
             {/*  ijmessage  */}
             <Message />

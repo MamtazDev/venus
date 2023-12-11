@@ -21,22 +21,25 @@ module.exports = {
       dark_sky: "#9AA8D1",
       sky_bg1: "#F6F9FF",
       border_grey: "#C8CBD9",
-      border2:'#EEE'
+      border2:'#EEE',
+      border3:'#E1E1E1'
 
 
     },
     padding: {
       10: "10px",
+      12: "12px",
       14: "14px",
       15: "15px",
       16: "16px",
+      20: "20px",
       21: "21px",
       23: "23px",
-      27: "27px",
-      20: "20px",
       25: "25px",
+      27: "27px",
       30: "30px",
       31: "31px",
+      40: "40px",
       45: "45px",
       49: "49px",
       60: "60px",

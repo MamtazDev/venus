@@ -1,8 +1,10 @@
+import SettingHeader from "./SettingHeader";
 
 const Setting = () => {
     return (
         <div>
-            <h1>setting</h1>
+            <SettingHeader />
+            
         </div>
     );
 };
