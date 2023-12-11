@@ -11,6 +11,8 @@
 
 body {
   font-family: "Work Sans", sans-serif !important;
+  font-style: normal;
+  line-height: normal;
 }
 
 h1,
@@ -21,7 +23,7 @@ h5,
 h6,
 p {
   margin: 0;
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 ul {

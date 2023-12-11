@@ -18,32 +18,28 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <DashBoard />,
-                children: [
-                    {
-                        path: "/",
-                        element: <DashBoard />,
-                    },
-                    
-                    {
-                        path: "/league",
-                        element: <League />,
-                    },
-                    {
-                        path: "/tournamentTracking",
-                        element: <TournamentTracking />,
-                    },
-                    {
-                        path: "/biddingHistory",
-                        element: <BiddingHistory />,
-                    },
-                    {
-                        path: "/setting",
-                        element: <Setting />,
-                    },
-
-                ]
             },
+
+            {
+                path: "/league",
+                element: <League />,
+            },
+            {
+                path: "/tournamentTracking",
+                element: <TournamentTracking />,
+            },
+            {
+                path: "/biddingHistory",
+                element: <BiddingHistory />,
+            },
+            {
+                path: "/setting",
+                element: <Setting />,
+            },
+
         ]
+
+
     },
     {
         path: "/login",

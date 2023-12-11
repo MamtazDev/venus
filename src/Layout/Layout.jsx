@@ -7,7 +7,7 @@ const Layout = () => {
       <div className="hidden lg:block w-[360px] h-screen ">
         <SideBar />
       </div>
-      <div className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar pt-27 pe-30 ps-20 ">
+      <div className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar pt-27 pe-30 ps-20 bg-light_sky ">
         <Outlet />
       </div>
     </div>
