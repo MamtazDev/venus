@@ -4,6 +4,10 @@ import Signup from "../Authentication/Signup/Signup";
 import Layout from "../Layout/Layout";
 import DashBoard from "../pages/DashBoard/DashBoard";
 import EmailVerification from "../Authentication/EmailVerification/EmailVerification";
+import League from "../pages/League/League";
+import TournamentTracking from "../pages/TournamentTracking/TournamentTracking";
+import BiddingHistory from "../pages/BiddingHistory/BiddingHistory";
+import Setting from "../pages/Setting/Setting";
 
 
 export const router = createBrowserRouter([
@@ -14,6 +18,30 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <DashBoard />,
+                children: [
+                    {
+                        path: "/",
+                        element: <DashBoard />,
+                    },
+                    
+                    {
+                        path: "/league",
+                        element: <League />,
+                    },
+                    {
+                        path: "/tournamentTracking",
+                        element: <TournamentTracking />,
+                    },
+                    {
+                        path: "/biddingHistory",
+                        element: <BiddingHistory />,
+                    },
+                    {
+                        path: "/setting",
+                        element: <Setting />,
+                    },
+
+                ]
             },
         ]
     },

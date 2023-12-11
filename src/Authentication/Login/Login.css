@@ -9,3 +9,11 @@
         padding: 50px 30px 0;
     }
 }
+
+.login_img img {
+    width: 100%;
+}
+
+.login_wrapper select {
+    opacity: 0.3 !important;
+}
