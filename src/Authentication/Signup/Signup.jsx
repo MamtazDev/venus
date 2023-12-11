@@ -6,7 +6,7 @@ const Signup = () => {
         <>
             <div className="grid gap-0 lg:grid-cols-2">
                 <div>
-                    <img className='hidden w-full h-screen lg:block' src={loginImage} alt="login image" />
+                    <img className='hidden w-full h-screen lg:block object-cover' src={loginImage} alt="login image" />
                 </div>
                 <div>
                     <div className='flex justify-end p-30'>
@@ -20,32 +20,29 @@ const Signup = () => {
                             <h1 className='text-2xl font-semibold lg:text-5xl text-primary'>Lets Get Started!</h1>
                             <p className='text-base text222color'>Fill up all the required information</p>
                         </div>
-
-                        <form action="" className='login_form_wrapper'>
+                        <form className='login_form_wrapper'>
                             <div className='flex flex-col gap-5 '>
                                 <div>
                                     <label className="">Full name</label>
-                                    <input required type="text" placeholder="Enter your name" className="w-full input_field input input-bordered" />
+                                    <input required type="text" placeholder="Enter your name" className="w-full input_field input " />
                                 </div>
                                 <div>
                                     <label className="">Email address</label>
-                                    <input required type="email" placeholder="Enter your email address" className="w-full input_field input input-bordered" />
+                                    <input required type="email" placeholder="Enter your email address" className="w-full input_field input" />
                                 </div>
-                                <div className='grid gap-20 lg:grid-cols-2'>
-                                    <label className="w-full max-w-xs form-control">
+                                <div className='grid gap-20 lg:grid-cols-2 w-full'>
+                                    <label className=" form-control">
                                         <div className="label">
                                             <span className="label-text">Country</span>
                                         </div>
-                                        <select className="select">
+                                        <select className="w-full select border-none">
                                             <option selected>USA</option>
                                             <option selected>USA</option>
                                             <option selected>USA</option>
                                             <option selected>USA</option>
-
                                         </select>
-
                                     </label>
-                                    <label className="w-full max-w-xs form-control">
+                                    <label className="w-full form-control">
                                         <div className="label">
                                             <span className="label-text">Gender</span>
                                         </div>
@@ -54,9 +51,7 @@ const Signup = () => {
                                             <option selected>Female</option>
                                             <option selected>Other</option>
                                         </select>
-
                                     </label>
-
                                 </div>
 
                                 <div>

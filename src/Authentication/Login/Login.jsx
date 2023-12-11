@@ -7,7 +7,7 @@ const Login = () => {
         <>
             <div className="grid gap-0 lg:grid-cols-2">
                 <div className='login_img'>
-                    <img className='hidden h-screen lg:block' src={loginImage} alt="login image" />
+                    <img className='hidden h-screen lg:block object-cover' src={loginImage} alt="login image" />
                 </div>
                 <div>
                     <div className='flex justify-end p-30'>

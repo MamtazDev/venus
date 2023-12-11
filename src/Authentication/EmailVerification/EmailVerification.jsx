@@ -6,7 +6,7 @@ const EmailVerification = () => {
         <>
             <div className="grid gap-0 lg:grid-cols-2">
                 <div>
-                    <img className='hidden w-full h-screen lg:block' src={loginImage} alt="login image" />
+                    <img className='hidden w-full h-screen lg:block object-cover' src={loginImage} alt="login image" />
                 </div>
                 <div>
                     <div className='flex justify-end p-30'>
