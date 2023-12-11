@@ -1,8 +1,7 @@
-import React from 'react';
 
 const AuctionSetting = () => {
     return (
-        <div>
+        <>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead className="bg-white">
@@ -50,9 +49,11 @@ const AuctionSetting = () => {
 
             <div className='flex justify-center mt-[30px] '>
                 <button className='bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold '>Save Changes</button>
-
             </div>
-        </div>
+{/*  */}
+
+
+        </>
     );
 };
 
