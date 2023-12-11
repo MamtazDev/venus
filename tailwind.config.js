@@ -22,6 +22,8 @@ module.exports = {
       14: "14px",
       45: "45px",
       21: "21px",
+      27: "27px",
+      20: "20px",
     },
     fontFamily: {
       sans: ["Work Sans", "sans-serif"],
