@@ -18,7 +18,7 @@ const League = () => {
     return (
         <>
             <div className="pt-20  ps-2">
-                <div className="bg-white ps-25 ">
+                <div className="bg-white ps-25 mb-[20px]">
                     <div className="flex gap-[75px]  items-end ">
                         {data.map((item) => (
                             <button

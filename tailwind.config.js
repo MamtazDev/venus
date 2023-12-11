@@ -19,14 +19,19 @@ module.exports = {
       sky: "#E8EEFF",
       light_sky: "#F4F7FE",
       dark_sky: "#9AA8D1",
+      sky_bg1: "#F6F9FF",
       border_grey: "#C8CBD9",
+      border2:'#EEE'
 
 
     },
     padding: {
+      10: "10px",
       14: "14px",
+      15: "15px",
       16: "16px",
       21: "21px",
+      23: "23px",
       27: "27px",
       20: "20px",
       25: "25px",

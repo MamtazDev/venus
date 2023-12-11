@@ -44,6 +44,19 @@ button {
   box-shadow: none;
 }
 
+.text1 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
+  font-family: 'work-sans', sans-serif;
+}
+.text2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  font-family: 'work-sans', sans-serif;
+}
+
 a:hover {
   color: var(--color_222);
 }
