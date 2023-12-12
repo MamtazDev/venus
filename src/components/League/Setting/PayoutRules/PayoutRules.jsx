@@ -43,7 +43,6 @@ const PayoutRules = () => {
                     <thead className="bg-white">
                         <tr className="border-0  ">
                             <th className="text3  py-16 ps-40">Group Name  </th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -51,13 +50,15 @@ const PayoutRules = () => {
                         <tr className="bg-sky border border-[#F0F0F0]  ">
 
                             <td>
-                                <textarea className="textarea w-full p-0" placeholder="Write your Payout Rules"></textarea>
+                                <textarea className="textarea w-full p-0 h-[135px]" placeholder="Write your Payout Rules"></textarea>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
+            <div className='flex justify-center mt-[30px] '>
+                <button className='bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold '>Save Payout Info</button>
+            </div>
 
         </>
     );

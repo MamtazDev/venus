@@ -20,6 +20,8 @@ module.exports = {
       light_sky: "#F4F7FE",
       dark_sky: "#9AA8D1",
       sky_bg1: "#F6F9FF",
+      sky_bg2: "#F6F8FE",
+
       border_grey: "#C8CBD9",
       border2:'#EEE',
       border3:'#E1E1E1'

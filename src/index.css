@@ -66,6 +66,30 @@ button {
   font-weight: 500;
   line-height: normal;
 }
+.text4 {
+  color: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.text5 {
+  color: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.text6 {
+  color: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
 textarea:focus{
   outline: 0 !important;
 }

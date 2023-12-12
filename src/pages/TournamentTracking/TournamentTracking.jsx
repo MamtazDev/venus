@@ -1,9 +1,10 @@
+import TournamentTrackingDash from "../../components/TournamentTracking/TournamentTrackingDash";
 
 const TournamentTracking = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <TournamentTrackingDash />
+        </>
     );
 };
 
