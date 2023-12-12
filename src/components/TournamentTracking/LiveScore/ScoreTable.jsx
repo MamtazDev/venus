@@ -1,7 +1,7 @@
 import c1 from '../../../assets/icons/c1.png'
 const ScoreTable = () => {
     return (
-        <div>
+        <>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -36,7 +36,7 @@ const ScoreTable = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </>
     );
 };
 

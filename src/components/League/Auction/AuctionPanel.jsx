@@ -12,8 +12,10 @@ const AuctionPanel = () => {
                         <p className='text-lg font-semibold text-text_dark_grey'>Alabama</p>
                     </div>
                     {/* buttons */}
+
+
                     <div className='flex gap-10 flex-wrap'>
-                        <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3'>Admin Panel</button>
+                        <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3' onClick={() => document.getElementById('admin_modal').showModal()}>Admin Panel</button>
                         <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3'>Next Item ( Random)</button>
                         <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3'>Reset Clock</button>
                     </div>
@@ -58,7 +60,7 @@ const AuctionPanel = () => {
                                 Bid
                             </div>
                         </div>
-                        <button className='w-full bg-base text-white p-10 mt-[10px]'>Show Rules</button>
+                        <button className='w-full bg-base text-white p-10 mt-[10px]' onClick={() => document.getElementById('show_rules').showModal()}>Show Rules</button>
                     </div>
                 </div>
             </div>
@@ -66,6 +68,106 @@ const AuctionPanel = () => {
             <BidMember />
             {/*  ijmessage  */}
             <Message />
+            {/* admin panel modal start */}
+
+
+            <dialog id="admin_modal" className="modal">
+                <div className="modal-box bg-white max-w-[100%] h-[100%]">
+                    <div className="modal-action mt-0  flex-col justify-end text-right">
+                        <form>
+                            <button type="submit" className='w-[30px]'>x</button>
+                        </form>
+                    </div>
+                    <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px]">Admin Panel</h3>
+                    <div className='flex  justify-around'>
+                        <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3'>Admin Panel</button>
+                        <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3'>Next Item ( Random)</button>
+                        <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3'>Reset Clock</button>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="table mt-[40px]  border-2 border-light_sky">
+                            {/* head */}
+                            <thead>
+                                <tr className="bg-sky text3 text-sm font-semibold font-sans border-y border-border2 " >
+                                    <th className=" py-[17px] flex-grow-4 w-[60%]">Team</th>
+                                    <th className=" py-[17px]  text-left">Owner</th>
+                                    <th className=" py-[17px]  text-left">Price</th>
+                                    <th className=" py-[17px]  text-left"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    [1, 2, 3, 4, 5, 6].map((data) => (
+                                        <>
+                                            <tr className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
+                                                <td className="text-left flex gap-8 items-center">
+                                                    Shamin
+                                                </td>
+                                                <td className="text-left  py-[17px]"></td>
+                                                <td className="text-left  py-[17px]">$0.00</td>
+                                                <td className="text-left  py-[17px]">
+                                                    <button className="p-10 bg-base text-white rounded-3">Set Next Item</button>
+                                                </td>
+                                            </tr>
+                                        </>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </dialog>
+
+            {/* admin panel modal end */}
+
+
+
+
+            {/* show rules modal start */}
+            <dialog id="show_rules" className="modal">
+                <div className="modal-box bg-white max-w-[100%] h-[100%]">
+                    <div className="modal-action mt-0  flex-col justify-end text-right">
+                        <form>
+                            <button type="submit" className='w-[30px]'>x</button>
+                        </form>
+                    </div>
+                    <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px]">Show Rules</h3>
+                    <hr className='h-[0.5px]  border-[#C8CBD9]' />
+                    <div className="overflow-x-auto">
+                <table className="table">
+                 
+                    <tbody>
+                        {/* row 1 */}
+                        <tr className="bg-sky  border-[#E1E1E1] flex justify-between items-center w-full ps-[24px]">
+                            <td className="font-medium font-sans text-sm text-text_color1 ">Auction Timer</td>
+                            <td className="font-medium text-sm text-text_color1 ">
+                                <input type="text" defaultValue="15 Seconds" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='15 Seconds' />
+                            </td>
+                        </tr>
+                        <tr className="bg-sky border border-[#E1E1E1] flex justify-between items-center w-full  ps-[24px]">
+                            <td className="font-medium font-sans text-sm text-text_color1 ">Minimum Buy In</td>
+                            <td className="font-medium text-sm text-text_color1 ">
+                                <input type="text" defaultValue="$ 5" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='$ 5' />
+                            </td>
+                        </tr>
+                        <tr className="bg-sky border border-[#E1E1E1] flex justify-between items-center w-full  ps-[24px]">
+                            <td className="font-medium font-sans text-sm text-text_color1 ">Allow Unsold Teams</td>
+                            <td className="font-medium text-sm text-text_color1 ">
+                                <input type="text" defaultValue="No" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='No' />
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+                </div>
+
+
+            </dialog>
+
+            {/* show rules modal end */}
+
 
 
         </>

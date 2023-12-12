@@ -43,7 +43,6 @@ const ScoreStats = () => {
                     ))
                     }
                 </div>
-
             </div>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-20 mt-[20px]">
                 <div className="p-20 bg-white rounded-3">

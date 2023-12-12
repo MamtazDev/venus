@@ -7,7 +7,20 @@ import table from '../../../assets/icons/table.png'
 import stats from '../../../assets/icons/stats.png'
 import team from '../../../assets/icons/team.png'
 const ScoreHeading = () => {
-    const data = ["Table", "Stats", "Team"];
+    const data = [
+        {
+            title: "Table",
+            img: table
+        },
+        {
+            title: "Stats",
+            img: stats
+        },
+        {
+            title: "Team",
+            img: team
+        },
+    ];
     const [selectBtn, setSelectBtn] = useState("Table");
 
     const handleSelectBtn = (selectedData) => {
@@ -22,14 +35,14 @@ const ScoreHeading = () => {
                         {data.map((item) => (
                             <button
                                 key={item}
-                                className={`${selectBtn === item
+                                className={`${selectBtn === item.title
                                     ? "border-b-2 border-yellow text-yellow font-semibold "
                                     : "text-text_dark_grey "
                                     } text-base pb-[15px] pt-[24px]  flex gap-8 items-center`}
-                                onClick={() => handleSelectBtn(item)}
+                                onClick={() => handleSelectBtn(item.title)}
                             >
-                                <img src={table} alt="Table" />
-                                <span>{item}</span>
+                                <img src={item.img} alt="Table" />
+                                <span>{item.title}</span>
                             </button>
                         ))}
 

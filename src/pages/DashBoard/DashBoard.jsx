@@ -28,10 +28,10 @@ const DashBoard = () => {
                     <table className="table">
                         <thead className="bg-[#F4F7FE]">
                             <tr className="border-0">
-                                <th className="text-sm font-medium text-text_color1 ">League Name</th>
-                                <th className="text-sm font-medium text-text_color1 ">Buy In</th>
-                                <th className="text-sm font-medium text-text_color1 ">Current Payout</th>
-                                <th className="text-sm font-medium text-text_color1 ">Net Return</th>
+                                <th className="text-sm font-medium text-text_color1">League Name</th>
+                                <th className="text-sm font-medium text-text_color1">Buy In</th>
+                                <th className="text-sm font-medium text-text_color1">Current Payout</th>
+                                <th className="text-sm font-medium text-text_color1">Net Return</th>
                             </tr>
                         </thead>
                         <tbody>
