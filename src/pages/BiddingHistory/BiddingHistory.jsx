@@ -12,7 +12,6 @@ const BiddingHistory = () => {
                             <th className=" py-[17px] flex-grow-4 w-[60%]">Team</th>
                             <th className=" py-[17px]  text-left">Bid Amount</th>
                             <th className=" py-[17px]  text-left">Bid Time</th>
-
                         </tr>
                     </thead>
                     <tbody>

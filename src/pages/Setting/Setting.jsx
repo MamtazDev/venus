@@ -1,9 +1,11 @@
+import SettinHeader from "../../components/SettingPagte/SettinHeader";
 
 const Setting = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <SettinHeader />
+
+        </>
     );
 };
 

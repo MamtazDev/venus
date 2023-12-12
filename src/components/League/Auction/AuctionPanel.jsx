@@ -70,7 +70,6 @@ const AuctionPanel = () => {
             <Message />
             {/* admin panel modal start */}
 
-
             <dialog id="admin_modal" className="modal">
                 <div className="modal-box bg-white max-w-[100%] h-[100%]">
                     <div className="modal-action mt-0  flex-col justify-end text-right">
@@ -122,8 +121,6 @@ const AuctionPanel = () => {
             {/* admin panel modal end */}
 
 
-
-
             {/* show rules modal start */}
             <dialog id="show_rules" className="modal">
                 <div className="modal-box bg-white max-w-[100%] h-[100%]">
@@ -135,32 +132,32 @@ const AuctionPanel = () => {
                     <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px]">Show Rules</h3>
                     <hr className='h-[0.5px]  border-[#C8CBD9]' />
                     <div className="overflow-x-auto">
-                <table className="table">
-                 
-                    <tbody>
-                        {/* row 1 */}
-                        <tr className="bg-sky  border-[#E1E1E1] flex justify-between items-center w-full ps-[24px]">
-                            <td className="font-medium font-sans text-sm text-text_color1 ">Auction Timer</td>
-                            <td className="font-medium text-sm text-text_color1 ">
-                                <input type="text" defaultValue="15 Seconds" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='15 Seconds' />
-                            </td>
-                        </tr>
-                        <tr className="bg-sky border border-[#E1E1E1] flex justify-between items-center w-full  ps-[24px]">
-                            <td className="font-medium font-sans text-sm text-text_color1 ">Minimum Buy In</td>
-                            <td className="font-medium text-sm text-text_color1 ">
-                                <input type="text" defaultValue="$ 5" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='$ 5' />
-                            </td>
-                        </tr>
-                        <tr className="bg-sky border border-[#E1E1E1] flex justify-between items-center w-full  ps-[24px]">
-                            <td className="font-medium font-sans text-sm text-text_color1 ">Allow Unsold Teams</td>
-                            <td className="font-medium text-sm text-text_color1 ">
-                                <input type="text" defaultValue="No" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='No' />
-                            </td>
-                        </tr>
-                       
-                    </tbody>
-                </table>
-            </div>
+                        <table className="table">
+
+                            <tbody>
+                                {/* row 1 */}
+                                <tr className="bg-sky  border-[#E1E1E1] flex justify-between items-center w-full ps-[24px]">
+                                    <td className="font-medium font-sans text-sm text-text_color1 ">Auction Timer</td>
+                                    <td className="font-medium text-sm text-text_color1 ">
+                                        <input type="text" defaultValue="15 Seconds" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='15 Seconds' />
+                                    </td>
+                                </tr>
+                                <tr className="bg-sky border border-[#E1E1E1] flex justify-between items-center w-full  ps-[24px]">
+                                    <td className="font-medium font-sans text-sm text-text_color1 ">Minimum Buy In</td>
+                                    <td className="font-medium text-sm text-text_color1 ">
+                                        <input type="text" defaultValue="$ 5" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='$ 5' />
+                                    </td>
+                                </tr>
+                                <tr className="bg-sky border border-[#E1E1E1] flex justify-between items-center w-full  ps-[24px]">
+                                    <td className="font-medium font-sans text-sm text-text_color1 ">Allow Unsold Teams</td>
+                                    <td className="font-medium text-sm text-text_color1 ">
+                                        <input type="text" defaultValue="No" className='p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]' placeholder='No' />
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
 

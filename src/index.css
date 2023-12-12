@@ -90,6 +90,14 @@ button {
   font-weight: 600;
   line-height: normal;
 }
+.text7 {
+  color: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
 textarea:focus{
   outline: 0 !important;
 }
