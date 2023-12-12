@@ -8,6 +8,8 @@ import League from "../pages/League/League";
 import TournamentTracking from "../pages/TournamentTracking/TournamentTracking";
 import BiddingHistory from "../pages/BiddingHistory/BiddingHistory";
 import Setting from "../pages/Setting/Setting";
+import NotificationsSetting from "../components/SettingPagte/NotificationsSetting";
+import EmailSetting from "../components/SettingPagte/EmailSetting";
 
 
 export const router = createBrowserRouter([
@@ -35,11 +37,19 @@ export const router = createBrowserRouter([
             {
                 path: "/setting",
                 element: <Setting />,
+
             },
+            {
+                path: "/preference/notification",
+                element: <NotificationsSetting />,
 
+            },
+            {
+                path: "/preference/emailSetting",
+                element: <EmailSetting />,
+
+            },
         ]
-
-
     },
     {
         path: "/login",

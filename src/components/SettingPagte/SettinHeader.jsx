@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Acount from "./Acount";
-import Preferences from "./Preferences";
+// import Preferences from "./Preferences";
 import account from '../../assets/icons/account.png'
+// import NotificationsSetting from "./NotificationsSetting";
+import EmailSetting from "./EmailSetting";
 const SettinHeader = () => {
+    
     const data = ["Account", "Preferences"];
     const [selectBtn, setSelectBtn] = useState("Account");
 
@@ -30,16 +33,14 @@ const SettinHeader = () => {
                     </div>
                 </div>
             </div>
-
             {selectBtn === "Account" ? <Acount /> :
-                selectBtn === "Preferences" ? <Preferences /> :
+                // selectBtn === "Preferences" ? <Preferences /> :
+                // selectBtn === "Preferences" ? <NotificationsSetting /> :
+                selectBtn === "Preferences" ? <EmailSetting /> :
+                // location.pathname === "/preference/notification" ? <NotificationsSetting /> :
                     null
             }
         </>
-
-
-
-
     );
 };
 

@@ -4,7 +4,6 @@ const Setting = () => {
     return (
         <>
             <SettinHeader />
-
         </>
     );
 };
