@@ -9,11 +9,11 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
 
+
 const LiveScore = () => {
     return (
         <>
             <h3 className="font-sans text-text_dark_grey text-2xl font-semibold mb-[20px] ">Live Score</h3>
-
 
             <div className="grid lg:grid-cols-3 grid-cols-1 gap-20 ">
 
@@ -97,8 +97,7 @@ const LiveScore = () => {
                             <div className="bg-white p-20 w-full h-[192px]">
                                 <div className='flex flex-col gap-15'>
                                     <div className="flex justify-between items-center">
-
-                                        <p className='text-text_dark_grey font-sans  text-lg  font-medium '>5th T20</p>
+                                        <p className='text-text_dark_grey font-sans  text-lg  font-medium'>5th T20</p>
                                         <p className='text4'>Bengaluru</p>
                                     </div>
                                     <div className="flex justify-between">

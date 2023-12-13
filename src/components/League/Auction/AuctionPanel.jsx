@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import auction1 from '../../../assets/icons/auction1.png'
 import BidMember from './BidMember';
 import Message from './Message';
@@ -62,7 +63,6 @@ const AuctionPanel = () => {
                     </div>
                 </div>
             </div>
-
             <BidMember />
             {/*  ijmessage  */}
             <Message />
@@ -115,11 +115,8 @@ const AuctionPanel = () => {
                     </div>
                 </div>
                 <label className="modal-backdrop" htmlFor="admin_modal" onClick={() => document.getElementById('admin_modal').close()}>Close</label>
-
             </dialog>
-
             {/* admin panel modal end */}
-
 
             {/* show rules modal start */}
             <dialog id="show_rules" className="modal">

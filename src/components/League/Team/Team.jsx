@@ -76,6 +76,8 @@ const Team = () => {
 
                     </div>
                 </div>
+                <label className="modal-backdrop" htmlFor="pay_team_modal" onClick={() => document.getElementById('pay_team_modal').close()}>Close</label>
+
             </dialog>
             <dialog id="add_payout" className="modal">
                 <div className="modal-box bg-white max-w-[100%] h-[100%] px-[50px]">
@@ -137,6 +139,8 @@ const Team = () => {
                         </div>
                     </div>
                 </div>
+                <label className="modal-backdrop" htmlFor="add_payout" onClick={() => document.getElementById('add_payout').close()}>Close</label>
+
             </dialog>
 
         </div>

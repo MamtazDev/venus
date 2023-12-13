@@ -86,19 +86,16 @@ const Preferences = () => {
                             <p className="mb-[30px] mt-[21px] text4" style={{ color: "#000" }}>******1234</p>
                             <label htmlFor="" className="text-base font-medium font-sans text-[#263238]">Type your 6 digits security code</label>
                             <div className="flex gap-[7px] mt-[10px]">
-                                <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
-                                <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
-                                <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
-                                <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
-                                <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
-                                <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
+                                {
+                                    [1, 2, 3, 4, 5, 6].map(() => (
+                                        <>
+                                            <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
+                                        </>
+                                    ))
+                                }
                             </div>
-
-
-
                             <button className='max-w-[599px] bg-base text-white rounded-3 text-sm Ffont-semibold font-sans w-full py-10 mt-[16px] mb-[10px]'>Verify My Account</button>
                             <small className="text1 flex justify-end" style={{ color: "#8D8D8D" }}>Didnt get the code? <span className="text3 underline" style={{ color: "#000080" }}>Resend</span></small>
-
                         </div>
                     </div>
                 </div>

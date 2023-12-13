@@ -27,8 +27,6 @@ const datas = [
         text: "ROI"
     },
 ]
-
-
 const Home = () => {
     return (
         <>
