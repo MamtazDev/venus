@@ -15,10 +15,10 @@ const DashBoard = () => {
                     <h2 className="text-2xl text_dark_grey  font-semibold ">John Smith</h2>
                 </div>
                 <div className="flex gap-10">
-                    <button className="btn py-14 px-20 bg-base text-white rounded-[3px]" onClick={() => document.getElementById('my_modal_1').showModal()}>Start a League</button>
+                    <button className=" py-14 px-20 bg-base text-white rounded-[3px]" onClick={() => document.getElementById('my_modal_1').showModal()}>Start a League</button>
                     <button
-                    onClick={() => document.getElementById('my_modal_2').showModal()}
-                     className="py-14 px-20 bg-base text-white rounded-[3px]">Join a League</button>
+                        onClick={() => document.getElementById('my_modal_2').showModal()}
+                        className="py-14 px-20 bg-base text-white rounded-[3px]">Join a League</button>
                 </div>
             </div>
             {/* active league */}
@@ -88,9 +88,7 @@ const DashBoard = () => {
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box bg-white h-[621px]">
                     <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px] ">Start a league</h3>
-
                     <hr className='border-t border-border_grey mx-[40px] mb-[50px]' />
-
 
                     <div className='px-[52px]'>
                         <label className=" form-control">
@@ -120,50 +118,47 @@ const DashBoard = () => {
                             <input type="text" placeholder="League Nmae" className="bg-sky_bg2 w-full input_field input input-bordered mt-[10px] border border-border2" required />
                         </div>
 
-
                         <div className="modal-action flex-col">
                             <form method="">
                                 <button className='bg-base py-10 w-full rounded-3 mt-[30px] text-white'>Submit</button>
                             </form>
                         </div>
+
                         <div className='text-center py-14'>
                             <Link className='text-center'>Join a League</Link>
                         </div>
                     </div>
-
                 </div>
+                <label className="modal-backdrop" htmlFor="my_modal_1" onClick={() => document.getElementById('my_modal_1').close()}>Close</label>
             </dialog>
+
 
             {/* join league modal */}
 
             <dialog id="my_modal_2" className="modal">
                 <div className="modal-box bg-white h-[621px]">
                     <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px] ">Start a league</h3>
-
                     <hr className='border-t border-border_grey mx-[40px] mb-[50px]' />
 
-
                     <div className='px-[52px]'>
-                    
                         <div className=' mt-[20px]'>
                             <label className=" text-base font-medium text-[#00000] font-sans">Invite Code</label>
                             <input type="text" placeholder="Insert code" className="bg-sky_bg2 w-full input_field input input-bordered mt-[10px] border border-border2" required />
                         </div>
-
 
                         <div className="modal-action flex-col">
                             <form method="">
                                 <button className='bg-base py-10 w-full rounded-3 text-white'>Submit</button>
                             </form>
                         </div>
+
                         <div className='text-center py-14'>
                             <Link className='text-center'>Join a League</Link>
                         </div>
                     </div>
-
                 </div>
+                <label className="modal-backdrop" htmlFor="my_modal_2" onClick={() => document.getElementById('my_modal_2').close()}>Close</label>
             </dialog>
-
 
         </div>
     );

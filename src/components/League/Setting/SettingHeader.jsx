@@ -18,7 +18,7 @@ const SettingHeader = () => {
         <>
             <div className="mb-[20px]">
                 <div className="">
-                    <div className="flex gap-[20px]  items-end ">
+                    <div className="flex gap-[20px]  items-end overflow-x-auto ">
                         {data.map((item) => (
                             <button
                                 key={item}

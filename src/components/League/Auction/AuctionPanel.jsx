@@ -12,8 +12,6 @@ const AuctionPanel = () => {
                         <p className='text-lg font-semibold text-text_dark_grey'>Alabama</p>
                     </div>
                     {/* buttons */}
-
-
                     <div className='flex gap-10 flex-wrap'>
                         <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3' onClick={() => document.getElementById('admin_modal').showModal()}>Admin Panel</button>
                         <button className='py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3'>Next Item ( Random)</button>
@@ -116,6 +114,8 @@ const AuctionPanel = () => {
                         </table>
                     </div>
                 </div>
+                <label className="modal-backdrop" htmlFor="admin_modal" onClick={() => document.getElementById('admin_modal').close()}>Close</label>
+
             </dialog>
 
             {/* admin panel modal end */}
@@ -129,11 +129,10 @@ const AuctionPanel = () => {
                             <button type="submit" className='w-[30px]'>x</button>
                         </form>
                     </div>
-                    <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px]">Show Rules</h3>
-                    <hr className='h-[0.5px]  border-[#C8CBD9]' />
+                    <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px] ">Show Rules</h3>
+                    <hr className='h-[0.5px]  border-[#C8CBD9] mb-[30px]' />
                     <div className="overflow-x-auto">
                         <table className="table">
-
                             <tbody>
                                 {/* row 1 */}
                                 <tr className="bg-sky  border-[#E1E1E1] flex justify-between items-center w-full ps-[24px]">
@@ -159,7 +158,7 @@ const AuctionPanel = () => {
                         </table>
                     </div>
                 </div>
-
+                <label className="modal-backdrop" htmlFor="show_rules" onClick={() => document.getElementById('show_rules').close()}>Close</label>
 
             </dialog>
 

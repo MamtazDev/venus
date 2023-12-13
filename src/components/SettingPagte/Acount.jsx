@@ -1,5 +1,31 @@
-
+import { useRef, useState } from 'react';
+import delet from '../../assets/icons/delete1.png'
 const Acount = () => {
+    const fileInputRef = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleChooseButtonClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                setSelectedFile(reader.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleRemoveButtonClick = () => {
+        setSelectedFile(null);
+        fileInputRef.current.value = ''; // Clear the file input
+    };
+
     return (
         <>
             <div className="bg-white p-30 max-w-[800px] w-[100%]">
@@ -17,6 +43,43 @@ const Acount = () => {
                             />
                         </div>
                     </div>
+                    <div>
+                        <label htmlFor="">Image</label>
+                        <div className='flex  items-center justify-between'>
+                            <div className='flex gap-15 mt-[12px]'>
+                                {selectedFile && (
+                                    <img
+                                        src={selectedFile}
+                                        alt='Selected'
+                                        className='w-[24px] h-[24px] object-cover rounded-full'
+                                    />
+                                )}
+                                <button
+                                    type='button'
+                                    className="px-14 h-[33px] bg-white border border-[#E1E1E1] rounded-8 choose_btn"
+                                    onClick={handleChooseButtonClick}
+                                >
+                                    Choose
+                                </button>
+                                <input
+                                    type='file'
+                                    name=''
+                                    className='hidden'
+                                    id=''
+                                    ref={fileInputRef}
+                                    onChange={handleFileChange}
+                                />
+                                {selectedFile && (
+                                    <button className='flex items-center' onClick={handleRemoveButtonClick}>
+                                        <img src={delet} alt='delete' />
+                                        Remove
+                                    </button>
+                                )}
+                            </div>
+                            <p className='text-base font-sans font-normal text-[#636363] '>JPG, GIF or PNG, 3MB Max</p>
+                        </div>
+                    </div>
+
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
                         <div>
                             <label className="">Username</label>
@@ -58,7 +121,7 @@ const Acount = () => {
                     </div>
 
                     <div className="flex gap-20">
-                        <button className="py-10 px-[22px] bg-base text-white text2 rounded-3 " style={{color:"#fff"}}> Save changes</button>
+                        <button className="py-10 px-[22px] bg-base text-white text2 rounded-3 " style={{ color: "#fff" }}> Save changes</button>
                         <button className="rounded-3 bg-[#E9E9F7] py-10 px-[45px] font-medium">Cancel</button>
                     </div>
 

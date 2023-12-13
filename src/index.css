@@ -25,7 +25,9 @@ p {
   margin: 0;
   margin-bottom: 0;
 }
-
+.choose_btn:focus{
+border: 1px solid #E1E1E1;
+}
 ul {
   padding: 0;
 }

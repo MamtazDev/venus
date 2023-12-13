@@ -5,9 +5,6 @@ import Auction from "../../components/League/Auction/Auction";
 import Setting from "../../components/League/Setting/Setting";
 import Team from "../../components/League/Team/Team";
 
-
-
-
 const League = () => {
     const data = ["Home", "Auction", "Team", "Setting"];
     const [selectBtn, setSelectBtn] = useState("Home");
@@ -19,7 +16,7 @@ const League = () => {
         <>
             <div className="pt-20  ps-2">
                 <div className="bg-white ps-25 mb-[20px]">
-                    <div className="flex gap-[75px]  items-end ">
+                    <div className="flex gap-[75px]  items-end overflow-x-auto ">
                         {data.map((item) => (
                             <button
                                 key={item}
