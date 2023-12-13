@@ -29,7 +29,7 @@ const Layout = () => {
       <div className={`${!toggle && !isMobile ? "w-[360px]" : "w-[80px]"}  h-screen `}>
         <DashboardSidebar handleToggle={handleToggle} toggle={toggle} isMobile={isMobile} />
       </div>
-      <div className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar bg-light_sky pt-27 
+      <div className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar bg-light_sky pt-20
        ">
         <Topbar />
         <div className="mt-[20px]  pe-30 ps-20 ">

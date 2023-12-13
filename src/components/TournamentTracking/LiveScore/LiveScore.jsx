@@ -51,7 +51,6 @@ const LiveScore = () => {
                             slidesPerView: 2,
                             spaceBetween: 16,
                         },
-
                         1024: {
                             slidesPerView: 3,
                             spaceBetween: 16,
@@ -71,26 +70,14 @@ const LiveScore = () => {
                         <div className="header_car">
                             <div className="header_carousal">
                                 <p>Clientes felices</p>
-
                                 <h2>Empresas que confían en nosotros</h2>
                             </div>
                         </div>
                     </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="header_car">
-                            <div className="header_carousal">
-                                <p>Clientes felices</p>
-
-                                <h2>Empresas que confían en nosotros</h2>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-
-
+                   
                     <SwiperNavButton />
                 </Swiper>
             </div>
-
             {/* <div className="max-w-[465px]  w-full ">
                     <div className="bg-white p-20 w-full h-[192px] ">
                         <div className='flex flex-col gap-15'>

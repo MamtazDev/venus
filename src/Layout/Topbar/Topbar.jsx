@@ -5,10 +5,10 @@ import pro1 from '../../assets/icons/pro1.png'
 const Topbar = () => {
     return (
         <>
-            <div className="flex gap-20 justify-end border-b border-[#C8CBD9]  pb-[24px] pe-30">
+            <div className="flex gap-20 justify-end items-center border-b border-[#C8CBD9]  pb-[15px] pe-30 ]">
                 <div className="dropdown dropdown-bottom dropdown-end">
-                    <div tabIndex={0} role="button" className="btn border-none"><img src={notification} alt="notification" /></div>
-                    <div tabIndex={0} className="dropdown-content z-[1] menu bg-white drop-shadow-[7px 6px 15px 0px rgba(0, 0, 0, 0.06), 0px 4px 4px 0px #E0E9FF] rounded-3 w-[425px] pt-[32px] px-[24px] pb-[24px]">
+                    <div tabIndex={0} role="button" className=" border-none p-0 h-[24px]" ><img src={notification} alt="notification" /></div>
+                    <div tabIndex={0} className="dropdown-content z-[1] menu bg-white rounded-3 w-[425px] pt-[32px] px-[24px] pb-[24px]">
                         <div className='flex justify-between'>
                             <p className='text7'>Notification</p>
                             <div className='text-sm font-medium font-sans text-base  py-[7px] px-10 bg-[#E8EDFF] w-[81px]'>
