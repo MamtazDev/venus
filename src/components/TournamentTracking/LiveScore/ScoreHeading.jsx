@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import ScoreTable from './ScoreTable';
 import ScoreStats from './ScoreStats';
 import ScoreTeam from './ScoreTeam';
@@ -61,29 +61,3 @@ const ScoreHeading = () => {
 export default ScoreHeading;
 
 
-
-
-function ButtonComponent({ item, selectBtn, handleSelectBtn, setSelectBtn }) {
-
-
-
-    console.log("handleSelectBtn selectBtn: ", selectBtn)
-    console.log("handleSelectBtn item: ", item)
-
-
-
-    return (
-        <button
-            className={`
-                                ${selectBtn === item.title ? "order-b-2 border-yellow" : " text-text_dark_grey "}
-                                    // ? "border-b-2 border-yellow text-yellow font-semibold "
-                                    // : "text-text_dark_grey "
-                                    // } text-base pb-[15px] pt-[24px]  flex gap-8 items-center`}
-
-            onClick={() => handleSelectBtn(item?.title)}
-        >
-            <img src={item.img} alt="Table" />
-            <span>Name: {item.title}</span>
-        </button>
-    )
-}

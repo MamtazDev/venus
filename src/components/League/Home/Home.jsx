@@ -46,12 +46,8 @@ const Home = () => {
                         </>
                     ))
                 }
-
             </div>
             <RankingTable />
-
-
-
         </>
     );
 };

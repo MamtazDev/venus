@@ -30,27 +30,11 @@ const League = () => {
 
     const [selectBtn, setSelectBtn] = useState("Home");
 
-    const handleSelectBtn = (selectedData) => {
-        setSelectBtn(selectedData);
-    };
     return (
         <>
-            <div className="pt-20  ps-2">
+            <div className=" ps-2">
                 <div className="bg-white ps-25 mb-[20px]">
                     <div className="flex gap-[75px]  items-end overflow-x-auto ">
-                        {/* {data.map((item) => (
-                            <button
-                                key={item}
-                                className={`${selectBtn === item
-                                    ? "border-b-2 border-yellow text-yellow font-semibold "
-                                    : "text-text_dark_grey "
-                                    } text-base pb-[15px] pt-[24px]  flex gap-8 items-center`}
-                                onClick={() => handleSelectBtn(item)}
-                            >
-                                <img src={home} alt="home" />
-                                <span>{item}</span>
-                            </button>
-                        ))} */}
                         {
                             data.map((data) => (
                                 <>

@@ -19,10 +19,6 @@ const SettinHeader = () => {
 
     const [selectBtn, setSelectBtn] = useState("Account");
 
-
-    const handleSelectBtn = (selectedData) => {
-        setSelectBtn(selectedData);
-    };
     return (
         <>
             <div className="pt-20  ps-2">

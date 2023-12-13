@@ -15,7 +15,7 @@ const LiveScore = () => {
         <>
             <h3 className="font-sans text-text_dark_grey text-2xl font-semibold mb-[20px] ">Live Score</h3>
 
-            <div className="grid lg:grid-cols-3 grid-cols-1 gap-20 ">
+            <div className="grid lg:grid-cols-3 grid-cols-1 gap-20">
 
                 {/* <div className="max-w-[465px]  w-full ">
                     <div className="bg-white p-20 w-full h-[192px] ">
@@ -64,6 +64,7 @@ const LiveScore = () => {
             </div>
 
             <Swiper
+            className ="mb-[40px]"
                 slidesPerView={2}
                 spaceBetween={10}
                 loop={true}

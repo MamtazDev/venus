@@ -68,6 +68,14 @@ button {
   font-weight: 500;
   line-height: normal;
 }
+.label_texts {
+  color: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 .text4 {
   color: #222;
   font-family: 'Work Sans', sans-serif;
@@ -90,6 +98,14 @@ button {
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
+  line-height: normal;
+}
+.text_dark_grey {
+  color: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
   line-height: normal;
 }
 .text7 {
@@ -164,8 +180,3 @@ button:focus-visible {
   font-variant: initial;
   line-height: 1;
 }
-/* 
-.swiper {
-  width: 100%;
-  height: 100%;
-} */
