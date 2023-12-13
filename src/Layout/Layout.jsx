@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import SideBar from "./Sidebar/Sidebar";
 import Topbar from "./Topbar/Topbar";
 import { useEffect, useState } from "react";
+import DashboardSidebar from "./DashboardSidebar/DashboardSidebar";
 
 const Layout = () => {
 
@@ -27,7 +27,7 @@ const Layout = () => {
   return (
     <div className="flex">
       <div className={`${!toggle && !isMobile ? "w-[360px]" : "w-[80px]"}  h-screen `}>
-        <SideBar handleToggle={handleToggle} toggle={toggle} isMobile={isMobile} />
+        <DashboardSidebar handleToggle={handleToggle} toggle={toggle} isMobile={isMobile} />
       </div>
       <div className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar bg-light_sky pt-27 
        ">
