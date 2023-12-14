@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import setting from '../../assets/icons/setting1.png'
 import email from '../../assets/icons/email.png'
 import add from '../../assets/icons/add.png'

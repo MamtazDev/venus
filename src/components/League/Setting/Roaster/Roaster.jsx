@@ -19,7 +19,7 @@ const Roaster = () => {
                             <td className="font-sans text-center font-medium text-sm text-text_color1 ">0</td>
                             <td className="font-sans text-center font-medium text-sm text-text_color1 ">Creator</td>
                             <td className="font-sans text-center font-medium text-sm text-text_color1 ">
-                                <button className="p-10  border border-[#E1E1E1] bg-[#F2F2F2] rounded-8" >Remove</button>
+                                <button className="p-10  border text-[#939393] border-[#E1E1E1] bg-[#F2F2F2] rounded-8" >Remove</button>
                             </td>
 
 

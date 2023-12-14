@@ -30,8 +30,8 @@ const datas = [
 const Home = () => {
     return (
         <>
-            <div className="flex justify-between items-center pe-[30px]">
-                <h2 className="text-2xl font-semibold text-text_dark_grey mt-[30px] mb-[30px]">Cricket</h2>
+            <div className="flex justify-between items-center pe-[30px] mt-[10px] mb-[30px]">
+                <h2 className="text-2xl font-semibold text-text_dark_grey ">Cricket</h2>
                 <p className="text-sm  font-normal text-text_dark_grey ">23-24 NFL- Full Season</p>
             </div>
             <div className="grid lg:grid-cols-4 grid-cols-1 gap-20 ">

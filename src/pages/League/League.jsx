@@ -19,7 +19,6 @@ import team from '../../assets/icons/team.png'
 import teamActive from '../../assets/icons/yellowteam.png'
 
 const League = () => {
-    // const data = ["Home", "Auction", "Team", "Setting"];
     const data = [
         {
             title: "Home",

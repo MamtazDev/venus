@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import emailbanner from '../../assets/icons/changepass.png'
 import twofactor from '../../assets/icons/twofactor.png'
 import { useState } from "react";

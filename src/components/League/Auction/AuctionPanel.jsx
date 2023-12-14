@@ -86,8 +86,8 @@ const AuctionPanel = () => {
                             {/* head */}
                             <thead>
                                 <tr className="bg-sky text3 text-sm font-semibold font-sans border-y border-border2 " >
-                                    <th className=" py-[17px] flex-grow-4 w-[60%]">Team</th>
-                                    <th className=" py-[17px]  text-left">Owner</th>
+                                    <th className=" py-[17px] flex-grow-4 w-[30%] ps-[40px]">Team</th>
+                                    <th className=" py-[17px]  text-left w-[30%]">Owner</th>
                                     <th className=" py-[17px]  text-left">Price</th>
                                     <th className=" py-[17px]  text-left"></th>
 
@@ -98,12 +98,12 @@ const AuctionPanel = () => {
                                     [1, 2, 3, 4, 5, 6].map((data) => (
                                         <>
                                             <tr className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
-                                                <td className="text-left flex gap-8 items-center">
+                                                <td className="ps-[40px] text-left flex gap-8 items-center">
                                                     Shamin
                                                 </td>
                                                 <td className="text-left  py-[17px]"></td>
                                                 <td className="text-left  py-[17px]">$0.00</td>
-                                                <td className="text-left  py-[17px]">
+                                                <td className="text-right  py-[17px]">
                                                     <button className="p-10 bg-base text-white rounded-3">Set Next Item</button>
                                                 </td>
                                             </tr>

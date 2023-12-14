@@ -88,7 +88,7 @@ const DashBoard = () => {
                     <div className='px-[52px]'>
                         <label className=" form-control">
                             <div className="label">
-                                <span className="label-text text-base font-medium text-[#00000] font-sans">Event</span>
+                                <span className="label-text text-base font-medium text-[#000] font-sans">Event</span>
                             </div>
                             <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3]">
                                 <option selected>USA</option>
@@ -99,7 +99,7 @@ const DashBoard = () => {
                         </label>
                         <label className=" form-control mt-[20px]">
                             <div className="label">
-                                <span className="label-text p-[2px] text-base font-medium text-[#00000] font-sans">Event Scope</span>
+                                <span className="label-text p-[2px] text-base font-medium text-[#000] font-sans">Event Scope</span>
                             </div>
                             <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3]">
                                 <option selected>USA</option>
@@ -109,8 +109,8 @@ const DashBoard = () => {
                             </select>
                         </label>
                         <div className=' mt-[20px]'>
-                            <label className=" text-base font-medium text-[#00000] font-sans">League Name</label>
-                            <input type="text" placeholder="League Nmae" className="bg-sky_bg2 w-full input_field input input-bordered mt-[10px] border border-border2" required />
+                            <label className=" text-base font-medium text-[#000] font-sans">League Name</label>
+                            <input type="text" placeholder="League Name" className=" bg-sky_bg2 w-full input_field input input-bordered mt-[10px]  border  border-[#EEE]" required />
                         </div>
 
                         <div className="modal-action flex-col">

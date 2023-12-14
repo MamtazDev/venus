@@ -298,30 +298,46 @@ cursor: pointer;
 
 
   .swiper-button-next {
-    right: 0% !important;
+    right: 1% !important;
+  }
+
+  .swiper-slide-next {
+    margin-left: 20px !important;
+  }
+}
+
+@media(max-width:1024px) {
+  
+  .swiper-button-prev {
+    left: 91% !important;
+    top: 9% !important;
+  }
+
+}
+
+@media(min-width:375px) and (max-width:1439px) {
+  .swiper {
+    padding-top: 50px !important;
+  }
+
+  .swiper-button-prev {
+    left: 87% !important;
+    top: 9% !important;
+  }
+
+
+  .swiper-button-next {
+    right: 1% !important;
+    top: 9% !important;
   }
 
   .swiper-slide-next {
     margin-left: 20px !important;
 
   }
-}
-@media(min-width:375px) and(max-width:1439px){
-  
+
+
+
 }
 
 /* .swiper-slide */
-
-
-
-
-
-
-
-
-
-
-
-
-
-

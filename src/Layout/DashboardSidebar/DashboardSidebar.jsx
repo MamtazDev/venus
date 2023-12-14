@@ -74,7 +74,7 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
               to={data.to}
               className={({ isActive }) =>
                 isActive
-                  ? `hover:text-white flex items-center gap-[12px] bg-base p-[10px] me-[10px] rounded-[5px] text-[#FFF] text-[14px]`
+                  ? `hover:text-white flex items-center gap-[12px] bg-base p-[10px] me-[10px] rounded-[5px] text-[#FFF] text-[14px] mb-[15px]`
                   : "flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] p-[16px] mb-[15px]"
               }
             >
@@ -101,11 +101,11 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
           className={({ isActive }) =>
             isActive
               ? `hover:text-white flex items-center gap-[12px]  px-[10px] pt-[39px] me-[10px] rounded-[5px] text-[#FFF] text-[14px] mb-[15px] ]`
-              : " flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px]  pt-[29px]  p-[16px] "
+              : " flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] p-[16px] "
           }
         >
           <img src={logout} alt="" />
-          Logout
+          {!toggle && !isMobile ? `Logout` : ""} 
         </NavLink>
       </div>
     </div>
