@@ -67,15 +67,15 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
       <div
         className={`grow flex flex-col py-[15px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"
           }`}>
-        <div>
+        <div className="mb-[90px]">
           {navlinks.map((data, index) => (
             <NavLink
               key={index}
               to={data.to}
               className={({ isActive }) =>
                 isActive
-                  ? `hover:text-white flex items-center gap-[12px] bg-base p-[10px] me-[10px] rounded-[5px] text-[#FFF] text-[14px] mb-[15px]`
-                  : " flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] p-[16px] mb-[15px]"
+                  ? `hover:text-white flex items-center gap-[12px] bg-base p-[10px] me-[10px] rounded-[5px] text-[#FFF] text-[14px]`
+                  : "flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] p-[16px] mb-[15px]"
               }
             >
               {location.pathname === data.to ? (
@@ -95,6 +95,18 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
             </NavLink>
           ))}
         </div>
+        <hr className="text-[#F0F5FF]" />
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            isActive
+              ? `hover:text-white flex items-center gap-[12px]  px-[10px] pt-[39px] me-[10px] rounded-[5px] text-[#FFF] text-[14px] mb-[15px] ]`
+              : " flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px]  pt-[29px]  p-[16px] "
+          }
+        >
+          <img src={logout} alt="" />
+          Logout
+        </NavLink>
       </div>
     </div>
   );

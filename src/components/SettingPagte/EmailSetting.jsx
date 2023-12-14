@@ -4,7 +4,7 @@ import add from '../../assets/icons/add.png'
 import delet from '../../assets/icons/delete.png'
 import emailbanner from '../../assets/icons/modalbg.png'
 
-const EmailSetting = () => {
+const EmailSetting = ({setStep}) => {
     return (
         <>
             <div className="max-w-[847px]">
@@ -49,8 +49,8 @@ const EmailSetting = () => {
             {/* <button className='max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 '>Save changes</button> */}
 
             <div className="flex gap-20 max-w-[599px]">
-                <button className="py-10  bg-base text-white text2 rounded-3  w-full" style={{ color: "#fff" }}> Save changes</button>
-                <button className="rounded-3 bg-[#E9E9F7] py-10 font-medium w-full">Cancel</button>
+                <button onClick={()=>setStep(0)} className="py-10  bg-base text-white text2 rounded-3  w-full" style={{ color: "#fff" }}> Save changes</button>
+                <button onClick={()=>setStep(0)} className="rounded-3 bg-[#E9E9F7] py-10 font-medium w-full">Cancel</button>
             </div>
 
             {/* add email modal */}

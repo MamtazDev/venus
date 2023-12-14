@@ -1,24 +1,20 @@
 import { Link } from 'react-router-dom';
-import NoFoundData from '../../components/NoFoundData/NoFoundData';
-
+// import NoFoundData from '../../components/NoFoundData/NoFoundData';
 const DashBoard = () => {
-
     const data = []
-
     return (
         <div>
             {/* header */}
-
             <div className="flex lg:flex-row flex-col  lg:justify-between justify-center  lg:gap-0 gap-20 items-center mb-[30px]">
                 <div>
-                    <p className="text-sm text_dark_grey lg:text-left text-center">Welcome</p>
-                    <h2 className="text-2xl text_dark_grey  font-semibold ">John Smith</h2>
+                    <p className="text-sm  font-normal text-text_dark_grey lg:text-left text-center">Welcome</p>
+                    <h2 className="text-2xl text-text_dark_grey   font-semibold ">John Smith</h2>
                 </div>
                 <div className="flex gap-10 flex-wrap">
-                    <button className=" lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm" onClick={() => document.getElementById('my_modal_1').showModal()}>Start a League</button>
+                    <button className=" lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold" onClick={() => document.getElementById('my_modal_1').showModal()}>Start a League</button>
                     <button
                         onClick={() => document.getElementById('my_modal_2').showModal()}
-                        className="lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm">Join a League</button>
+                        className="lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold">Join a League</button>
                 </div>
             </div>
             {/* active league */}
@@ -28,19 +24,19 @@ const DashBoard = () => {
                     <table className="table">
                         <thead className="bg-[#F4F7FE]">
                             <tr className="border-0">
-                                <th className="text-sm font-medium text-text_color1">League Name</th>
-                                <th className="text-sm font-medium text-text_color1">Buy In</th>
-                                <th className="text-sm font-medium text-text_color1">Current Payout</th>
-                                <th className="text-sm font-medium text-text_color1">Net Return</th>
+                                <th className="text-sm font-medium text-text_color1 font-lato">League Name</th>
+                                <th className="text-sm font-medium text-text_color1 font-lato">Buy In</th>
+                                <th className="text-sm font-medium text-text_color1 font-lato">Current Payout</th>
+                                <th className="text-sm font-medium text-text_color1 font-lato">Net Return</th>
                             </tr>
                         </thead>
                         <tbody>
                             {/* row 1 */}
                             <tr className="bg-base-200 border border-[#F0F0F0] ">
-                                <th className="font-medium text-sm text-text_color1 ">Cricket</th>
-                                <td className="font-medium text-sm text-text_color1 ">$10.00</td>
-                                <td className="font-medium text-sm text-text_color1 ">$0.00</td>
-                                <td className="font-medium text-sm text-text_color1 "> -$10.00</td>
+                                <th className="font-medium text-sm text-text_color1 font-lato">Cricket</th>
+                                <td className="font-medium text-sm text-text_color1 font-lato">$10.00</td>
+                                <td className="font-medium text-sm text-text_color1 font-lato">$0.00</td>
+                                <td className="font-medium text-sm text-text_color1 font-lato"> -$10.00</td>
                             </tr>
 
 

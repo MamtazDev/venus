@@ -1,6 +1,6 @@
 import setting from '../../assets/icons/setting1.png'
 
-const NotificationsSetting = () => {
+const NotificationsSetting = ({setStep}) => {
     return (
         <>
             <div className="max-w-[847px]">
@@ -56,7 +56,7 @@ const NotificationsSetting = () => {
                 </div>
                 <input type="checkbox" className="toggle [--tglbg:#e3e8ee] bg-base  border-blue-500" />
             </div>
-            <button className='max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 '>Save changes</button>
+            <button onClick={()=>setStep(0)} className='max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 '>Save changes</button>
 
         </>
     );

@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import emailbanner from '../../assets/icons/changepass.png'
 import twofactor from '../../assets/icons/twofactor.png'
+import { useState } from "react";
+import EmailSetting from './EmailSetting';
+import NotificationsSetting from './NotificationsSetting';
 const Preferences = () => {
+
+    const [step,setStep]=useState(0)
     return (
         <>
+        {step===0&& <>
             <div className="p-30 bg-white max-w-[950px] w-full">
                 <h3 className="text7">Account preferences</h3>
                 <p className="text4 mb-[26px] mt-[5px]" style={{ color: "#9AA8D1" }}>Setting to help you keep your account secure</p>
@@ -13,7 +19,7 @@ const Preferences = () => {
                         <p className="text4 mb-[26px] mt-[5px]" style={{ color: "#9AA8D1" }}>Add or remove email addresses on your account</p>
                     </div>
                     <div>
-                        <h4 className="text5 text-right"><Link to="/">Change</Link></h4>
+                        <h4 className="text5 text-right"><button onClick={()=>setStep(1)}>Change</button></h4>
                         <p className="text4 mb-[26px] mt-[5px]" style={{ color: "#9AA8D1" }}>1 email address</p>
 
                     </div>
@@ -47,7 +53,7 @@ const Preferences = () => {
                         <p className="text4 mb-[26px] mt-[5px]" style={{ color: "#9AA8D1" }}>Choose your notification settings</p>
                     </div>
                     <div>
-                        <h4 className="text5 text-right"><Link to="/">Change</Link></h4>
+                        <h4 className="text5 text-right"><button onClick={()=>setStep(2)}>Change</button></h4>
                         <p className="text4 mb-[26px] mt-[5px] text-right" style={{ color: "#9AA8D1" }}>Off</p>
 
                     </div>
@@ -102,6 +108,10 @@ const Preferences = () => {
                 <label className="modal-backdrop" htmlFor="two_factor" onClick={() => document.getElementById('two_factor').close()}>Close</label>
             </dialog>
 
+        </>}
+
+        {step===1 && <EmailSetting setStep={setStep}/>}
+        {step===2 && <NotificationsSetting setStep={setStep}/>}
         </>
     );
 };

@@ -5,7 +5,7 @@ import pro1 from '../../assets/icons/pro1.png'
 const Topbar = () => {
     return (
         <>
-            <div className="flex gap-20 justify-end items-center border-b border-[#C8CBD9]  pb-[15px] pe-30 ]">
+            <div className="flex gap-20 justify-end items-center border-b border-[#C8CBD9]  pb-[31px] pe-30 ]">
                 <div className="dropdown dropdown-bottom dropdown-end">
                     <div tabIndex={0} role="button" className=" border-none p-0 h-[24px]" ><img src={notification} alt="notification" /></div>
                     <div tabIndex={0} className="dropdown-content z-[1] menu bg-white rounded-3 w-[425px] pt-[32px] px-[24px] pb-[24px]">
