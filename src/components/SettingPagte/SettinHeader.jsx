@@ -27,7 +27,7 @@ const SettinHeader = () => {
         <>
             <div className=" ps-2">
                 <div className="bg-white ps-25 mb-[20px]">
-                    <div className="flex gap-[75px]  items-end ">
+                    <div className="flex gap-[75px]  items-end overflow-x-auto ">
                         {
                             data.map((data) => (
                                 <>

@@ -162,13 +162,13 @@ select:focus {
 /* font size end */
 /* buttons start */
 button:focus {
-  border: none;
-  outline: none;
+  /* border: none;
+  outline: none; */
 }
 
 button:focus-visible {
-  border: none;
-  outline: none;
+  /* border: none;
+  outline: none; */
 }
 
 
