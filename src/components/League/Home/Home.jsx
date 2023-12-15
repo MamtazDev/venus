@@ -36,9 +36,9 @@ const Home = () => {
             </div>
             <div className="grid lg:grid-cols-4 grid-cols-1 gap-20 ">
                 {
-                    datas.map(data => (
+                    datas.map((data,index) => (
                         <>
-                            <div className='flex justify-center items-center flex-col rounded-3 bg-white w-full pt-[18px] pb-[24px]'>
+                            <div key={index} className='flex justify-center items-center flex-col rounded-3 bg-white w-full pt-[18px] pb-[24px]'>
                                 <img className='mb-[10px]' src={data.img} alt="" />
                                 <h3 className='text-2xl text-text_dark_grey mb-[8px] font-semibold'>{data.number}</h3>
                                 <p className='dark_sky text-sm font-normal '>{data.text}</p>

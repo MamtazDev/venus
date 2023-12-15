@@ -5,8 +5,7 @@ import account from '../../assets/icons/account.png'
 import accblack from '../../assets/icons/accblack.png'
 import preference from '../../assets/icons/preference.png'
 import preferenceblack from '../../assets/icons/preferenceblack.png'
-// import NotificationsSetting from "./NotificationsSetting";
-// import EmailSetting from "./EmailSetting";
+
 const SettinHeader = () => {
     const data = [
         {
@@ -29,9 +28,9 @@ const SettinHeader = () => {
                 <div className="bg-white ps-25 mb-[20px]">
                     <div className="flex gap-[75px]  items-end overflow-x-auto ">
                         {
-                            data.map((data) => (
+                            data.map((data,index) => (
                                 <>
-                                    {selectBtn === `${data.title}` ? <div onClick={() => setSelectBtn("")} >
+                                    {selectBtn === `${data.title}` ? <div key={index} onClick={() => setSelectBtn("")} >
 
                                         <p className=' cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-semibold '>
                                             <img
@@ -47,14 +46,6 @@ const SettinHeader = () => {
                     </div>
                 </div>
             </div>
-            {/* {selectBtn === "Account" ? <Acount /> :
-                selectBtn === "Preferences" ? <Preferences /> :
-                    // selectBtn === "Preferences" ? <NotificationsSetting /> :
-                    // selectBtn === "Preferences" ? <EmailSetting /> :/
-                    // location.pathname === "/preference/notification" ? <NotificationsSetting /> :
-                    null
-            } */}
-
             {selectBtn === "Account" && <Acount />}
             {selectBtn === "Preferences" && <Preferences />}
         </>

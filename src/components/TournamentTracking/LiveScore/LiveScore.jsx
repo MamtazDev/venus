@@ -2,11 +2,8 @@ import logo1 from '../../../assets/icons/logo1.svg'
 import logo2 from '../../../assets/icons/logo2.png'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
-// import required modules
 import { Navigation } from 'swiper/modules';
 const LiveScore = () => {
 
@@ -32,8 +29,6 @@ const LiveScore = () => {
                                     <p className='text5 font-semibold'><span style={{ fontWeight: "400" }}>(40.5/50 ov. T 326)</span> 250/4</p>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                     </SwiperSlide>

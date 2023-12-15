@@ -34,9 +34,9 @@ const ScoreTeam = () => {
             <div className="grid lg:grid-cols-3 grid-cols-1">
 
                 {
-                    data.map((data) => (
+                    data.map((data,index) => (
                         <>
-                            <div className="bg-white h-[94px] flex  items-center justify-start ps-[33px] gap-8 border border-[#F4F7FE]">
+                            <div key={index} className="bg-white h-[94px] flex  items-center justify-start ps-[33px] gap-8 border border-[#F4F7FE]">
                                 <img src={data.img} alt="" />
                                 <p className='font-medium text-xl  text-text_dark_grey font-sans'>{data.country}</p>
                             </div>

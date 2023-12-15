@@ -7,9 +7,9 @@ const ScoreStats = () => {
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
                 <div className="p-20 bg-white rounded-3">
                     <p className="border-b border-light_sky text6 pb-20 ">Top Run Scorers</p>
-                    {[1, 2, 3].map((data) => (
+                    {[1, 2, 3].map((data,index) => (
                         <>
-                            <div className='flex items-center gap-10 border-b border-light_sky '>
+                            <div key={index} className='flex items-center gap-10 border-b border-light_sky '>
                                 <div>
                                     <img src={profile} alt="" />
                                 </div>
@@ -26,9 +26,9 @@ const ScoreStats = () => {
                 </div>
                 <div className="p-20 bg-white rounded-3">
                     <p className="border-b border-light_sky text6 pb-20 ">Top Wicket Taker</p>
-                    {[1, 2, 3].map((data) => (
+                    {[1, 2, 3].map((data,index) => (
                         <>
-                            <div className='flex items-center gap-10 border-b border-light_sky '>
+                            <div  key={index} className='flex items-center gap-10 border-b border-light_sky '>
                                 <div>
                                     <img src={profile} alt="" />
                                 </div>
@@ -47,9 +47,9 @@ const ScoreStats = () => {
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-20 mt-[20px]">
                 <div className="p-20 bg-white rounded-3">
                     <p className="border-b border-light_sky text6 pb-20 ">Best Batting Strike Rates</p>
-                    {[1, 2, 3].map((data) => (
+                    {[1, 2, 3].map((data,index) => (
                         <>
-                            <div className='flex items-center gap-10 border-b border-light_sky '>
+                            <div key={index} className='flex items-center gap-10 border-b border-light_sky '>
                                 <div>
                                     <img src={profile} alt="" />
                                 </div>
@@ -66,9 +66,9 @@ const ScoreStats = () => {
                 </div>
                 <div className="p-20 bg-white rounded-3">
                     <p className="border-b border-light_sky text6 pb-20 ">Best Bowling Economy</p>
-                    {[1, 2, 3].map((data) => (
+                    {[1, 2, 3].map((data,index) => (
                         <>
-                            <div className='flex items-center gap-10 border-b border-light_sky '>
+                            <div key={index} className='flex items-center gap-10 border-b border-light_sky '>
                                 <div>
                                     <img src={profile} alt="" />
                                 </div>

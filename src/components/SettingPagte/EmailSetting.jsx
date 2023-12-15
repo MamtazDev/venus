@@ -24,15 +24,12 @@ const EmailSetting = ({ setStep }) => {
 
                     </div>
                 </div>
-                {/* <input type="checkbox" className="toggle" /> */}
                 <label className="switch">
                     <input type="checkbox"/>
                         <span className="slider round"></span>
                 </label>
             </div>
-            {/* Add/Remove Email Addresses */}
             <h4 className="text5 mb-[13px] mt-[30px]">Add/Remove Email Addresses</h4>
-
             <div className="bg-white py-[17px] px-21 max-w-[599px] rounded-8 flex items-center justify-between mb-[16px]">
                 <div className='flex gap-20 items-center'>
                     <img src={email} alt="" />
@@ -74,7 +71,6 @@ const EmailSetting = ({ setStep }) => {
                 <label className="modal-backdrop" htmlFor="add_email" onClick={() => document.getElementById('add_email').close()}>Close</label>
             </dialog>
             {/*remove_email */}
-
             <dialog id="remove_email" className="modal">
                 <div className="modal-box bg-white h-[305px] max-w-[756px] flex justify-center items-center">
                     <div className="grid lg:grid-cols-2  grid-cols-1">

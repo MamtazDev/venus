@@ -33,18 +33,12 @@ const Login = () => {
                                     <label className="">Password</label>
                                     <input type="password" placeholder="Enter your name" className="mt-[10px] w-full input_field input input-bordered" required />
                                 </div>
-
                             </div>
                             <button type="submit" className='w-full mt-10 py-14 lg:py-21  lg:px-20 px-10 bg-base text-white text-[20px] font-bold rounded-[3px] '>Log In</button>
                         </form>
-
                     </div>
-
                 </div>
             </div>
-
-
-
         </>
     );
 };

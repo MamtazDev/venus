@@ -1,6 +1,5 @@
 import auction1 from '../../../assets/icons/auction1.png'
 
-
 const auctionData = [
     {
         img: auction1,
@@ -63,7 +62,6 @@ const auctionData = [
     },
 
 ]
-
 const AuctionItem = () => {
     return (
         <>
@@ -75,9 +73,9 @@ const AuctionItem = () => {
                 {/* items */}
                 <div className="bg-sky_bg1 p-20">
                     {
-                        auctionData.map(data => (
+                        auctionData.map((data,index) => (
                             <>
-                                <div className='flex gap-[15px] items-center mb-[18px]'>
+                                <div key={index} className='flex gap-[15px] items-center mb-[18px]'>
                                     <img src={data.img} alt="auction" />
                                     <p className='text1'>{data.title}</p>
                                 </div>

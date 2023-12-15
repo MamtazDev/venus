@@ -17,9 +17,9 @@ const ScoreTable = () => {
                     </thead>
                     <tbody>
                         {
-                            [1, 2, 3, 4, 5, 6].map((data) => (
+                            [1, 2, 3, 4, 5, 6].map((data,index) => (
                                 <>
-                                    <tr className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
+                                    <tr key={index} className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
                                         <td className="text-left flex gap-8 items-center"><img src={c1} alt="" /> {data}.Scotland</td>
                                         <td className="text-center  py-[17px]">36</td>
                                         <td className="text-center  py-[17px]">24</td>
@@ -31,8 +31,6 @@ const ScoreTable = () => {
                                 </>
                             ))
                         }
-
-
                     </tbody>
                 </table>
             </div>

@@ -15,9 +15,9 @@ const BiddingHistory = () => {
                     </thead>
                     <tbody>
                         {
-                            [1, 2, 3, 4, 5, 6,7,8,9,10].map((data) => (
+                            [1, 2, 3, 4, 5, 6,7,8,9,10].map((data,index) => (
                                 <>
-                                    <tr className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
+                                    <tr key={index} className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
                                         <td className="text-left  gap-8 items-center ps-[40px]">
                                             Alabama
                                         </td>

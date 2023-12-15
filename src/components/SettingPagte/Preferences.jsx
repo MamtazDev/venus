@@ -92,9 +92,9 @@ const Preferences = () => {
                             <label htmlFor="" className="text-base font-medium font-sans text-[#263238]">Type your 6 digits security code</label>
                             <div className="flex gap-[7px] mt-[10px]">
                                 {
-                                    [1, 2, 3, 4, 5, 6].map(() => (
+                                    [1, 2, 3, 4, 5, 6].map((data,index) => (
                                         <>
-                                            <input type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
+                                            <input key={index} type="text" className="ps-[8px] w-[45px] h-[46px] border border-[#E1E1E1] rounded-[4px]" />
                                         </>
                                     ))
                                 }

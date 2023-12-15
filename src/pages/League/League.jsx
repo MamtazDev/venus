@@ -51,9 +51,9 @@ const League = () => {
                 <div className="bg-white ps-25 mb-[20px] border border-[#EEE]">
                     <div className="flex gap-[75px]  items-end overflow-x-auto ">
                         {
-                            data.map((data) => (
+                            data.map((data, index) => (
                                 <>
-                                    {selectBtn === `${data.title}` ? <div onClick={() => setSelectBtn("")} >
+                                    {selectBtn === `${data.title}` ? <div key={index} onClick={() => setSelectBtn("")} >
 
                                         <p className='cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-semibold'>
                                             <img
