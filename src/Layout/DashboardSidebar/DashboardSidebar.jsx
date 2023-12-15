@@ -56,7 +56,7 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
     <div className="h-full flex flex-col">
       <div className="h-[91px] flex items-center border-b border-border_grey">
         <div
-          className={` ${!toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"}`}
+          className={` ${!toggle && !isMobile ? "pl-[38px]" : "pl-[10px]"}`}
           onClick={handleToggle}
         >
           {!toggle && !isMobile ? (
@@ -67,7 +67,7 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
         </div>
       </div>
       <div
-        className={`grow flex flex-col py-[48px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"
+        className={`grow flex flex-col py-[48px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[10px]"
           }`}>
         <div className="mb-[90px] ">
           {navlinks.map((data, index) => (

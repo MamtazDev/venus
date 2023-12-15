@@ -81,7 +81,7 @@ const DashBoard = () => {
             </div>
             {/* start league modal */}
             <dialog id="my_modal_1" className="modal">
-                <div className="modal-box bg-white h-[621px]">
+                <div className="modal-box bg-white h-[630px]">
                     <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px] ">Start a league</h3>
                     <hr className='border-t border-border_grey mx-[40px] mb-[50px]' />
 
