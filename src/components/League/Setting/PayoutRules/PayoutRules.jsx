@@ -6,7 +6,7 @@ const PayoutRules = () => {
                 <div className="p-32 bg-white rounded-8">
                     <p className="text3">Calculation Mode</p>
                     <hr className="my-[31px] border-[#F2F0F0]" />
-                    <select className="select select-bordered w-full opacity-[0.3]">
+                    <select className="select select-bordered payoutSelect w-full text-[#414141]">
                         <option disabled selected>manual</option>
                         <option>Han Solo</option>
                         <option>Greedo</option>
@@ -27,10 +27,10 @@ const PayoutRules = () => {
                             <span className="value">Absolute</span>
                         </label>
                     </div>
-                    <select className="select select-bordered w-full opacity-[0.3]">
-                        <option style={{ opacity: "1" }} disabled selected>manual</option>
-                        <option style={{ opacity: "1" }}>Han Solo</option>
-                        <option style={{ opacity: "1" }}>Greedo</option>
+                    <select className="select select-bordered payoutSelect w-full border-opacity-[0.3] text-[#414141]" style={{ borderOpacity: 0.3,borderColor:"red" }}>
+                        <option selected>Manual</option>
+                        <option>Han Solo</option>
+                        <option>Greedo</option>
                     </select>
 
                 </div>

@@ -1,7 +1,7 @@
 
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import General from "./General/General";
 import Roaster from "./Roaster/Roaster";
 import AuctionSetting from './Auction/AuctionSetting';
@@ -12,9 +12,14 @@ const SettingHeader = () => {
     const data = ["General", "Roaster", "Auction", "Auction groups", "Payout Rules"];
     const [selectBtn, setSelectBtn] = useState("General");
 
-    const handleSelectBtn = (selectedData) => {
-        setSelectBtn(selectedData);
-    };
+    const tabChangerHandler = (tab) => {
+        setSelectBtn(tab)
+        localStorage.setItem("activeTabs", tab)
+    }
+    useEffect(() => {
+        setSelectBtn(localStorage.getItem("activeTabs") ? localStorage.getItem("activeTabs") : localStorage.setItem("activeTabs", "General"))
+
+    }, [])
     return (
         <>
             <div className="mb-[20px]">
@@ -27,7 +32,7 @@ const SettingHeader = () => {
                                     ? "bg-base text-white border border-base   font-semibold py-[12px] px-31"
                                     : "text-text_dark_grey font-normal border bg-white border-[#E1E1E1]"
                                     } text-base py-[12px] px-31 rounded-8  `}
-                                onClick={() => handleSelectBtn(item)}
+                                onClick={() => tabChangerHandler(item)}
                             >
                                 <span>{item}</span>
                             </button>

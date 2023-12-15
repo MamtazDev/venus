@@ -485,3 +485,7 @@ select>option {
 .payout_labels input[type="radio"]:checked~.value {
   color: #000080;
 }
+
+.payoutSelect {
+  border: 1px solid #E1E1E1 !important;
+}

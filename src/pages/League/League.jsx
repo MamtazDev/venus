@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Home from "../../components/League/Home/Home";
 import Auction from "../../components/League/Auction/Auction";
 import Setting from "../../components/League/Setting/Setting";
@@ -45,6 +45,16 @@ const League = () => {
 
     const [selectBtn, setSelectBtn] = useState("Home");
 
+    const tabChangerHandler = (tab) => {
+        setSelectBtn(tab)
+
+        localStorage.setItem("activeTab", tab)
+    }
+    useEffect(() => {
+        setSelectBtn(localStorage.getItem("activeTab") ? localStorage.getItem("activeTab") : localStorage.setItem("activeTab", "Home"))
+
+    }, [])
+
     return (
         <>
             <div className=" ps-2">
@@ -53,9 +63,9 @@ const League = () => {
                         {
                             data.map((data, index) => (
                                 <>
-                                    {selectBtn === `${data.title}` ? <div key={index} onClick={() => setSelectBtn("")} >
+                                    {selectBtn === `${data.title}` ? <div key={index} onClick={() => tabChangerHandler(data.title)} >
 
-                                        <p className='cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-semibold'>
+                                        <p className='cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-medium'>
                                             <img
                                                 src={selectBtn === data.title ? data.activeIcon : data.img}
                                                 alt=""
@@ -63,7 +73,7 @@ const League = () => {
 
                                             {data.title}</p>
 
-                                    </div> : <div onClick={() => setSelectBtn(`${data.title}`)} >
+                                    </div> : <div onClick={() => tabChangerHandler(data.title)} >
                                         <p className=' cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center text-text_dark_grey '> <img src={data.img} alt="" /> {data.title}</p> </div>}
                                 </>
                             ))

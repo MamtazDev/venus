@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ScoreTable from './ScoreTable';
 import ScoreStats from './ScoreStats';
 import ScoreTeam from './ScoreTeam';
@@ -29,17 +29,25 @@ const ScoreHeading = () => {
     ];
 
 
-    const [selectBtn, setSelectBtn] = useState("Table");
+    const [selectBtn, setSelectBtn] = useState("General");
 
+    const tabChangerHandler = (tab) => {
+        setSelectBtn(tab)
+        localStorage.setItem("activeTabsScore", tab)
+    }
+    useEffect(() => {
+        setSelectBtn(localStorage.getItem("activeTabsScore") ? localStorage.getItem("activeTabsScore") : localStorage.setItem("activeTabsScore", "Table"))
+
+    }, [])
     return (
         <>
             <div className="pt-20  ps-2">
                 <div className="bg-white ps-25 mb-[20px]">
                     <div className="flex gap-[75px]  items-end overflow-x-auto">
                         {
-                            data.map((data,index) => (
+                            data.map((data, index) => (
                                 <>
-                                    {selectBtn === `${data.title}` ? <div key={index} onClick={() => setSelectBtn("")} >
+                                    {selectBtn === `${data.title}` ? <div key={index} onClick={() => tabChangerHandler(data.title)} >
 
                                         <p className=' cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-semibold '>
 
@@ -50,7 +58,7 @@ const ScoreHeading = () => {
 
                                             {data.title}</p>
 
-                                    </div> : <div onClick={() => setSelectBtn(`${data.title}`)} >
+                                    </div> : <div onClick={() => tabChangerHandler(data.title)} >
                                         <p className=' cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center text-text_dark_grey '> <img src={data.img} alt="" /> {data.title}</p> </div>}
                                 </>
                             ))
