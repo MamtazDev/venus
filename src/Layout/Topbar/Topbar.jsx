@@ -6,7 +6,7 @@ import pro1 from '../../assets/icons/pro1.png'
 const Topbar = ({ toggle }) => {
     return (
         <>
-            <div className={`bg-[#F4F7FE] flex gap-20 justify-end items-center border-b border-[#C8CBD9]  pb-[31px] pe-30 fixed top-0 z-10 
+            <div className={`bg-[#F4F7FE] flex gap-20 justify-end items-center border-b border-[#C8CBD9]  pb-[28px] pe-30 fixed top-0 z-10 
            ${!toggle ? "lg:w-[82%] w-[90%]":"lg:w-[96%]" } pt-[23px]`}>
                 <div className="dropdown dropdown-bottom dropdown-end">
                     <div tabIndex={0} role="button" className=" border-none p-0 h-[24px]" ><img src={notification} alt="notification" /></div>
