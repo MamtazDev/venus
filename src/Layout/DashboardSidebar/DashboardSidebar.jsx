@@ -49,7 +49,9 @@ const navlinks = [
 
 
 const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
+  
   const location = useLocation();
+
   return (
     <div className="h-full flex flex-col">
       <div className="h-[91px] flex items-center border-b border-border_grey">
@@ -65,17 +67,17 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
         </div>
       </div>
       <div
-        className={`grow flex flex-col py-[15px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"
+        className={`grow flex flex-col py-[48px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"
           }`}>
-        <div className="mb-[90px]">
+        <div className="mb-[90px] pe-[47px]">
           {navlinks.map((data, index) => (
             <NavLink
               key={index}
               to={data.to}
               className={({ isActive }) =>
                 isActive
-                  ? `hover:text-white flex items-center gap-[12px] bg-base p-[10px] me-[10px] rounded-[5px] text-[#FFF] text-[14px] mb-[15px]`
-                  : "flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] p-[16px] mb-[15px]"
+                  ? `hover:text-white flex items-center gap-[12px] bg-base p-[10px] rounded-[5px] text-[#FFF] text-[16px] mb-[15px]`
+                  : "flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] py-[16px] mb-[15px]"
               }
             >
               {location.pathname === data.to ? (
@@ -100,12 +102,12 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
           to="/login"
           className={({ isActive }) =>
             isActive
-              ? `hover:text-white flex items-center gap-[12px]  px-[10px] pt-[39px] me-[10px] rounded-[5px] text-[#FFF] text-[14px] mb-[15px] ]`
-              : " flex items-center text-[14px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] p-[16px] "
+              ? `hover:text-white flex items-center gap-[12px] mt-[30px] me-[10px] rounded-[5px] text-[#FFF] text-[16px]`
+              : " flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1] font-[400] gap-[12px] mt-[30px] "
           }
         >
           <img src={logout} alt="" />
-          {!toggle && !isMobile ? `Logout` : ""} 
+          {!toggle && !isMobile ? `Logout` : ""}
         </NavLink>
       </div>
     </div>

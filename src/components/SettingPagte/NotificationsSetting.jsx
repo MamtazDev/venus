@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import setting from '../../assets/icons/setting1.png'
 
-const NotificationsSetting = ({setStep}) => {
+const NotificationsSetting = ({ setStep }) => {
     return (
         <>
             <div className="max-w-[847px]">
@@ -20,7 +20,10 @@ const NotificationsSetting = ({setStep}) => {
 
                     </div>
                 </div>
-                <input type="checkbox" className="toggle [--tglbg:#e3e8ee] bg-base  border-blue-500" />
+                <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slider round"></span>
+                </label>
             </div>
             <div className="bg-[#FFF9EF] py-[17px] px-21 max-w-[599px] rounded-8 flex items-center justify-between mb-[16px]">
                 <div className='flex gap-20 items-center'>
@@ -31,7 +34,10 @@ const NotificationsSetting = ({setStep}) => {
 
                     </div>
                 </div>
-                <input type="checkbox" className="toggle [--tglbg:#e3e8ee] bg-base  border-blue-500" checked />
+                <label className="switch">
+                    <input type="checkbox" checked />
+                    <span className="slider round"></span>
+                </label>
             </div>
             <h4 className="text5 mb-[13px] mt-[30px]">Secondary Options</h4>
 
@@ -44,7 +50,10 @@ const NotificationsSetting = ({setStep}) => {
 
                     </div>
                 </div>
-                <input type="checkbox" className="toggle [--tglbg:#e3e8ee] bg-base  border-blue-500" />
+                <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slider round"></span>
+                </label>
             </div>
             <div className="bg-[#FFF9EF] py-[17px] px-21 max-w-[599px] rounded-8 flex items-center justify-between mb-[16px]">
                 <div className='flex gap-20 items-center'>
@@ -55,9 +64,12 @@ const NotificationsSetting = ({setStep}) => {
 
                     </div>
                 </div>
-                <input type="checkbox" className="toggle [--tglbg:#e3e8ee] bg-base  border-blue-500" />
+                <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slider round"></span>
+                </label>
             </div>
-            <button onClick={()=>setStep(0)} className='max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 '>Save changes</button>
+            <button onClick={() => setStep(0)} className='max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 '>Save changes</button>
 
         </>
     );

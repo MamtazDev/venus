@@ -85,12 +85,12 @@ const DashBoard = () => {
                     <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px] ">Start a league</h3>
                     <hr className='border-t border-border_grey mx-[40px] mb-[50px]' />
 
-                    <div className='px-[52px]'>
+                    <div className='px-[76px]'>
                         <label className=" form-control">
                             <div className="label">
-                                <span className="label-text text-base font-medium text-[#000] font-sans">Event</span>
+                                <span className="label-text text-base font-medium text-[#000] font-sans" style={{color:"#000"}}>Event</span>
                             </div>
-                            <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3]">
+                            <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]">
                                 <option selected>USA</option>
                                 <option selected>USA</option>
                                 <option selected>USA</option>
@@ -99,9 +99,9 @@ const DashBoard = () => {
                         </label>
                         <label className=" form-control mt-[20px]">
                             <div className="label">
-                                <span className="label-text p-[2px] text-base font-medium text-[#000] font-sans">Event Scope</span>
+                                <span className="label-text p-[2px] text-base font-medium text-[#000] font-sans" style={{color:"#000"}}>Event Scope</span>
                             </div>
-                            <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3]">
+                            <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]">
                                 <option selected>USA</option>
                                 <option selected>USA</option>
                                 <option selected>USA</option>
@@ -109,18 +109,18 @@ const DashBoard = () => {
                             </select>
                         </label>
                         <div className=' mt-[20px]'>
-                            <label className=" text-base font-medium text-[#000] font-sans">League Name</label>
-                            <input type="text" placeholder="League Name" className=" bg-sky_bg2 w-full input_field input input-bordered mt-[10px]  border  border-[#EEE]" required />
+                            <label className=" text-base font-medium text-[#000] font-sans" style={{color:"#000"}}>League Name</label>
+                            <input type="text" placeholder="League Name" className="bg-sky_bg2 w-full input_field input input-bordered mt-[10px]  border  border-[#EEE]" required />
                         </div>
 
                         <div className="modal-action flex-col">
                             <form method="">
-                                <button className='bg-base py-10 w-full rounded-3 mt-[30px] text-white'>Submit</button>
+                                <button className='bg-base py-10 w-full rounded-3 mt-[30px] text-white font-semibold'>Submit</button>
                             </form>
                         </div>
 
                         <div className='text-center lg:py-14 py-10'>
-                            <Link className='text-center'>Join a League</Link>
+                            <Link className='text-center font-normal text-base font-sans text-text_dark_grey'>Join a League</Link>
                         </div>
                     </div>
                 </div>

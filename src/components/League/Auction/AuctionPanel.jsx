@@ -6,7 +6,7 @@ import Message from './Message';
 const AuctionPanel = () => {
     return (
         <>
-            <div className="px-20 pt-[24px] pb-20 bg-white">
+            <div className="px-20 pt-[24px] pb-20 bg-white rounded-3">
                 <div className='flex flex-col lg:flex-row lg:gap-0 gap-20 justify-between items-center'>
                     <div className='flex items-center gap-8'>
                         <img src={auction1} alt="" />
@@ -69,7 +69,7 @@ const AuctionPanel = () => {
             {/* admin panel modal start */}
 
             <dialog id="admin_modal" className="modal">
-                <div className="modal-box bg-white max-w-[100%] h-[100%]">
+                <div className="modal-box bg-white  max-w-[100%] h-[100%]">
                     <div className="modal-action mt-0  flex-col justify-end text-right">
                         <form>
                             <button type="submit" className='w-[30px]'>x</button>

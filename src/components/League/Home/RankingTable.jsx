@@ -8,23 +8,23 @@ const RankingTable = () => {
                     <table className="table">
                         <thead className="bg-white">
                             <tr className="border-0">
-                                <th className="text-sm font-medium text-text_color1 ">Rank  </th>
-                                <th className="text-sm font-medium text-text_color1 ">Name</th>
-                                <th className="text-sm font-medium text-text_color1 ">Buy In</th>
-                                <th className="text-sm font-medium text-text_color1 ">Comment Payout</th>
-                                <th className="text-sm font-medium text-text_color1 ">Net Return</th>
-                                <th className="text-sm font-medium text-text_color1 "></th>
+                                <th className="text-sm font-medium text-text_color1 text-center ">Rank  </th>
+                                <th className="text-sm font-medium text-text_color1 text-center">Name</th>
+                                <th className="text-sm font-medium text-text_color1 text-center">Buy In</th>
+                                <th className="text-sm font-medium text-text_color1 text-center">Comment Payout</th>
+                                <th className="text-sm font-medium text-text_color1 text-center">Net Return</th>
+                                <th className="text-sm font-medium text-text_color1 text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {/* row 1 */}
                             <tr className="bg-sky border border-[#F0F0F0] ">
-                                <th className="font-medium text-sm text-text_color1 ">1</th>
-                                <td className="font-medium text-sm text-text_color1 ">John Smith</td>
-                                <td className="font-medium text-sm text-text_color1 ">$0.00</td>
-                                <td className="font-medium text-sm text-text_color1 ">$0.00</td>
-                                <td className="font-medium text-sm text-text_color1 ">$0.00</td>
-                                <td className="font-medium text-sm text-text_color1 ">
+                                <th className="font-medium text-sm text-text_color1 text-center">1</th>
+                                <td className="font-medium text-sm text-text_color1 text-center">John Smith</td>
+                                <td className="font-medium text-sm text-text_color1 text-center">$0.00</td>
+                                <td className="font-medium text-sm text-text_color1 text-center">$0.00</td>
+                                <td className="font-medium text-sm text-text_color1 text-center">$0.00</td>
+                                <td className="font-medium text-sm text-text_color1 text-center">
                                     <img src={active} alt="" />
                                 </td>
 

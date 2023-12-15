@@ -3,9 +3,7 @@
 }
 
 @media(max-width:768px) {
-
     .login_wrapper {
-
         padding: 50px 30px 0;
     }
 }

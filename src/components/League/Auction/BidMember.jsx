@@ -4,7 +4,7 @@ const BidMember = () => {
         <div>
             {/* my team */}
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-10">
-                <div className='px-20 pt-[24px] pb-20 bg-white mt-[10px]'>
+                <div className='px-20 pt-[24px] pb-20 bg-white rounded-3 mt-[10px]'>
                     <div className='flex justify-between  border-b border-border2'>
                         <p className='text2 pb-[15px]'>My Team</p>
                         <p className='text2 pb-[15px]'>Paid</p>

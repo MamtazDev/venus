@@ -5,7 +5,7 @@ import add from '../../assets/icons/add.png'
 import delet from '../../assets/icons/delete.png'
 import emailbanner from '../../assets/icons/modalbg.png'
 
-const EmailSetting = ({setStep}) => {
+const EmailSetting = ({ setStep }) => {
     return (
         <>
             <div className="max-w-[847px]">
@@ -24,7 +24,11 @@ const EmailSetting = ({setStep}) => {
 
                     </div>
                 </div>
-                <input type="checkbox" className="toggle [--tglbg:#e3e8ee] bg-base  border-blue-500" />
+                {/* <input type="checkbox" className="toggle" /> */}
+                <label className="switch">
+                    <input type="checkbox"/>
+                        <span className="slider round"></span>
+                </label>
             </div>
             {/* Add/Remove Email Addresses */}
             <h4 className="text5 mb-[13px] mt-[30px]">Add/Remove Email Addresses</h4>
@@ -47,11 +51,9 @@ const EmailSetting = ({setStep}) => {
                 <button onClick={() => document.getElementById('remove_email').showModal()}><img src={delet} alt="" /></button>
             </div>
 
-            {/* <button className='max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 '>Save changes</button> */}
-
             <div className="flex gap-20 max-w-[599px]">
-                <button onClick={()=>setStep(0)} className="py-10  bg-base text-white text2 rounded-3  w-full" style={{ color: "#fff" }}> Save changes</button>
-                <button onClick={()=>setStep(0)} className="rounded-3 bg-[#E9E9F7] py-10 font-medium w-full">Cancel</button>
+                <button onClick={() => setStep(0)} className="py-10  bg-base text-white text2 rounded-3  w-full" style={{ color: "#fff" }}> Save changes</button>
+                <button onClick={() => setStep(0)} className="rounded-3 bg-[#E9E9F7] py-10 font-medium w-full">Cancel</button>
             </div>
 
             {/* add email modal */}

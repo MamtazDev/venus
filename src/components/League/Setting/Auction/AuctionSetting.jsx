@@ -40,7 +40,7 @@ const AuctionSetting = () => {
                         <tr className="bg-sky border border-[#E1E1E1] flex justify-between w-full py-10 ps-[24px]">
                             <td className="font-medium font-sans text-sm text-text_color1 ">Allow Unsold Teams</td>
                             <td className="text-left w-[193px] me-[28px]">
-                                <input className='h-[16px] w-[16px] bg-white rounded-8 opacity-100 border border-[#E1E1E1]' type="checkbox" name="" id="" />
+                                <input className='auction_checkbox h-[16px] w-[16px] bg-white rounded-8   ' style={{border:"1px solid red"}} type="checkbox" name="" id="" />
                             </td>
                         </tr>
                     </tbody>
@@ -48,7 +48,7 @@ const AuctionSetting = () => {
             </div>
 
             <div className='flex justify-center mt-[30px] '>
-                <button className='bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold '>Save Changes</button>
+                <button className='bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold '>Save Changes</button>
             </div>
 {/*  */}
 

@@ -67,7 +67,7 @@ const auctionData = [
 const AuctionItem = () => {
     return (
         <>
-            <div className="bg-white p-20 ">
+            <div className="bg-white rounded-3 p-20 ">
                 <div className="flex justify-between items-center mb-[15px]">
                     <p className="text-base text-text_dark_grey font-semibold font-sans ">Action Item</p>
                     <p className="text-base text-text_dark_grey font-semibold font-sans ">PrizePool: $10</p>

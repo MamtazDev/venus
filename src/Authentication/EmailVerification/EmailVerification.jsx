@@ -12,7 +12,7 @@ const EmailVerification = () => {
                     <div className='flex justify-end p-30'>
                         <div className='flex items-center gap-30'>
                             <h4 className='text-lg text_dark_grey '>Don’t have any account?</h4>
-                            <Link to="/signup"><button className='text-white px-45 py-14 btn_blue_bg'>LogIn</button></Link>
+                            <Link to="/login"><button className='text-white px-45 py-14  bg-base rounded-[3px] text-lg font-semibold'>LogIn</button></Link>
                         </div>
                     </div>
                     <div className='login_wrapper login_padding' >
@@ -25,12 +25,12 @@ const EmailVerification = () => {
                             <div className='flex flex-col gap-5 '>
                                 <div>
                                     <label className="">OTP</label>
-                                    <input required type="number" placeholder="Enter your OTP code" className="w-full input_field input input-bordered" />
+                                    <input required type="number" placeholder="Enter your OTP code" className="w-full input_field input input-bordered mt-[10px]" />
                                 </div>
 
 
                             </div>
-                            <button type="submit" className='w-full mt-10 py-21 btn_blue_bg'>Verified</button>
+                            <button type="submit" className='w-full text-white mt-[61px]  py-21 bg-base rounded-[3px] text-lg font-semibold'>Verified</button>
                         </form>
 
                     </div>

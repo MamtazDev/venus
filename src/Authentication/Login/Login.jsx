@@ -35,7 +35,7 @@ const Login = () => {
                                 </div>
 
                             </div>
-                            <button type="submit" className='w-full mt-10 py-21 lg:py-14  lg:px-20 px-10 bg-base text-white text-[20px] font-bold rounded-[3px] text-sm'>Log In</button>
+                            <button type="submit" className='w-full mt-10 py-14 lg:py-21  lg:px-20 px-10 bg-base text-white text-[20px] font-bold rounded-[3px] '>Log In</button>
                         </form>
 
                     </div>

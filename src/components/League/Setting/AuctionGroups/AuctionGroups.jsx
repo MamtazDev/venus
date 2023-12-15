@@ -22,14 +22,14 @@ const AuctionGroups = () => {
                                 <p className="text3 pt-[6px]">Baltimore Ravens</p>
                             </td>
                             <td className="font-medium text-sm text-text_color1 text-end ">
-                                <button className="px-14 py-12  bg-[#F00] rounded-8 font-sans font-semibold text-white " >Delete</button>
+                                <button className="px-14 py-12 w-[112px] bg-[#F00] rounded-8 font-sans font-semibold text-white " >Delete</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className='flex justify-center mt-[30px] '>
-                <button className='bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold'>Save Changes</button>
+                <button className='bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold'>Save Changes</button>
             </div>
         </>
     );

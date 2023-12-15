@@ -2,7 +2,7 @@
 const PayoutRules = () => {
     return (
         <>
-            <div className="grid grid-cols-2 gap-20">
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
                 <div className="p-32 bg-white rounded-8">
                     <p className="text3">Calculation Mode</p>
                     <hr className="my-[31px] border-[#F2F0F0]" />
@@ -17,22 +17,15 @@ const PayoutRules = () => {
                     <p className="text3">Commissioners Fee</p>
 
                     <div className="flex gap-[44px] mt-[28px] mb-[16px] ">
-                        {/* <div className="flex gap-[5px]">
-                            <input type="radio" name="" className="" />
-                            <label htmlFor="" className="text3">Percentage</label>
-                        </div>
-                        <div className="flex gap-[5px]">
-                            <input type="radio" name="" className="" />
-                            <label htmlFor="" className="text3">Absolute</label>
-                        </div> */}
+                      
                         <label><input type="radio" name="e" className="text3" checked/> Percentage</label>
                         <label><input type="radio" name="e" className="text3" /> Absolute</label>
                     </div>
 
                     <select className="select select-bordered w-full opacity-[0.3]">
-                        <option disabled selected>manual</option>
-                        <option>Han Solo</option>
-                        <option>Greedo</option>
+                        <option style={{opacity:"1"}} disabled selected>manual</option>
+                        <option style={{opacity:"1"}}>Han Solo</option>
+                        <option style={{opacity:"1"}}>Greedo</option>
                     </select>
 
                 </div>
