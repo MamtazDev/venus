@@ -4,7 +4,6 @@ import reward from '../../../assets/icons/reward.png'
 import roi from '../../../assets/icons/roi.png'
 import RankingTable from './RankingTable'
 
-
 const datas = [
     {
         img: user,
@@ -27,6 +26,7 @@ const datas = [
         text: "ROI"
     },
 ]
+
 const Home = () => {
     return (
         <>
@@ -36,7 +36,7 @@ const Home = () => {
             </div>
             <div className="grid lg:grid-cols-4 grid-cols-1 gap-20 ">
                 {
-                    datas.map((data,index) => (
+                    datas.map((data, index) => (
                         <>
                             <div key={index} className='flex justify-center items-center flex-col rounded-3 bg-white w-full pt-[18px] pb-[24px]'>
                                 <img className='mb-[10px]' src={data.img} alt="" />

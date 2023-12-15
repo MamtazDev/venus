@@ -489,3 +489,14 @@ select>option {
 .payoutSelect {
   border: 1px solid #E1E1E1 !important;
 }
+
+
+.invite_id input {
+  color: #000 !important;
+  font-family: ' Work Sans', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400 !important;
+  line-height: normal;
+  opacity: 1;
+}

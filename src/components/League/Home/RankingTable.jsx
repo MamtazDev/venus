@@ -1,6 +1,8 @@
 import active from '../../../assets/icons/active.png'
 import NoFoundData from '../../NoFoundData/NoFoundData';
+
 const RankingTable = () => {
+
     return (
         <>
             <div className="my-[20px]">
@@ -27,13 +29,11 @@ const RankingTable = () => {
                                 <td className="font-medium text-sm text-text_color1 text-center">
                                     <img src={active} alt="" />
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
             <div>
                 <div className='py-[10px] bg-dark_sky'>
                     <div className="grid lg:grid-cols-2 grid-cols-1    divide-x">

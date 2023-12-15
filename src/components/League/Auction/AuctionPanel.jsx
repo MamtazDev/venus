@@ -95,7 +95,7 @@ const AuctionPanel = () => {
                             </thead>
                             <tbody>
                                 {
-                                    [1, 2, 3, 4, 5, 6].map((data,index) => (
+                                    [1, 2, 3, 4, 5, 6].map((data, index) => (
                                         <>
                                             <tr key={index} className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
                                                 <td className="ps-[40px] text-left flex gap-8 items-center">
@@ -112,6 +112,9 @@ const AuctionPanel = () => {
                                 }
                             </tbody>
                         </table>
+                        <div className="text-center mt-[50px]">
+                            <button className="py-10 px-23 bg-base text-white rounded-3">Reset All Auction Data</button>
+                        </div>
                     </div>
                 </div>
                 <label className="modal-backdrop" htmlFor="admin_modal" onClick={() => document.getElementById('admin_modal').close()}>Close</label>
