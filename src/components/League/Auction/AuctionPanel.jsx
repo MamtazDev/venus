@@ -164,8 +164,6 @@ const AuctionPanel = () => {
 
             {/* show rules modal end */}
 
-
-
         </>
     );
 };

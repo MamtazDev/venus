@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-// import NoFoundData from '../../components/NoFoundData/NoFoundData';
+import NoFoundData from '../../components/NoFoundData/NoFoundData';
 const DashBoard = () => {
     const data = []
     return (
@@ -38,8 +38,6 @@ const DashBoard = () => {
                                 <td className="font-medium text-sm text-text_color1 font-lato">$0.00</td>
                                 <td className="font-medium text-sm text-text_color1 font-lato"> -$10.00</td>
                             </tr>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -59,23 +57,22 @@ const DashBoard = () => {
                                 <th className="text-sm font-medium text-text_color1 ">Net Return</th>
                             </tr>
                         </thead>
-
                         {
-                            data.length !== 0 ? <>
-
-                                {/* <NoFoundData /> */}
-                            </> :
-                                <tbody className="min-h-[186px] w-full">
-                                    <tr className="bg-base-200 border border-[#F0F0F0] ">
-                                        <th className="font-medium text-sm text-text_color1 ">Cricket</th>
-                                <td className="font-medium text-sm text-text_color1 ">$10.00</td>
-                                <td className="font-medium text-sm text-text_color1 ">$0.00</td>
-                                <td className="font-medium text-sm text-text_color1 "> -$10.00</td>
-                                    </tr>
-                                </tbody>
+                            data.length !== 0 &&
+                            <tbody className="min-h-[186px] w-full">
+                                <tr className="bg-base-200 border border-[#F0F0F0] ">
+                                    <th className="font-medium text-sm text-text_color1 ">Cricket</th>
+                                    <td className="font-medium text-sm text-text_color1 ">$10.00</td>
+                                    <td className="font-medium text-sm text-text_color1 ">$0.00</td>
+                                    <td className="font-medium text-sm text-text_color1 "> -$10.00</td>
+                                </tr>
+                            </tbody>
                         }
-
                     </table>
+
+                    {data.length === 0 && <>
+                        <NoFoundData />
+                    </>}
                 </div>
 
             </div>
@@ -88,7 +85,7 @@ const DashBoard = () => {
                     <div className='px-[76px]'>
                         <label className=" form-control">
                             <div className="label">
-                                <span className="label-text text-base font-medium text-[#000] font-sans" style={{color:"#000"}}>Event</span>
+                                <span className="label-text text-base font-medium text-[#000] font-sans" style={{ color: "#000" }}>Event</span>
                             </div>
                             <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]">
                                 <option selected>USA</option>
@@ -99,7 +96,7 @@ const DashBoard = () => {
                         </label>
                         <label className=" form-control mt-[20px]">
                             <div className="label">
-                                <span className="label-text p-[2px] text-base font-medium text-[#000] font-sans" style={{color:"#000"}}>Event Scope</span>
+                                <span className="label-text p-[2px] text-base font-medium text-[#000] font-sans" style={{ color: "#000" }}>Event Scope</span>
                             </div>
                             <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]">
                                 <option selected>USA</option>
@@ -109,7 +106,7 @@ const DashBoard = () => {
                             </select>
                         </label>
                         <div className=' mt-[20px]'>
-                            <label className=" text-base font-medium text-[#000] font-sans" style={{color:"#000"}}>League Name</label>
+                            <label className=" text-base font-medium text-[#000] font-sans" style={{ color: "#000" }}>League Name</label>
                             <input type="text" placeholder="League Name" className="bg-sky_bg2 w-full input_field input input-bordered mt-[10px]  border  border-[#EEE]" required />
                         </div>
 
