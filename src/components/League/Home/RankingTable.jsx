@@ -35,12 +35,14 @@ const RankingTable = () => {
             </div>
 
             <div>
-                <div className="grid lg:grid-cols-2 grid-cols-1  bg-dark_sky  divide-x">
-                    <div className='py-16 flex justify-center  border-r-1 border-white' >
-                        <p className='font-sm font-semibold text-white'>Upcoming Games </p>
-                    </div>
-                    <div className='py-16 flex justify-center  border-r-1  border-white' >
-                        <p className='font-sm font-semibold text-white'>Date </p>
+                <div className='py-[10px] bg-dark_sky'>
+                    <div className="grid lg:grid-cols-2 grid-cols-1    divide-x">
+                        <div className='py-[8px] flex justify-center  border-r-1 border-white' >
+                            <p className='font-sm font-semibold text-white'>Upcoming Games </p>
+                        </div>
+                        <div className='py-[8px] flex justify-center  border-r-1  border-white' >
+                            <p className='font-sm font-semibold text-white'>Date </p>
+                        </div>
                     </div>
                 </div>
                 <div className='bg-white py-[75px]'>
