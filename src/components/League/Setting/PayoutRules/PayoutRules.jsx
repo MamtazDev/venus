@@ -15,16 +15,22 @@ const PayoutRules = () => {
                 <div className="p-32 bg-white rounded-8">
                     <p className="text3">Commissioners Fee</p>
 
-                    <div className="flex gap-[44px] mt-[28px] mb-[16px] ">
-                      
-                        <label><input type="radio" name="e" className="text3" checked/> Percentage</label>
-                        <label><input type="radio" name="e" className="text3" /> Absolute</label>
+                    <div className="flex gap-[44px] mt-[28px] mb-[16px] payout_labels">
+                        <label>
+                            <input type="radio" name="gender" value="male" checked />
+                            <span className="design"></span>
+                            <span className="value">Percentage</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="female" />
+                            <span className="design"></span>
+                            <span className="value">Absolute</span>
+                        </label>
                     </div>
-
                     <select className="select select-bordered w-full opacity-[0.3]">
-                        <option style={{opacity:"1"}} disabled selected>manual</option>
-                        <option style={{opacity:"1"}}>Han Solo</option>
-                        <option style={{opacity:"1"}}>Greedo</option>
+                        <option style={{ opacity: "1" }} disabled selected>manual</option>
+                        <option style={{ opacity: "1" }}>Han Solo</option>
+                        <option style={{ opacity: "1" }}>Greedo</option>
                     </select>
 
                 </div>
