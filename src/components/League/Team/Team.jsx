@@ -44,7 +44,7 @@ const Team = () => {
 
             {/* modal */}
             <dialog id="pay_team_modal" className="modal">
-                <div className="modal-box bg-white max-w-[100%]">
+                <div className="modal-box bg-white max-w-[100%] rounded-3">
                     <div className="modal-action mt-0 mb-[20px] flex-col justify-end text-right">
                         <form>
                             <button type="submit" className='w-[30px]'>x</button>
@@ -80,7 +80,7 @@ const Team = () => {
 
             </dialog>
             <dialog id="add_payout" className="modal">
-                <div className="modal-box bg-white max-w-[100%] h-[100%] px-[50px]">
+                <div className="modal-box bg-white max-w-[100%] h-[100%] px-[50px] rounded-3">
                     <div className="modal-action mt-0 mb-[20px] flex-col justify-end text-right">
                         <form>
                             <button type="submit" className='w-[30px]'>x</button>

@@ -55,7 +55,7 @@ const EmailSetting = ({ setStep }) => {
 
             {/* add email modal */}
             <dialog id="add_email" className="modal">
-                <div className="modal-box bg-white h-[305px] max-w-[756px] flex justify-center items-center">
+                <div className="modal-box bg-white h-[305px] max-w-[756px] flex justify-center items-center rounded-3">
                     <div className="grid lg:grid-cols-2  grid-cols-1">
                         <div className='mb-[10px]'>
                             <img src={emailbanner} alt="" />
@@ -72,7 +72,7 @@ const EmailSetting = ({ setStep }) => {
             </dialog>
             {/*remove_email */}
             <dialog id="remove_email" className="modal">
-                <div className="modal-box bg-white h-[305px] max-w-[756px] flex justify-center items-center">
+                <div className="modal-box bg-white h-[305px] max-w-[756px] flex justify-center items-center rounded-3">
                     <div className="grid lg:grid-cols-2  grid-cols-1">
                         <div className='mb-[10px]'>
                             <img src={emailbanner} alt="" />

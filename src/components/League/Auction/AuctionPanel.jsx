@@ -69,7 +69,7 @@ const AuctionPanel = () => {
             {/* admin panel modal start */}
 
             <dialog id="admin_modal" className="modal">
-                <div className="modal-box bg-white  max-w-[100%] h-[100%]">
+                <div className="modal-box bg-white  max-w-[100%] h-[100%] rounded-3">
                     <div className="modal-action mt-0  flex-col justify-end text-right">
                         <form>
                             <button type="submit" className='w-[30px]'>x</button>
@@ -120,7 +120,7 @@ const AuctionPanel = () => {
 
             {/* show rules modal start */}
             <dialog id="show_rules" className="modal">
-                <div className="modal-box bg-white max-w-[100%] h-[100%]">
+                <div className="modal-box bg-white max-w-[100%] h-[100%] rounded-3" >
                     <div className="modal-action mt-0  flex-col justify-end text-right">
                         <form>
                             <button type="submit" className='w-[30px]'>x</button>

@@ -60,7 +60,7 @@ const Preferences = () => {
             </div>
             {/* change pass modal */}
             <dialog id="change_pass" className="modal">
-                <div className="modal-box bg-white h-[393px] max-w-[756px] flex justify-center items-center">
+                <div className="modal-box bg-white h-[393px] max-w-[756px] flex justify-center items-center rounded-3">
                     <div className="grid lg:grid-cols-2  grid-cols-1 items-center">
                         <div className='mb-[10px]'>
                             <img src={emailbanner} alt="" />
@@ -78,7 +78,7 @@ const Preferences = () => {
             </dialog>
             {/* two factor authentication modal */}
             <dialog id="two_factor" className="modal">
-                <div className="modal-box bg-white h-[438px] max-w-[756px] flex justify-center items-center">
+                <div className="modal-box bg-white h-[438px] max-w-[756px] flex justify-center items-center rounded-3">
                     <div className="grid lg:grid-cols-2  grid-cols-1 items-center">
                         <div className='mb-[10px]'>
                             <img src={twofactor} alt="" />
