@@ -445,3 +445,6 @@ select>option {
   text-transform: capitalize;
   opacity: 1;
 }
+.dropdown:is(:not(details)) .dropdown-content{
+  z-index: 11111;
+}

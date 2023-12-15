@@ -11,7 +11,6 @@ const PayoutRules = () => {
                         <option>Han Solo</option>
                         <option>Greedo</option>
                     </select>
-
                 </div>
                 <div className="p-32 bg-white rounded-8">
                     <p className="text3">Commissioners Fee</p>
