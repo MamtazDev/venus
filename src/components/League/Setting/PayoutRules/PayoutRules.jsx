@@ -1,5 +1,12 @@
+import { useState } from "react";
 
 const PayoutRules = () => {
+    const [selectedOption, setSelectedOption] = useState('percentage');
+
+    const handleRadioButtonChange = (option) => {
+        setSelectedOption(option);
+    };
+
     return (
         <>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
@@ -17,24 +24,40 @@ const PayoutRules = () => {
 
                     <div className="flex gap-[44px] mt-[28px] mb-[16px] payout_labels">
                         <label>
-                            <input type="radio" name="gender" value="male" checked />
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="percentage"
+                                checked={selectedOption === 'percentage'}
+                                onChange={() => handleRadioButtonChange('percentage')}
+                            />
                             <span className="design"></span>
                             <span className="value">Percentage</span>
                         </label>
                         <label>
-                            <input type="radio" name="gender" value="female" />
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="absolute"
+                                checked={selectedOption === 'absolute'}
+                                onChange={() => handleRadioButtonChange('absolute')}
+                            />
                             <span className="design"></span>
                             <span className="value">Absolute</span>
                         </label>
                     </div>
-                    <select className="select select-bordered payoutSelect w-full border-opacity-[0.3] text-[#414141]" style={{ borderOpacity: 0.3,borderColor:"red" }}>
-                        <option selected>Manual</option>
-                        <option>Han Solo</option>
-                        <option>Greedo</option>
-                    </select>
-
+                    {/* selected div */}
+                    <div className="relative">
+                        <input type="text" className="w-full  text-[#414141] py-12 px-14" />
+                        <p className="absolute top-[12px] right-[25px]">
+                            {selectedOption === 'percentage' ? '%' : '$'}
+                        </p>
+                    </div>
                 </div>
-            </div>
+
+
+            {/* </div> */}
+        </div >
             <div className='flex justify-center mt-[30px] '>
                 <button className='bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold '>Save Changes</button>
             </div>

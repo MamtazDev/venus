@@ -12,7 +12,7 @@ const General = () => {
                 <div className="p-20 bg-white flex justify-between items-center rounded-3">
                     {/* <h2 className="font-sans font-semibold text-lg text-text_dark_grey ">Cricket</h2> */}
                     {/* <button className="py-10 px-23 bg-white text-white rounded-3"><img src={edit} alt="" /></button> */}
-                    <div className='relative w-full '>
+                    <div className='relative w-full'>
                         <input type="text" className='w-full h-[40px] ps-[10px] ' value="Cricket" />
                         <div className='absolute top-[6px] right-[11px]'>
                             <img className='cursor-pointer' src={edit} alt="" />

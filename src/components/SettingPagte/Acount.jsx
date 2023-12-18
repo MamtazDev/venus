@@ -94,7 +94,7 @@ const Acount = () => {
 
                     <div className="">
                         <div>
-                            <label className="">Username</label>
+                            <label className="">Details</label>
                             <textarea required type="text" placeholder="Write a about....." className="border border-[#E1E1E1] h-[139px] w-full  p-14 rounded-8     mt-[12px]" />
                         </div>
 
