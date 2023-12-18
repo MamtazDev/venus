@@ -269,8 +269,9 @@ cursor: pointer;
 }
 
 .swiper-button-prev:after {
-  content: url('./assets/icons/prev-active.png') !important;
-  margin-top: -4px;
+  content: url('./assets/icons/next.png') !important;
+  margin-top: 2px;
+  transform: rotate(180deg);
 }
 
 .swiper-button-prev.swiper-button-disabled {
@@ -456,7 +457,7 @@ select>option {
   align-items: center;
   cursor: pointer;
   font-size: 14px;
-  color: var(--Primary-1st-Primary-color-Primary-color, #191E29);
+  color:  #191E29;
   font-family: Work Sans;
   font-size: 14px;
   font-style: normal;

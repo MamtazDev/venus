@@ -98,7 +98,7 @@ const AuctionPanel = () => {
                                     [1, 2, 3, 4, 5, 6].map((data, index) => (
                                         <>
                                             <tr key={index} className="border-y border-border2 bg-white text3 items-center" style={{ color: "#222" }} >
-                                                <td className="ps-[40px] text-left flex gap-8 items-center">
+                                                <td className="ps-[40px] text-left  gap-8 items-center">
                                                     Shamin
                                                 </td>
                                                 <td className="text-left  py-[17px]"></td>
