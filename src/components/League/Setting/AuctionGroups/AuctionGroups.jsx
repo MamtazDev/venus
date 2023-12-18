@@ -57,6 +57,8 @@ const AuctionGroups = () => {
                     onClick={() => document.getElementById('add_new_group').showModal()}>New Group</button>
             </div>
 
+            {/* modal */}
+
             <dialog id="add_new_group" className="modal">
                 <div className="modal-box bg-white h-[478px] rounded-3">
                     <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px] ">New Group</h3>

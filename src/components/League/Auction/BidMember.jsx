@@ -27,7 +27,6 @@ const BidMember = () => {
                         <p className='text1 pb-[10px] flex items-center gap-[5px] '> <img src={active} alt="" /> John Smith</p>
                         <p className='text1 pb-[10px]'>$10.00</p>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -11,7 +11,8 @@ const DashBoard = () => {
                     <h2 className="text-2xl text-text_dark_grey   font-semibold ">John Smith</h2>
                 </div>
                 <div className="flex gap-10 flex-wrap">
-                    <button className=" lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold" onClick={() => document.getElementById('my_modal_1').showModal()}>Start a League</button>
+                    <button className=" lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold"
+                        onClick={() => document.getElementById('my_modal_1').showModal()}>Start a League</button>
                     <button
                         onClick={() => document.getElementById('my_modal_2').showModal()}
                         className="lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold">Join a League</button>
