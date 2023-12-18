@@ -14,6 +14,7 @@ import settingActive from "../../assets/icons/settingactive.png";
 import leagueActive from "../../assets/icons/leagueIconActive.svg";
 import biddingactive from "../../assets/icons/biddingactive.png";
 import tournamentactive from "../../assets/icons/tournamentactive.png";
+
 const navlinks = [
   {
     title: "Dashboard",
@@ -63,6 +64,8 @@ const Sidebar = ({ handleToggle, toggle, isMobile }) => {
             <img className="cursor-pointer" src={logo1} alt="logo1" />
           )}
         </div>
+        
+
       </div>
       <div
         className={`grow flex flex-col py-[15px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"
