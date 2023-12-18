@@ -1,22 +1,4 @@
 import Select from 'react-select';
-
-// const auctionData = [
-//     "Alabama",
-//     "Houston",
-//     "Kansas",
-//     "Purdue",
-//     "Arizona",
-//     "Marquette",
-//     "Houston",
-//     "Houston",
-//     "UCLA",
-//     "Gonzaga",
-//     "Kansas St",
-//     "Xavier",
-//     "Indiana",
-//     "Tennessee",
-
-// ]
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },

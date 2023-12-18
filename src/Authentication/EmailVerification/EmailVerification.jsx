@@ -27,12 +27,9 @@ const EmailVerification = () => {
                                     <label className="">OTP</label>
                                     <input required type="number" placeholder="Enter your OTP code" className="w-full input_field input input-bordered mt-[10px]" />
                                 </div>
-
-
                             </div>
                             <button type="submit" className='w-full text-white mt-[61px]  py-21 bg-base rounded-[3px] text-lg font-semibold'>Verified</button>
                         </form>
-
                     </div>
 
                 </div>
