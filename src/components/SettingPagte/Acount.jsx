@@ -35,11 +35,12 @@ const Acount = () => {
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
                         <div>
                             <label className="">First name</label>
-                            <input required type="text" placeholder="Enter your first name" className="border border-[#E1E1E1] w-full input_field input mt-[12px]" />
+                            <input required type="text" placeholder="Enter your first name" className=" opacity-100 border border-[#E1E1E1] w-full input_field input mt-[12px]" />
                         </div>
                         <div>
                             <label className="">Last name</label>
-                            <input required type="text" placeholder="Enter your last name" className="border border-[#E1E1E1] w-full input_field input mt-[12px]"
+                            <input required type="text" placeholder="Enter your last name"
+                             className=" opacity-100 border border-[#E1E1E1] w-full input_field input mt-[12px]"
                             />
                         </div>
                     </div>
@@ -83,11 +84,12 @@ const Acount = () => {
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
                         <div>
                             <label className="">Username</label>
-                            <input required type="text" placeholder="Enter your username" className="border border-[#E1E1E1] w-full input_field input mt-[12px]" />
+                            <input required type="text" placeholder="Enter your username" 
+                            className="border border-[#E1E1E1] w-full input_field input mt-[12px] opacity-100" />
                         </div>
                         <div>
                             <label className="">Email</label>
-                            <input required type="text" placeholder="Enter your email address" className="border border-[#E1E1E1] w-full input_field input mt-[12px]"
+                            <input required type="text" placeholder="Enter your email address" className=" opacity-100 border border-[#E1E1E1] w-full input_field input mt-[12px]"
                             />
                         </div>
                     </div>
@@ -103,7 +105,7 @@ const Acount = () => {
                     <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
                         <div>
                             <label className="">Phone Number</label>
-                            <input required type="text" placeholder="Enter your number" className="border border-[#E1E1E1] w-full input_field input mt-[12px]" />
+                            <input required type="number" placeholder="Enter your number" className=" opacity-100 border border-[#E1E1E1] w-full input_field input mt-[12px]" />
                         </div>
                         <div>
                             <label className=" form-control">

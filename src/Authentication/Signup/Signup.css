@@ -20,6 +20,7 @@
         padding: 50px 30px 0;
     }
 }
+
 .login_wrapper h1 {
     color: #000080;
     margin-bottom: 8px !important;
@@ -42,6 +43,7 @@
     line-height: normal;
 }
 
-.login_wrapper input,select{
+.login_wrapper input,
+select {
     border: 1px solid #A4B2B9 !important;
 }

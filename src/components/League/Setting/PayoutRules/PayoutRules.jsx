@@ -46,18 +46,16 @@ const PayoutRules = () => {
                             <span className="value">Absolute</span>
                         </label>
                     </div>
-                    {/* selected div */}
+
                     <div className="relative">
-                        <input type="text" className="w-full  text-[#414141] py-12 px-14" />
-                        <p className="absolute top-[12px] right-[25px]">
+                        <input type="number" className="w-full  text-[#414141] opacity-1 py-12 px-14" />
+                        <p className="absolute top-[12px] right-[40px]">
                             {selectedOption === 'percentage' ? '%' : '$'}
                         </p>
                     </div>
                 </div>
 
-
-            {/* </div> */}
-        </div >
+            </div >
             <div className='flex justify-center mt-[30px] '>
                 <button className='bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold '>Save Changes</button>
             </div>

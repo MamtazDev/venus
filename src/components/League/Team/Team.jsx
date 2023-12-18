@@ -103,7 +103,7 @@ const Team = () => {
                                                                 </div>
                                                             </td>
                                                             <td className="text-left  py-[17px]">
-                                                                <input type="number" className='bg-light_sky  w-full h-[36px] ps-[22px]' defaultValue="0" />
+                                                                <input type="text" className='bg-light_sky  w-full h-[36px] ps-[22px]' defaultValue="" />
                                                             </td>
                                                             <td className="text-right  py-[17px]">
                                                                 <button className="p-10  text-white rounded-3">
