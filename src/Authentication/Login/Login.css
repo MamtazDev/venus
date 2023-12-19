@@ -1,13 +1,13 @@
 .login_padding {
-    padding-top: 140px !important;
+  padding-top: 140px !important;
 }
 
-@media(max-width:768px) {
-    .login_wrapper {
-        padding: 50px 30px 0;
-    }
+@media (max-width: 768px) {
+  .login_wrapper {
+    padding: 50px 30px 0;
+  }
 }
 
 .login_img img {
-    width: 100%;
+  width: 100%;
 }

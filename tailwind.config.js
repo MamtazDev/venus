@@ -23,10 +23,8 @@ module.exports = {
       sky_bg2: "#F6F8FE",
 
       border_grey: "#C8CBD9",
-      border2:'#EEE',
-      border3:'#E1E1E1'
-
-
+      border2: "#EEE",
+      border3: "#E1E1E1",
     },
     padding: {
       10: "10px",
@@ -46,11 +44,10 @@ module.exports = {
       45: "45px",
       49: "49px",
       60: "60px",
-
     },
     fontFamily: {
       sans: ["Work Sans", "sans-serif"],
-      lato: ['Lato', 'sans-serif']
+      lato: ["Lato", "sans-serif"],
     },
 
     extend: {

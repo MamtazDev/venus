@@ -27,7 +27,7 @@ p {
 }
 
 .choose_btn:focus {
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
 }
 
 ul {
@@ -52,19 +52,19 @@ button {
   font-size: 14px;
   font-weight: 400;
   color: #222;
-  font-family: 'work-sans', sans-serif;
+  font-family: "work-sans", sans-serif;
 }
 
 .text2 {
   font-size: 14px;
   font-weight: 600;
   color: #222;
-  font-family: 'work-sans', sans-serif;
+  font-family: "work-sans", sans-serif;
 }
 
 .text3 {
-  color: #191E29;
-  font-family: 'Work Sans', sans-serif;
+  color: #191e29;
+  font-family: "Work Sans", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -73,7 +73,7 @@ button {
 
 .label_texts {
   color: #222;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -82,7 +82,7 @@ button {
 
 .text4 {
   color: #222;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -91,7 +91,7 @@ button {
 
 .text5 {
   color: #222;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -100,7 +100,7 @@ button {
 
 .text6 {
   color: #222;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -109,7 +109,7 @@ button {
 
 .text_dark_grey {
   color: #222;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -118,7 +118,7 @@ button {
 
 .text7 {
   color: #222;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -158,8 +158,6 @@ select:focus {
   outline: none !important;
 }
 
-
-
 /* slider */
 .swiper-slide-active {
   max-width: 465px !important;
@@ -168,7 +166,7 @@ select:focus {
 
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
-  content: 'next';
+  content: "next";
 }
 
 .swiper-button-next:after,
@@ -180,8 +178,6 @@ select:focus {
   font-variant: initial;
   line-height: 1;
 }
-
-
 
 .swiper {
   width: 100%;
@@ -210,50 +206,44 @@ select:focus {
   left: 68% !important;
 }
 
-
 .swiper-button-next {
   right: 27% !important;
 }
 
 .swiper-slide-next {
   margin-left: 20px !important;
-
 }
 
 .swiper-button-next:after {
-  content: url('./assets/icons/next.png') !important;
+  content: url("./assets/icons/next.png") !important;
   margin-top: -4px;
 }
 
 .swiper-button-prev:after {
-  content: url('./assets/icons/next.png') !important;
+  content: url("./assets/icons/next.png") !important;
   margin-top: 2px;
   transform: rotate(180deg);
 }
 
 .swiper-button-prev.swiper-button-disabled {
-  content: url('./assets/icons/prev.png');
+  content: url("./assets/icons/prev.png");
   width: 29px;
   height: 29px;
   margin-top: -15px !important;
-
 }
 
 .swiper-button-next.swiper-button-disabled {
-  content: url('./assets/icons/prev.png');
+  content: url("./assets/icons/prev.png");
   transform: rotate(180deg);
   width: 29px;
   height: 29px;
   top: 104px !important;
 }
 
-
-@media(max-width:1440px) {
-
+@media (max-width: 1440px) {
   .swiper-button-prev {
     left: 93% !important;
   }
-
 
   .swiper-button-next {
     right: 1% !important;
@@ -264,16 +254,14 @@ select:focus {
   }
 }
 
-@media(max-width:1024px) {
-
+@media (max-width: 1024px) {
   .swiper-button-prev {
     left: 91% !important;
     top: 9% !important;
   }
-
 }
 
-@media(min-width:375px) and (max-width:1439px) {
+@media (min-width: 375px) and (max-width: 1439px) {
   .swiper {
     padding-top: 50px !important;
   }
@@ -308,9 +296,9 @@ select:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #A3B2C7;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: #a3b2c7;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -321,19 +309,19 @@ select:focus {
   left: 4px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-input:checked+.slider {
+input:checked + .slider {
   background-color: #000080;
 }
 
-input:focus+.slider {
-  box-shadow: 0 0 1px #2196F3;
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   -webkit-transform: translateX(14px);
   -ms-transform: translateX(14px);
   transform: translateX(14px);
@@ -349,14 +337,13 @@ input:checked+.slider:before {
 }
 
 .input_placeholder::placeholder {
-  color: var(--01, #9AA8D1);
+  color: var(--01, #9aa8d1);
   text-align: left;
   font-family: Work Sans;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
 }
 
 .auction_checkbox {
@@ -364,7 +351,7 @@ input:checked+.slider:before {
   background-color: red !important;
 }
 
-select>option {
+select > option {
   color: var(--Text-Color-02, #414141);
   font-family: Inter;
   font-size: 16px;
@@ -385,7 +372,7 @@ select>option {
   align-items: center;
   cursor: pointer;
   font-size: 14px;
-  color: #191E29;
+  color: #191e29;
   font-family: Work Sans;
   font-size: 14px;
   font-style: normal;
@@ -406,23 +393,22 @@ select>option {
   margin-right: 10px;
 }
 
-.payout_labels input[type="radio"]:checked~.design {
+.payout_labels input[type="radio"]:checked ~ .design {
   outline-color: #000080;
   background: #000080;
 }
 
-.payout_labels input[type="radio"]:checked~.value {
+.payout_labels input[type="radio"]:checked ~ .value {
   color: #000080;
 }
 
 .payoutSelect {
-  border: 1px solid #E1E1E1 !important;
+  border: 1px solid #e1e1e1 !important;
 }
-
 
 .invite_id input {
   color: #000 !important;
-  font-family: ' Work Sans', sans-serif;
+  font-family: " Work Sans", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400 !important;
@@ -432,15 +418,13 @@ select>option {
 
 /* react select  */
 .css-13cymwt-control {
-  background-color: #F6F8FE !important;
-  border: 1px solid #EEE !important;
+  background-color: #f6f8fe !important;
+  border: 1px solid #eee !important;
   height: 48px;
-
-
 }
 
-input ,select{
- 
+input,
+select {
   color: #414141 !important;
   /* border: 1px solid #2e1818; */
   /* border-radius: 8px; */
@@ -448,5 +432,5 @@ input ,select{
 
 .input::placeholder {
   color: #414141 !important;
-   opacity: 1 !important;
+  opacity: 1 !important;
 }
