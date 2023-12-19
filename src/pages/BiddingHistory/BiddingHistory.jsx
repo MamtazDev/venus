@@ -1,4 +1,5 @@
 const BiddingHistory = () => {
+  console.log("ok fine");
   return (
     <>
       <div className="overflow-x-auto">
