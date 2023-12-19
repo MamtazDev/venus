@@ -4,7 +4,7 @@ const DashBoard = () => {
 
     const data = []
 
-    console.log('oka',data);
+    
 
     return (
         <div>
