@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import NoFoundData from '../../components/NoFoundData/NoFoundData';
 const DashBoard = () => {
+
     const data = []
+
+    console.log('oka',data);
+
     return (
         <div>
             {/* header */}
