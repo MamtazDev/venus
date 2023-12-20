@@ -26,28 +26,27 @@ const navlinks = [
     title: "League",
     img: auction,
     imgActive: leagueActive,
-    to: "/league"
+    to: "/league",
   },
   {
     title: "Tournament Tracking Page",
     img: tracking,
     imgActive: tournamentactive,
-    to: "/tournamentTracking"
+    to: "/tournamentTracking",
   },
   {
     title: "Bidding History Page",
     img: timing,
     imgActive: biddingactive,
-    to: "/biddingHistory"
+    to: "/biddingHistory",
   },
   {
     title: "Setting",
     img: setting,
     imgActive: settingActive,
-    to: "/setting"
+    to: "/setting",
   },
 ];
-
 
 const Sidebar = ({ handleToggle, toggle, isMobile }) => {
   const location = useLocation();
@@ -64,12 +63,12 @@ const Sidebar = ({ handleToggle, toggle, isMobile }) => {
             <img className="cursor-pointer" src={logo1} alt="logo1" />
           )}
         </div>
-        
-
       </div>
       <div
-        className={`grow flex flex-col py-[15px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"
-          }`}>
+        className={`grow flex flex-col py-[15px] ${
+          !toggle && !isMobile ? "pl-[38px]" : "pl-[15px]"
+        }`}
+      >
         <div>
           {navlinks.map((data, index) => (
             <NavLink

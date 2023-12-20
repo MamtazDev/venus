@@ -4,12 +4,10 @@ import { useEffect, useState } from "react";
 import DashboardSidebar from "./DashboardSidebar/DashboardSidebar";
 
 const Layout = () => {
-
   const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
     setToggle(!toggle);
-
-  }
+  };
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -17,10 +15,10 @@ const Layout = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

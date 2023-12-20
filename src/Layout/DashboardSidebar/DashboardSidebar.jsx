@@ -26,25 +26,25 @@ const navlinks = [
     title: "League",
     img: auction,
     imgActive: leagueActive,
-    to: "/league"
+    to: "/league",
   },
   {
     title: "Tournament Tracking",
     img: tracking,
     imgActive: tournamentactive,
-    to: "/tournamentTracking"
+    to: "/tournamentTracking",
   },
   {
     title: "Bidding History",
     img: timing,
     imgActive: biddingactive,
-    to: "/biddingHistory"
+    to: "/biddingHistory",
   },
   {
     title: "Setting",
     img: setting,
     imgActive: settingActive,
-    to: "/setting"
+    to: "/setting",
   },
 ];
 
@@ -59,14 +59,23 @@ const DashboardSidebar = ({ toggle, isMobile }) => {
         <div
           className={` ${!toggle && !isMobile ? "pl-[38px]" : ""}`}>
           {!toggle && !isMobile ? (
-            <Link to="/">   <img className="cursor-pointer" src={logo} alt="logo" /></Link>
+            <Link to="/">
+              {" "}
+              <img className="cursor-pointer" src={logo} alt="logo" />
+            </Link>
           ) : (
-            <Link to="/">  <img className="cursor-pointer" src={logo1} alt="logo1" /></Link>
+            <Link to="/">
+              {" "}
+              <img className="cursor-pointer" src={logo1} alt="logo1" />
+            </Link>
           )}
         </div>
       </div>
       <div
-        className={`grow flex flex-col py-[48px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[10px]"}`}>
+        className={`grow flex flex-col py-[48px] ${
+          !toggle && !isMobile ? "pl-[38px]" : "pl-[10px]"
+        }`}
+      >
         <div className="mb-[90px] ">
           {navlinks.map((data, index) => (
             <NavLink
