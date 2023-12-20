@@ -26,12 +26,12 @@ const Layout = () => {
 
   return (
     <div className="flex">
-      <div className={`${!toggle && !isMobile ? "w-[440px]" : "w-[80px]"}  h-screen `}>
+      <div className={`sidebar-container  ${!toggle && !isMobile ? 'wide' : 'narrow'}  h-screen `}>
         <DashboardSidebar handleToggle={handleToggle} toggle={toggle} isMobile={isMobile} />
       </div>
       <div className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar bg-light_sky pt-20
        ">
-        <Topbar toggle={toggle} />
+        <Topbar handleToggle={handleToggle} toggle={toggle} isMobile={isMobile} />
         <div className="mt-[100px]  pe-30 ps-20 ">
           <Outlet />
         </div>

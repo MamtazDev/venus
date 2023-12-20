@@ -48,14 +48,12 @@ const navlinks = [
   },
 ];
 
-
-const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
+const DashboardSidebar = ({ toggle, isMobile }) => {
 
   const location = useLocation();
 
   return (
     <div className="h-full flex flex-col">
-      {/* <div className="h-[91px]  border-b border-border_grey"> */}
       <div className={` ${!toggle && !isMobile ? "border-b border-border_grey h-[91px]  flex items-center justify-between"
         : "border-b border-border_grey h-[91px] flex items-center flex-col-reverse justify-center "}`}>
         <div
@@ -66,13 +64,6 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
             <Link to="/">  <img className="cursor-pointer" src={logo1} alt="logo1" /></Link>
           )}
         </div>
-        {!toggle && !isMobile ?
-          <div onClick={handleToggle} className="  h-[30px] w-[30px] hidden lg:flex justify-center items-center border rounded-full me-10 ms-10 mb-2 cursor-pointer">
-            <i className="fa-solid fa-arrow-left"></i>
-          </div> : <div onClick={handleToggle} className=" h-[30px] w-[30px] hidden lg:flex justify-center items-center border rounded-full me-10 ms-10 mb-2 cursor-pointer">
-            <i className="fa-solid fa-arrow-right"></i>
-          </div>
-        }
       </div>
       <div
         className={`grow flex flex-col py-[48px] ${!toggle && !isMobile ? "pl-[38px]" : "pl-[10px]"}`}>
@@ -83,8 +74,9 @@ const DashboardSidebar = ({ handleToggle, toggle, isMobile }) => {
               to={data.to}
               className={({ isActive }) =>
                 isActive
-                  ? `hover:text-white flex items-center gap-[12px] bg-base p-[10px]  rounded-[5px] text-[#FFF] text-[16px] mb-[15px] ${!toggle ? "lg:me-[47px] me-[10px]" : "me-[15px]"}`
-                  : "flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1] pl-[10px] font-[400] gap-[12px] py-[16px] mb-[15px]"
+                  ? `hover:text-white flex items-center gap-[12px] bg-base  rounded-[5px] text-[#FFF] text-[16px] pl-[10px] py-[10px] mb-[15px] 
+                  ${!toggle ? "lg:me-[47px] me-[10px]" : "me-[15px]"}`
+                  : "flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1]  font-[400] gap-[12px] pl-[10px] py-[10px] mb-[15px]"
               }
             >
               {location.pathname === data.to ? (

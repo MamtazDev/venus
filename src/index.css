@@ -282,14 +282,17 @@ select:focus {
     left: 87% !important;
     top: 9% !important;
   }
+
   .swiper-button-next {
     right: 1% !important;
     top: 9% !important;
   }
+
   .swiper-slide-next {
     margin-left: 20px !important;
   }
 }
+
 .switch {
   position: relative;
   display: inline-block;
@@ -439,8 +442,9 @@ select>option {
 
 }
 
-input ,select{
- 
+input,
+select {
+
   color: #414141 !important;
   /* border: 1px solid #2e1818; */
   /* border-radius: 8px; */
@@ -448,5 +452,18 @@ input ,select{
 
 .input::placeholder {
   color: #414141 !important;
-   opacity: 1 !important;
+  opacity: 1 !important;
+}
+
+.sidebar-container {
+  transition: width 0.5s ease-in-out;
+  /* Adjust the duration and easing function as needed */
+}
+
+.wide {
+  width: 440px;
+}
+
+.narrow {
+  width: 80px;
 }

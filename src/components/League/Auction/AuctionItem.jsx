@@ -86,8 +86,6 @@ const AuctionItem = () => {
                 </div>
             </div>
 
-
-
         </>
     );
 };

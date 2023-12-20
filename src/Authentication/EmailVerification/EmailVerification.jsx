@@ -20,7 +20,6 @@ const EmailVerification = () => {
                             <h1 className='text-2xl font-semibold lg:text-5xl text-primary'>Email Verification</h1>
                             <p className='text-base text222color'>Enter the OTP code that was sent your email</p>
                         </div>
-
                         <form action="" className='login_form_wrapper'>
                             <div className='flex flex-col gap-5 '>
                                 <div>
@@ -31,12 +30,8 @@ const EmailVerification = () => {
                             <button type="submit" className='w-full text-white mt-[61px]  py-21 bg-base rounded-[3px] text-lg font-semibold'>Verified</button>
                         </form>
                     </div>
-
                 </div>
             </div>
-
-
-
         </>
     );
 };
