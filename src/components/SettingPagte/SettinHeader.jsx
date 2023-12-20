@@ -24,7 +24,6 @@ const SettinHeader = () => {
 
   const tabChangerHandler = (tab) => {
     setSelectBtn(tab);
-    console.log(tab);
     localStorage.setItem("activeTabSetting", tab);
   };
   useEffect(() => {
@@ -47,7 +46,7 @@ const SettinHeader = () => {
                     onClick={() => tabChangerHandler(data.title)}
                   >
                     <p className=" cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-semibold ">
-                      <img
+                      <img className="w-[16px] h-[16px]"
                         src={
                           selectBtn === data.title ? data.activeImage : data.img
                         }
@@ -58,9 +57,9 @@ const SettinHeader = () => {
                   </div>
                 ) : (
                   <div onClick={() => tabChangerHandler(data.title)}>
-                    <p className=" cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center text-text_dark_grey border-transparent">
+                    <p className=" cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center text-text_dark_grey  border-b-2 border-white">
                       {" "}
-                      <img src={data.img} alt="" /> {data.title}
+                      <img className="w-[16px] h-[16px]" src={data.img} alt="" /> {data.title}
                     </p>{" "}
                   </div>
                 )}

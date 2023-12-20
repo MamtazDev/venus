@@ -15,6 +15,7 @@ import settingActive from "../../assets/icons/yellowsetting.png";
 
 import team from "../../assets/icons/team.png";
 import teamActive from "../../assets/icons/yellowteam.png";
+import { Link } from "react-router-dom";
 
 const League = () => {
   const data = [
@@ -41,11 +42,10 @@ const League = () => {
   ];
 
   const [selectBtn, setSelectBtn] = useState("Home");
-
   const tabChangerHandler = (tab) => {
     setSelectBtn(tab);
-
     localStorage.setItem("activeTab", tab);
+
   };
   useEffect(() => {
     setSelectBtn(
@@ -56,35 +56,32 @@ const League = () => {
   }, []);
 
   return (
+
     <>
-      <div className=" ps-2">
+      <div className={`ps-2`}>
         <div className="bg-white ps-25 mb-[20px] border border-[#EEE]">
           <div className="flex gap-[75px]  items-end overflow-x-auto ">
             {data.map((data, index) => (
               <>
                 {selectBtn === `${data.title}` ? (
-                  <div
+                  <Link to="#"
                     key={index}
                     onClick={() => tabChangerHandler(data.title)}
                   >
                     <p className="cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-medium">
-                      <img
+                      <img className="w-[16px] h-[16px]"
                         src={
-                          selectBtn === data.title ? data.activeIcon : data.img
-                        }
-                        alt=""
-                      />
-
+                          selectBtn === data.title ? data.activeIcon : data.img}
+                        alt="" />
                       {data.title}
                     </p>
-                  </div>
+                  </Link>
                 ) : (
-                  <div onClick={() => tabChangerHandler(data.title)}>
-                    <p className=" cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center text-text_dark_grey ">
-                      {" "}
-                      <img src={data.img} alt="" /> {data.title}
-                    </p>{" "}
-                  </div>
+                  <Link to="#" onClick={() => tabChangerHandler(data.title)}>
+                    <p className="border-b-2 border-white cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center text-text_dark_grey ">
+                      <img className="w-[16px] h-[16px]" src={data.img} alt="data" /> {data.title}
+                    </p>
+                  </Link>
                 )}
               </>
             ))}

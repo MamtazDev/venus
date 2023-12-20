@@ -451,3 +451,6 @@ select {
 .narrow {
   width: 80px;
 }
+.transitioning {
+  opacity: 0;
+}
