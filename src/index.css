@@ -149,8 +149,10 @@ a:hover {
 
 input {
   border-radius: 3px;
-  border: 1px solid #a4b2b9;
-  opacity: 0.3;
+  /* border: 1px solid #a4b2b9 !important; */
+  /* opacity: 0.3; */
+  /* padding: 20px; */
+  
 }
 
 input:focus,

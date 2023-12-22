@@ -42,7 +42,7 @@ const Signup = () => {
                     required
                     type="text"
                     placeholder="Enter your name"
-                    className="w-full input_field mt-[10px] input "
+                    className="w-full input_field mt-[10px] "
                   />
                 </div>
                 <div>
@@ -51,7 +51,7 @@ const Signup = () => {
                     required
                     type="email"
                     placeholder="Enter your email address"
-                    className="w-full input_field mt-[10px] input"
+                    className="w-full input_field mt-[10px]"
                   />
                 </div>
                 <div className="grid gap-20 lg:grid-cols-2 w-full">
@@ -83,7 +83,7 @@ const Signup = () => {
                   <input
                     type="password"
                     placeholder="Enter your name"
-                    className="w-full input_field mt-[10px] input input-bordered"
+                    className="w-full input_field mt-[10px] "
                     required
                   />
                 </div>
@@ -92,7 +92,7 @@ const Signup = () => {
                   <input
                     type="password"
                     placeholder="Enter your email address"
-                    className="w-full input_field mt-[10px] input input-bordered"
+                    className="w-full input_field mt-[10px] "
                     required
                   />
                 </div>

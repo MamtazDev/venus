@@ -1,17 +1,67 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 import "./Login.css";
 import loginImage from "../../assets/images/login.svg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import Progress from 'react-progressbar';
 
 const Login = () => {
+
+  // const [image, setImage] = useState()
+  // const [progressBar, setProgressBar] = useState(0)
+  // const [loading, setLoading] = useState(false)
+
+  // const handleFile = (event) => {
+
+  //   setLoading(true)
+
+  //   const file = event.target.files[0]
+  //   const formdata = new FormData();
+  //   setImage(URL.createObjectURL(file))
+
+  //   axios.post('url', formdata, {
+  //     Headers: {
+  //       'Content-Type': "multipart/form-data"
+  //     },
+  //     onUploadProgress: event => {
+  //       console.log(event)
+  //       setProgressBar(Math.round(100 * event.loaded) / event.total)
+  //       setTimeout(() => {
+  //         setLoading(false)
+  //       }, 500)
+  //     }
+  //   }).then(res => {
+  //     setImage(URL.createObjectURL(file))
+  //     setLoading(false)
+  //   })
+  //     .catch(err => console.log(err))
+  //   console.log(loading)
+  // }
   return (
     <>
       <div className="grid gap-0 lg:grid-cols-2">
         <div className="login_img">
+          {/* <input type="file" onChange={handleFile} />
+          <br />
+
+          <div className="mt-10">
+            {loading && <Progress completed={progressBar} />}
+          </div>
+          <img
+            className=" w-full h-full "
+            src={image}
+            alt="login image"
+          /> */}
+
           <img
             className="hidden h-screen lg:block object-cover"
             src={loginImage}
             alt="login image"
           />
+
+
         </div>
         <div>
           <div className="flex justify-end p-30">
@@ -42,7 +92,7 @@ const Login = () => {
                     required
                     type="email"
                     placeholder="Enter your email address"
-                    className="mt-[10px] w-full input_field input input-bordered"
+                    className="mt-[10px] w-full input_field"
                   />
                 </div>
                 <div>
@@ -50,7 +100,7 @@ const Login = () => {
                   <input
                     type="password"
                     placeholder="Enter your name"
-                    className="mt-[10px] w-full input_field input input-bordered"
+                    className="mt-[10px] w-full input_field"
                     required
                   />
                 </div>
