@@ -8,14 +8,13 @@ const Topbar = ({ toggle, isMobile, handleToggle }) => {
     return (
         <>
             <div>
-
                 <div className={`bg-[#F4F7FE] flex justify-between items-center border-b border-[#C8CBD9]  pb-[28px] pe-30 fixed top-0 z-10 
            ${!toggle ? "lg:w-[82%] w-[90%]" : "lg:w-[96%]"} pt-[23px]`}>
                     {!toggle && !isMobile ?
-                        <div onClick={handleToggle} className="  h-[30px] w-[30px] hidden lg:flex justify-center items-center border rounded-full me-10 ms-[20px] mb-2 cursor-pointer">
-                            <i className="fa-solid fa-arrow-left"></i>
-                        </div> : <div onClick={handleToggle} className=" h-[30px] w-[30px] hidden lg:flex justify-center items-center border rounded-full me-10 ms-[20px] mb-2 cursor-pointer">
-                            <i className="fa-solid fa-arrow-right"></i>
+                        <div onClick={handleToggle} className="  h-[30px] w-[30px] hidden lg:flex justify-center items-center border border-[#000080] rounded-full me-10 ms-[20px] mb-2 cursor-pointer">
+                            <i className="fa-solid fa-arrow-left text-[#000080]"></i>
+                        </div> : <div onClick={handleToggle} className=" h-[30px] w-[30px] hidden lg:flex justify-center items-center border border-[#000080] rounded-full me-10 ms-[20px] mb-2 cursor-pointer">
+                            <i className="fa-solid fa-arrow-right text-[#000080]"></i>
                         </div>
                     }
                     <div className='flex  gap-20 items-center'>

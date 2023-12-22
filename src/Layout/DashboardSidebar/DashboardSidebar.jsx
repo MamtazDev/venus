@@ -6,9 +6,9 @@ import logo1 from "../../assets/images/logo1.svg";
 import dashboardIcon from "../../assets/icons/dashboardIcon.svg";
 import auction from "../../assets/icons/league.png";
 import tracking from "../../assets/icons/tracking.svg";
-import timing from "../../assets/icons/timing.svg";
+import timing from "../../assets/icons/bidding.svg";
 import logout from "../../assets/icons/logout.svg";
-import setting from "../../assets/icons/sett.png";
+import setting from "../../assets/icons/sett.svg";
 import dashboardIconActive from "../../assets/icons/dashboardIconActive.svg";
 import settingActive from "../../assets/icons/settingactive.png";
 import leagueActive from "../../assets/icons/leagueIconActive.svg";
@@ -60,7 +60,6 @@ const DashboardSidebar = ({ toggle, isMobile }) => {
           className={` ${!toggle && !isMobile ? "pl-[38px]" : ""}`}>
           {!toggle && !isMobile ? (
             <Link to="/">
-              {" "}
               <img className="cursor-pointer" src={logo} alt="logo" />
             </Link>
           ) : (
@@ -92,13 +91,13 @@ const DashboardSidebar = ({ toggle, isMobile }) => {
                 <img
                   src={data.imgActive}
                   alt=""
-                  className="h-[25px] w-[25px] object-cover"
+                  className="h-[25px] w-[28px] object-cover"
                 />
               ) : (
                 <img
                   src={data.img}
                   alt=""
-                  className="h-[25px] w-[25px] object-cover"
+                  className="h-[25px] w-[28px] object-cover"
                 />
               )}
               {!toggle && !isMobile ? `${data.title}` : ""}
