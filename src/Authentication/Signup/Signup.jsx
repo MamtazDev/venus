@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import loginImage from "../../assets/images/login.svg";
 import "./Signup.css";
+import { useState } from "react";
 const Signup = () => {
+
+const [signupData,setSignupData]=useState({
+  
+})
+
+
+
+
   return (
     <>
       <div className="grid gap-0 lg:grid-cols-2">
