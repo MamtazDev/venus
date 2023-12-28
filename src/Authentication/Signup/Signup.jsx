@@ -1,15 +1,107 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../../assets/images/login.svg";
 import "./Signup.css";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { register } from "../../api/auth";
+import axios from "axios";
+import { AuthContext } from "../../contexts/AuthProvider";
 const Signup = () => {
+  const { setUser, setToken } = useContext(AuthContext);
 
-const [signupData,setSignupData]=useState({
-  
-})
+  const [countryNames, setCountryNames] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const navigate = useNavigate();
 
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/;
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    const form = e.target;
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const country = form.country.value;
+    const gender = form.gender.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    const data = {
+      name,
+      email,
+      password,
+      country,
+      gender,
+    };
+
+    if (!passwordRegex.test(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long.",
+      });
+      setIsLoading(false);
+      return;
+    }
+    if (password !== confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Password doesn't matched!",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const res = await register(data);
+      if (res?.data?.success) {
+        setUser(res?.data?.user);
+        setToken(res?.data?.accessToken);
+        const userInfo = {
+          user: res?.data?.user,
+          accessToken: res?.data?.accessToken,
+        };
+        localStorage.setItem("venusAuth", JSON.stringify(userInfo));
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error?.response?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.response?.data?.message}`,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://gist.githubusercontent.com/anubhavshrimal/75f6183458db8c453306f93521e93d37/raw/f77e7598a8503f1f70528ae1cbf9f66755698a16/CountryCodes.json",
+      )
+      .then(function (response) {
+        setCountryNames(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
@@ -43,12 +135,13 @@ const [signupData,setSignupData]=useState({
                 Fill up all the required information
               </p>
             </div>
-            <form className="login_form_wrapper">
+            <form className="login_form_wrapper" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-5 ">
                 <div>
                   <label className="">Full name</label>
                   <input
                     required
+                    name="name"
                     type="text"
                     placeholder="Enter your name"
                     className="w-full input_field mt-[10px] "
@@ -58,6 +151,7 @@ const [signupData,setSignupData]=useState({
                   <label className="">Email address</label>
                   <input
                     required
+                    name="email"
                     type="email"
                     placeholder="Enter your email address"
                     className="w-full input_field mt-[10px]"
@@ -68,21 +162,31 @@ const [signupData,setSignupData]=useState({
                     <div className="label">
                       <span className="label-text label_texts">Country</span>
                     </div>
-                    <select className="w-full select border-none">
-                      <option selected>USA</option>
-                      <option selected>USA</option>
-                      <option selected>USA</option>
-                      <option selected>USA</option>
+                    <select
+                      className="w-full select border-none"
+                      name="country"
+                    >
+                      {countryNames &&
+                        countryNames?.length > 0 &&
+                        countryNames.map((item, idx) => (
+                          <option
+                            selected={item?.name === "India"}
+                            value={item?.name}
+                            key={idx}
+                          >
+                            {item?.name}
+                          </option>
+                        ))}
                     </select>
                   </label>
                   <label className="w-full form-control">
                     <div className="label">
                       <span className="label-text">Gender</span>
                     </div>
-                    <select className="select">
+                    <select className="select" name="gender">
                       <option selected>Male</option>
-                      <option selected>Female</option>
-                      <option selected>Other</option>
+                      <option>Female</option>
+                      <option>Other</option>
                     </select>
                   </label>
                 </div>
@@ -91,6 +195,7 @@ const [signupData,setSignupData]=useState({
                   <label className="">Password</label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="Enter your name"
                     className="w-full input_field mt-[10px] "
                     required
@@ -100,6 +205,7 @@ const [signupData,setSignupData]=useState({
                   <label className="">Confirm Password</label>
                   <input
                     type="password"
+                    name="confirmPassword"
                     placeholder="Enter your email address"
                     className="w-full input_field mt-[10px] "
                     required
@@ -109,8 +215,9 @@ const [signupData,setSignupData]=useState({
               <button
                 type="submit"
                 className="w-full mt-10 py-21  bg-base text-white rounded-[3px] text-[20px] font-bold"
+                disabled={isLoading}
               >
-                Register Now!
+                {isLoading ? "Registering..." : "Register Now!"}
               </button>
             </form>
           </div>

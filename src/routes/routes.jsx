@@ -10,11 +10,16 @@ import BiddingHistory from "../pages/BiddingHistory/BiddingHistory";
 import Setting from "../pages/Setting/Setting";
 import NotificationsSetting from "../components/SettingPagte/NotificationsSetting";
 import EmailSetting from "../components/SettingPagte/EmailSetting";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <PrivateRoutes>
+        <Layout />
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "/",

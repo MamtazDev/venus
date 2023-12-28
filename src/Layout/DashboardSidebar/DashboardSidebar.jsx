@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // /* eslint-disable react/prop-types */
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Logo.svg";
 import logo1 from "../../assets/images/logo1.svg";
 import dashboardIcon from "../../assets/icons/dashboardIcon.svg";
@@ -14,6 +14,8 @@ import settingActive from "../../assets/icons/settingactive.png";
 import leagueActive from "../../assets/icons/leagueIconActive.svg";
 import biddingactive from "../../assets/icons/biddingactive.png";
 import tournamentactive from "../../assets/icons/tournamentactive.png";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const navlinks = [
   {
@@ -49,15 +51,25 @@ const navlinks = [
 ];
 
 const DashboardSidebar = ({ toggle, isMobile }) => {
-
+  const { logOut } = useContext(AuthContext);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logOut();
+    navigate("/login");
+  };
 
   return (
     <div className="h-full flex flex-col">
-      <div className={` ${!toggle && !isMobile ? "border-b border-border_grey h-[91px]  flex items-center justify-between"
-        : "border-b border-border_grey h-[91px] flex items-center flex-col-reverse justify-center "}`}>
-        <div
-          className={` ${!toggle && !isMobile ? "pl-[38px]" : ""}`}>
+      <div
+        className={` ${
+          !toggle && !isMobile
+            ? "border-b border-border_grey h-[91px]  flex items-center justify-between"
+            : "border-b border-border_grey h-[91px] flex items-center flex-col-reverse justify-center "
+        }`}
+      >
+        <div className={` ${!toggle && !isMobile ? "pl-[38px]" : ""}`}>
           {!toggle && !isMobile ? (
             <Link to="/">
               <img className="cursor-pointer" src={logo} alt="logo" />
@@ -105,17 +117,14 @@ const DashboardSidebar = ({ toggle, isMobile }) => {
           ))}
         </div>
         <hr className="text-[#F0F5FF]" />
-        <NavLink
+        <button
           to="/login"
-          className={({ isActive }) =>
-            isActive
-              ? `hover:text-white flex items-center gap-[12px] mt-[30px] me-[10px] rounded-[5px] text-[#FFF] text-[16px]`
-              : " flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1] pl-[10px] font-[400] gap-[12px] mt-[30px] "
-          }
+          className="flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1] pl-[10px] font-[400] gap-[12px] mt-[30px] "
+          onClick={handleLogout}
         >
           <img src={logout} alt="" />
           {!toggle && !isMobile ? `Logout` : ""}
-        </NavLink>
+        </button>
       </div>
     </div>
   );

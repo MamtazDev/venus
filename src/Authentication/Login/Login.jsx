@@ -2,43 +2,68 @@
 /* eslint-disable no-console */
 import "./Login.css";
 import loginImage from "../../assets/images/login.svg";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import axios from "axios";
-import Progress from 'react-progressbar';
+import Progress from "react-progressbar";
+import Swal from "sweetalert2";
+import { login } from "../../api/auth";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
+  const { setUser, setToken } = useContext(AuthContext);
 
-  // const [image, setImage] = useState()
-  // const [progressBar, setProgressBar] = useState(0)
-  // const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
 
-  // const handleFile = (event) => {
+  const [loading, setLoading] = useState(false);
 
-  //   setLoading(true)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   const file = event.target.files[0]
-  //   const formdata = new FormData();
-  //   setImage(URL.createObjectURL(file))
+    setLoading(true);
 
-  //   axios.post('url', formdata, {
-  //     Headers: {
-  //       'Content-Type': "multipart/form-data"
-  //     },
-  //     onUploadProgress: event => {
-  //       console.log(event)
-  //       setProgressBar(Math.round(100 * event.loaded) / event.total)
-  //       setTimeout(() => {
-  //         setLoading(false)
-  //       }, 500)
-  //     }
-  //   }).then(res => {
-  //     setImage(URL.createObjectURL(file))
-  //     setLoading(false)
-  //   })
-  //     .catch(err => console.log(err))
-  //   console.log(loading)
-  // }
+    const form = e.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const data = {
+      email,
+      password,
+    };
+
+    try {
+      const res = await login(data);
+      if (res?.data?.success) {
+        setUser(res?.data?.user);
+        setToken(res?.data?.accessToken);
+        const userInfo = {
+          user: res?.data?.user,
+          accessToken: res?.data?.accessToken,
+        };
+        localStorage.setItem("venusAuth", JSON.stringify(userInfo));
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error?.response?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.response?.data?.message}`,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <div className="grid gap-0 lg:grid-cols-2">
@@ -60,8 +85,6 @@ const Login = () => {
             src={loginImage}
             alt="login image"
           />
-
-
         </div>
         <div>
           <div className="flex justify-end p-30">
@@ -84,7 +107,7 @@ const Login = () => {
               <p className="text-base label_texts">Enjoy your journey</p>
             </div>
 
-            <form action="" className="login_form_wrapper">
+            <form onSubmit={handleSubmit} className="login_form_wrapper">
               <div className="flex flex-col gap-5 ">
                 <div>
                   <label className="">Email address</label>
@@ -93,6 +116,7 @@ const Login = () => {
                     type="email"
                     placeholder="Enter your email address"
                     className="mt-[10px] w-full input_field"
+                    name="email"
                   />
                 </div>
                 <div>
@@ -102,14 +126,16 @@ const Login = () => {
                     placeholder="Enter your name"
                     className="mt-[10px] w-full input_field"
                     required
+                    name="password"
                   />
                 </div>
               </div>
               <button
                 type="submit"
                 className="w-full mt-10 py-14 lg:py-21  lg:px-20 px-10 bg-base text-white text-[20px] font-bold rounded-[3px] "
+                disabled={loading}
               >
-                Log In
+                {loading ? "Logging..." : "Log In"}
               </button>
             </form>
           </div>
