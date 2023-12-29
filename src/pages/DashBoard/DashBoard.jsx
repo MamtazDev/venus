@@ -1,7 +1,72 @@
 import { Link } from "react-router-dom";
 import NoFoundData from "../../components/NoFoundData/NoFoundData";
+import { useEffect, useState } from "react";
+import { createLeague, getUserLeaguesInfo } from "../../api/league";
+import Swal from "sweetalert2";
 const DashBoard = () => {
-  const data = [];
+  const [userLeagueDatas, setUserLeagueDatas] = useState([]);
+  const [pastLeagueDatas, setPastLeagueDatas] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleStartLeague = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    const form = e.target;
+
+    const leagueName = form.leagueName.value;
+    const event = form.event.value;
+    const eventScope = form.eventScope.value;
+
+    const data = {
+      leagueName,
+      event,
+      eventScope,
+    };
+
+    try {
+      const res = await createLeague(data);
+      if (res?.data?.success) {
+        document.getElementById("my_modal_1").close();
+        Swal.fire({
+          icon: "Success",
+          title: "Successfull!",
+          text: "League created successfully!",
+        });
+        fetchUserLeagueInfo();
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error?.response?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.response?.data?.message}`,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchUserLeagueInfo = async () => {
+    const res = await getUserLeaguesInfo();
+    if (res?.data) {
+      setUserLeagueDatas(res?.data);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserLeagueInfo();
+  }, []);
   return (
     <div>
       {/* header */}
@@ -38,39 +103,47 @@ const DashBoard = () => {
           <table className="table">
             <thead className="bg-[#F4F7FE]">
               <tr className="border-0">
-                <th className="text-sm font-medium text-text_color1 font-lato">
+                <th className="text-sm font-medium text-text_color1 ">
                   League Name
                 </th>
-                <th className="text-sm font-medium text-text_color1 font-lato">
+                <th className="text-sm font-medium text-text_color1 ">
                   Buy In
                 </th>
-                <th className="text-sm font-medium text-text_color1 font-lato">
+                <th className="text-sm font-medium text-text_color1 ">
                   Current Payout
                 </th>
-                <th className="text-sm font-medium text-text_color1 font-lato">
+                <th className="text-sm font-medium text-text_color1 ">
                   Net Return
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {/* row 1 */}
-              <tr className="bg-base-200 border border-[#F0F0F0] ">
-                <th className="font-medium text-sm text-text_color1 font-lato">
-                  Cricket
-                </th>
-                <td className="font-medium text-sm text-text_color1 font-lato">
-                  $10.00
-                </td>
-                <td className="font-medium text-sm text-text_color1 font-lato">
-                  $0.00
-                </td>
-                <td className="font-medium text-sm text-text_color1 font-lato">
-                  {" "}
-                  -$10.00
-                </td>
-              </tr>
-            </tbody>
+            {userLeagueDatas?.length > 0 &&
+              userLeagueDatas?.map((item, idx) => (
+                <tbody className="min-h-[186px] w-full" key={idx}>
+                  <tr className="bg-base-200 border border-[#F0F0F0] ">
+                    <th className="font-medium text-sm text-text_color1 ">
+                      {item?.league?.leagueName}
+                    </th>
+                    <td className="font-medium text-sm text-text_color1 ">
+                      ${(item?.league?.buyIn).toFixed(2)}
+                    </td>
+                    <td className="font-medium text-sm text-text_color1 ">
+                      ${(item?.league?.currentPayout).toFixed(2)}
+                    </td>
+                    <td className="font-medium text-sm text-text_color1 ">
+                      {" "}
+                      ${(item?.league?.netReturn).toFixed(2)}
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
           </table>
+
+          {userLeagueDatas?.length === 0 && (
+            <>
+              <NoFoundData />
+            </>
+          )}
         </div>
       </div>
       <div className="pt-[26px] px-31 pb-49  rounded-3 bg-white">
@@ -96,7 +169,7 @@ const DashBoard = () => {
                 </th>
               </tr>
             </thead>
-            {data.length !== 0 && (
+            {pastLeagueDatas.length !== 0 && (
               <tbody className="min-h-[186px] w-full">
                 <tr className="bg-base-200 border border-[#F0F0F0] ">
                   <th className="font-medium text-sm text-text_color1 ">
@@ -117,7 +190,7 @@ const DashBoard = () => {
             )}
           </table>
 
-          {data.length === 0 && (
+          {pastLeagueDatas.length === 0 && (
             <>
               <NoFoundData />
             </>
@@ -132,7 +205,7 @@ const DashBoard = () => {
           </h3>
           <hr className="border-t border-border_grey mx-[40px] mb-[50px]" />
 
-          <div className="px-[76px]">
+          <form onSubmit={handleStartLeague} className="px-[76px]">
             <label className=" form-control">
               <div className="label">
                 <span
@@ -142,11 +215,12 @@ const DashBoard = () => {
                   Event
                 </span>
               </div>
-              <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]">
-                <option selected>USA</option>
-                <option selected>USA</option>
-                <option selected>USA</option>
-                <option selected>USA</option>
+              <select
+                name="event"
+                className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]"
+              >
+                <option selected></option>
+                <option>23-24 NFL</option>
               </select>
             </label>
             <label className=" form-control mt-[20px]">
@@ -158,11 +232,12 @@ const DashBoard = () => {
                   Event Scope
                 </span>
               </div>
-              <select className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]">
-                <option selected>USA</option>
-                <option selected>USA</option>
-                <option selected>USA</option>
-                <option selected>USA</option>
+              <select
+                name="eventScope"
+                className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]"
+              >
+                <option selected></option>
+                <option>Full Season</option>
               </select>
             </label>
             <div className=" mt-[20px]">
@@ -173,6 +248,7 @@ const DashBoard = () => {
                 League Name
               </label>
               <input
+                name="leagueName"
                 type="text"
                 placeholder="League Name"
                 className="bg-sky_bg2 w-full input_field input input-bordered mt-[10px]  border  border-[#EEE]"
@@ -181,19 +257,28 @@ const DashBoard = () => {
             </div>
 
             <div className="modal-action flex-col">
-              <form method="">
-                <button className="bg-base py-10 w-full rounded-3 mt-[30px] text-white font-semibold">
-                  Submit
-                </button>
-              </form>
+              <button
+                type="submit"
+                className="bg-base py-10 w-full rounded-3 mt-[30px] text-white font-semibold"
+                disabled={isLoading}
+              >
+                {isLoading ? "Creating..." : "Submit"}
+              </button>
             </div>
 
             <div className="text-center lg:py-14 py-10">
-              <Link className="text-center font-normal text-base font-sans text-text_dark_grey">
+              <button
+                type="button"
+                onClick={() => {
+                  document.getElementById("my_modal_1").close();
+                  document.getElementById("my_modal_2").showModal();
+                }}
+                className="text-center font-normal text-base font-sans text-text_dark_grey"
+              >
                 Join a League
-              </Link>
+              </button>
             </div>
-          </div>
+          </form>
         </div>
         <label
           className="modal-backdrop"
@@ -227,15 +312,21 @@ const DashBoard = () => {
             </div>
 
             <div className="modal-action flex-col">
-              <form method="">
-                <button className="bg-base py-10 w-full rounded-3 text-white">
-                  Submit
-                </button>
-              </form>
+              <button className="bg-base py-10 w-full rounded-3 text-white">
+                Submit
+              </button>
             </div>
 
             <div className="text-center py-14">
-              <Link className="text-center">Join a League</Link>
+              <button
+                onClick={() => {
+                  document.getElementById("my_modal_2").close();
+                  document.getElementById("my_modal_1").showModal();
+                }}
+                className="text-center"
+              >
+                Start a League
+              </button>
             </div>
           </div>
         </div>

@@ -9,4 +9,13 @@ const AXIOS = axios.create({
   headers: customHeaders,
 });
 
+AXIOS.interceptors.request.use((config) => {
+  const authToken = localStorage.getItem("venusAuth");
+  if (authToken) {
+    const token = JSON.parse(authToken).accessToken;
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export default AXIOS;
