@@ -88,33 +88,61 @@ const DashboardSidebar = ({ toggle, isMobile }) => {
         }`}
       >
         <div className="mb-[90px] ">
-          {navlinks.map((data, index) => (
-            <NavLink
-              key={index}
-              to={data.to}
-              className={({ isActive }) =>
-                isActive
-                  ? `hover:text-white flex items-center gap-[12px] bg-base  rounded-[5px] text-[#FFF] text-[16px] pl-[10px] py-[10px] mb-[15px] 
+          {navlinks.map((data, index) =>
+            data?.title === "League" ? (
+              <button
+                style={{ width: "90%" }}
+                key={index}
+                className={
+                  location.pathname.includes("/league")
+                    ? `hover:text-white flex items-center gap-[12px] bg-base  rounded-[5px] text-[#FFF] text-[16px] pl-[10px] py-[10px] mb-[15px] 
+               ${!toggle ? "lg:me-[47px] me-[10px]" : "me-[15px]"}`
+                    : "flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1]  font-[400] gap-[12px] pl-[10px] py-[10px] mb-[15px]"
+                }
+              >
+                {location.pathname.includes("/league") ? (
+                  <img
+                    src={data.imgActive}
+                    alt=""
+                    className="h-[25px] w-[28px] object-cover"
+                  />
+                ) : (
+                  <img
+                    src={data.img}
+                    alt=""
+                    className="h-[25px] w-[28px] object-cover"
+                  />
+                )}
+                {!toggle && !isMobile ? `${data.title}` : ""}
+              </button>
+            ) : (
+              <NavLink
+                key={index}
+                to={data.to}
+                className={({ isActive }) =>
+                  isActive
+                    ? `hover:text-white flex items-center gap-[12px] bg-base  rounded-[5px] text-[#FFF] text-[16px] pl-[10px] py-[10px] mb-[15px] 
                   ${!toggle ? "lg:me-[47px] me-[10px]" : "me-[15px]"}`
-                  : "flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1]  font-[400] gap-[12px] pl-[10px] py-[10px] mb-[15px]"
-              }
-            >
-              {location.pathname === data.to ? (
-                <img
-                  src={data.imgActive}
-                  alt=""
-                  className="h-[25px] w-[28px] object-cover"
-                />
-              ) : (
-                <img
-                  src={data.img}
-                  alt=""
-                  className="h-[25px] w-[28px] object-cover"
-                />
-              )}
-              {!toggle && !isMobile ? `${data.title}` : ""}
-            </NavLink>
-          ))}
+                    : "flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1]  font-[400] gap-[12px] pl-[10px] py-[10px] mb-[15px]"
+                }
+              >
+                {location.pathname === data.to ? (
+                  <img
+                    src={data.imgActive}
+                    alt=""
+                    className="h-[25px] w-[28px] object-cover"
+                  />
+                ) : (
+                  <img
+                    src={data.img}
+                    alt=""
+                    className="h-[25px] w-[28px] object-cover"
+                  />
+                )}
+                {!toggle && !isMobile ? `${data.title}` : ""}
+              </NavLink>
+            ),
+          )}
         </div>
         <hr className="text-[#F0F5FF]" />
         <button

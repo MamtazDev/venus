@@ -45,7 +45,6 @@ const League = () => {
   const tabChangerHandler = (tab) => {
     setSelectBtn(tab);
     localStorage.setItem("activeTab", tab);
-
   };
   useEffect(() => {
     setSelectBtn(
@@ -56,7 +55,6 @@ const League = () => {
   }, []);
 
   return (
-
     <>
       <div className={`ps-2`}>
         <div className="bg-white ps-25 mb-[20px] border border-[#EEE]">
@@ -64,22 +62,31 @@ const League = () => {
             {data.map((data, index) => (
               <>
                 {selectBtn === `${data.title}` ? (
-                  <Link to="#"
+                  <Link
+                    to="#"
                     key={index}
                     onClick={() => tabChangerHandler(data.title)}
                   >
                     <p className="cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center border-b-2 border-yellow text-yellow font-medium">
-                      <img className="w-[16px] h-[16px]"
+                      <img
+                        className="w-[16px] h-[16px]"
                         src={
-                          selectBtn === data.title ? data.activeIcon : data.img}
-                        alt="" />
+                          selectBtn === data.title ? data.activeIcon : data.img
+                        }
+                        alt=""
+                      />
                       {data.title}
                     </p>
                   </Link>
                 ) : (
                   <Link to="#" onClick={() => tabChangerHandler(data.title)}>
                     <p className="border-b-2 border-white cursor-pointer  text-base pb-[15px] pt-[24px]  flex gap-8 items-center text-text_dark_grey ">
-                      <img className="w-[16px] h-[16px]" src={data.img} alt="data" /> {data.title}
+                      <img
+                        className="w-[16px] h-[16px]"
+                        src={data.img}
+                        alt="data"
+                      />{" "}
+                      {data.title}
                     </p>
                   </Link>
                 )}
@@ -88,16 +95,10 @@ const League = () => {
           </div>
         </div>
       </div>
-
-      {selectBtn === "Home" ? (
-        <Home />
-      ) : selectBtn === "Auction" ? (
-        <Auction />
-      ) : selectBtn === "Team" ? (
-        <Team />
-      ) : selectBtn === "Setting" ? (
-        <Setting />
-      ) : null}
+      {selectBtn === "Home" && <Home />}{" "}
+      {selectBtn === "Auction" && <Auction />}{" "}
+      {selectBtn === "Team" && <Team />}
+      {selectBtn === "Setting" && <Setting />}
     </>
   );
 };

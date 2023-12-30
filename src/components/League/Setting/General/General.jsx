@@ -1,5 +1,6 @@
 import edit from "../../../../assets/icons/edit.svg";
-const General = () => {
+const General = ({ leagueBasicInfo }) => {
+  console.log(leagueBasicInfo, "ddd");
   return (
     <>
       {/* delete league */}
@@ -19,7 +20,7 @@ const General = () => {
             <input
               type="text"
               className="w-full h-[40px] ps-[10px] "
-              value="Cricket"
+              value={leagueBasicInfo?.leagueName}
             />
             <div className="absolute top-[6px] right-[11px]">
               <img className="cursor-pointer" src={edit} alt="" />
@@ -33,7 +34,7 @@ const General = () => {
           <input
             type="text"
             className="  w-full border-0 py-10 ps-20 font-sans text-sm text-[#000] bg-light_sky mt-[15px] cursor-copy"
-            value="BC357183-ED2F-4396-83F5-BC30431977BD"
+            value={leagueBasicInfo?.inviteCode}
           />
         </div>
         <div className="p-20 bg-white  rounded-3 invite_id">
@@ -44,7 +45,7 @@ const General = () => {
           <input
             type="text"
             className="  w-full border-0 py-10 ps-20 font-sans text-sm text-[#000] bg-light_sky mt-[15px] cursor-copy"
-            value="https://calcuttaleague.com/joinLeague?inviteCode=BC357183-ED2F-4396-83F5-BC30431977BD"
+            value={`https://calcuttaleague.com/joinLeague?inviteCode=${leagueBasicInfo?.inviteCode}`}
           />
         </div>
       </div>

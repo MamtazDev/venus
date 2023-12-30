@@ -11,6 +11,7 @@ import Setting from "../pages/Setting/Setting";
 import NotificationsSetting from "../components/SettingPagte/NotificationsSetting";
 import EmailSetting from "../components/SettingPagte/EmailSetting";
 import PrivateRoutes from "./PrivateRoutes";
+import JoinLeague from "../pages/JoinLeague/JoinLeague";
 
 export const router = createBrowserRouter([
   {
@@ -27,8 +28,12 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "/league",
+        path: "/league/:id",
         element: <League />,
+      },
+      {
+        path: "/joinLeague",
+        element: <JoinLeague />,
       },
       {
         path: "/tournamentTracking",

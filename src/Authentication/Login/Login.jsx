@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import "./Login.css";
 import loginImage from "../../assets/images/login.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import axios from "axios";
 import Progress from "react-progressbar";
@@ -12,6 +12,9 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
   const { setUser, setToken } = useContext(AuthContext);
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const navigate = useNavigate();
 
@@ -42,7 +45,7 @@ const Login = () => {
           accessToken: res?.data?.accessToken,
         };
         localStorage.setItem("venusAuth", JSON.stringify(userInfo));
-        navigate("/");
+        navigate(from, { replace: true });
       }
     } catch (error) {
       console.error("Error:", error.message);

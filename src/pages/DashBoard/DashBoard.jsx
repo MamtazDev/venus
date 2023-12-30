@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import NoFoundData from "../../components/NoFoundData/NoFoundData";
 import { useEffect, useState } from "react";
-import { createLeague, getUserLeaguesInfo } from "../../api/league";
+import { createLeague, getUserLeaguesInfo, joinLeague } from "../../api/league";
 import Swal from "sweetalert2";
 const DashBoard = () => {
   const [userLeagueDatas, setUserLeagueDatas] = useState([]);
   const [pastLeagueDatas, setPastLeagueDatas] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [joining, setJoining] = useState(false);
 
   const handleStartLeague = async (e) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const DashBoard = () => {
           text: "League created successfully!",
         });
         fetchUserLeagueInfo();
+        form.reset();
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -54,6 +56,45 @@ const DashBoard = () => {
       }
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleJoinLeague = async (e) => {
+    e.preventDefault();
+
+    setJoining(true);
+
+    const inviteCode = e.target.inviteCode.value;
+
+    try {
+      const res = await joinLeague(inviteCode);
+      if (res?.data?.success) {
+        document.getElementById("my_modal_2").close();
+        Swal.fire({
+          icon: "Success",
+          title: "Successfull!",
+          text: "League joined successfully!",
+        });
+        fetchUserLeagueInfo();
+        e.target.reset();
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error?.response?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.response?.data?.message}`,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
+      }
+    } finally {
+      setJoining(false);
     }
   };
 
@@ -122,7 +163,9 @@ const DashBoard = () => {
                 <tbody className="min-h-[186px] w-full" key={idx}>
                   <tr className="bg-base-200 border border-[#F0F0F0] ">
                     <th className="font-medium text-sm text-text_color1 ">
-                      {item?.league?.leagueName}
+                      <Link to={`/league/${item?.league?._id}`}>
+                        {item?.league?.leagueName}
+                      </Link>
                     </th>
                     <td className="font-medium text-sm text-text_color1 ">
                       ${(item?.league?.buyIn).toFixed(2)}
@@ -298,12 +341,13 @@ const DashBoard = () => {
           </h3>
           <hr className="border-t border-border_grey mx-[40px] mb-[50px]" />
 
-          <div className="px-[52px]">
+          <form className="px-[52px]" onSubmit={handleJoinLeague}>
             <div className=" mt-[20px]">
               <label className=" text-base font-medium text-[#00000] font-sans">
                 Invite Code
               </label>
               <input
+                name="inviteCode"
                 type="text"
                 placeholder="Insert code"
                 className="bg-sky_bg2 w-full input_field input input-bordered mt-[10px] border border-border2"
@@ -312,13 +356,18 @@ const DashBoard = () => {
             </div>
 
             <div className="modal-action flex-col">
-              <button className="bg-base py-10 w-full rounded-3 text-white">
-                Submit
+              <button
+                type="submit"
+                className="bg-base py-10 w-full rounded-3 text-white"
+                disabled={joining}
+              >
+                {joining ? "Joining..." : "Submit"}
               </button>
             </div>
 
             <div className="text-center py-14">
               <button
+                type="button"
                 onClick={() => {
                   document.getElementById("my_modal_2").close();
                   document.getElementById("my_modal_1").showModal();
@@ -328,7 +377,7 @@ const DashBoard = () => {
                 Start a League
               </button>
             </div>
-          </div>
+          </form>
         </div>
         <label
           className="modal-backdrop"

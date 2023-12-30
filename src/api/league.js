@@ -5,8 +5,10 @@ export const createLeague = async (data) => {
   return response;
 };
 
-export const joinLeague = async (data) => {
-  const response = await AXIOS.post("/api/league/create", data);
+export const joinLeague = async (inviteCode) => {
+  const response = await AXIOS.post(
+    `/api/league/join?inviteCode=${inviteCode}`,
+  );
   return response;
 };
 
@@ -16,5 +18,9 @@ export const getUserLeaguesInfo = async () => {
 };
 export const getLeaguesUsersData = async (leagueId) => {
   const response = await AXIOS.get(`/api/league/leagueUsersData/${leagueId}`);
+  return response;
+};
+export const getLeagueInfo = async (leagueId) => {
+  const response = await AXIOS.get(`/api/league/leagueInfo/${leagueId}`);
   return response;
 };

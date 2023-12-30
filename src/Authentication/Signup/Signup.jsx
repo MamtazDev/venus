@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImage from "../../assets/images/login.svg";
 import "./Signup.css";
 import { useContext, useEffect, useState } from "react";
@@ -11,6 +11,9 @@ const Signup = () => {
 
   const [countryNames, setCountryNames] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const navigate = useNavigate();
 
@@ -68,7 +71,7 @@ const Signup = () => {
           accessToken: res?.data?.accessToken,
         };
         localStorage.setItem("venusAuth", JSON.stringify(userInfo));
-        navigate("/");
+        navigate(from, { replace: true });
       }
     } catch (error) {
       console.error("Error:", error.message);
