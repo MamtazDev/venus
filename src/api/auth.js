@@ -24,3 +24,12 @@ export const getAllUsers = async () => {
   const response = await AXIOS.get("/api/users/");
   return response;
 };
+
+export const updateUserInfo = async (data) => {
+  const response = await AXIOS.patch(`/api/users/updateUserInfo`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response;
+};

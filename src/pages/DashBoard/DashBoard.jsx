@@ -3,13 +3,37 @@ import NoFoundData from "../../components/NoFoundData/NoFoundData";
 import { useEffect, useState } from "react";
 import { createLeague, getUserLeaguesInfo, joinLeague } from "../../api/league";
 import Swal from "sweetalert2";
-import { getAllPublicLeagues } from "../../api/publicApis";
+import {
+  getAllPublicLeagues,
+  getSeasonsByLeagueId,
+} from "../../api/publicApis";
 const DashBoard = () => {
   const [userLeagueDatas, setUserLeagueDatas] = useState([]);
   const [pastLeagueDatas, setPastLeagueDatas] = useState([]);
 
+  const [allPublicLeagues, setAllPublicLeagues] = useState([]);
+  const [allPublicSeasons, setPublicSeasons] = useState([]);
+
+  const [selectedLeague, setSelectedLeague] = useState(null);
+  const [selectedSeason, setSelectedSeason] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
   const [joining, setJoining] = useState(false);
+
+  const handleLeagueChange = async (e) => {
+    const value = JSON.parse(e.target.value);
+    setSelectedLeague(value);
+
+    const res = await getSeasonsByLeagueId(value?.id);
+    setPublicSeasons(res.data);
+  };
+
+  const handleSeasonChange = async (e) => {
+    const value = JSON.parse(e.target.value);
+    setSelectedSeason(value);
+  };
+
+  console.log(selectedLeague, "sell");
 
   const handleStartLeague = async (e) => {
     e.preventDefault();
@@ -19,13 +43,17 @@ const DashBoard = () => {
     const form = e.target;
 
     const leagueName = form.leagueName.value;
-    const event = form.event.value;
-    const eventScope = form.eventScope.value;
+    const event = selectedLeague?.name;
+    const eventId = selectedLeague?.id;
+    const eventScope = selectedSeason?.name;
+    const eventScopeId = selectedSeason?.id;
 
     const data = {
       leagueName,
       event,
       eventScope,
+      eventId,
+      eventScopeId,
     };
 
     try {
@@ -108,18 +136,12 @@ const DashBoard = () => {
 
   const fetchPublicLeagueInfo = async () => {
     const res = await getAllPublicLeagues();
-    console.log(res, "reeesasdf");
+    setAllPublicLeagues(res?.data);
   };
 
   useEffect(() => {
     fetchUserLeagueInfo();
     fetchPublicLeagueInfo();
-
-    // fetch(
-    //   "https://api.sportmonks.com/v3/football/leagues?api_token=7c0V4CPUaauLeyRb8LjqaCdLZxidiGvmUOd7P1PWTPUiasZLNzX1TRFgOMzD",
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data, "dfkfskfj"));
   }, []);
   return (
     <div>
@@ -274,9 +296,18 @@ const DashBoard = () => {
               <select
                 name="event"
                 className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]"
+                onChange={handleLeagueChange}
               >
-                <option selected></option>
-                <option>23-24 NFL</option>
+                <option selected disabled>
+                  Select league
+                </option>
+                {allPublicLeagues &&
+                  allPublicLeagues?.length > 0 &&
+                  allPublicLeagues?.map((item, idx) => (
+                    <option key={idx} value={JSON.stringify(item)}>
+                      {item?.name}
+                    </option>
+                  ))}
               </select>
             </label>
             <label className=" form-control mt-[20px]">
@@ -291,9 +322,20 @@ const DashBoard = () => {
               <select
                 name="eventScope"
                 className="w-full select border-none bg-sky_bg2 border border-border2 opacity-[0.3] mt-[2px]"
+                onChange={handleSeasonChange}
               >
-                <option selected></option>
-                <option>Full Season</option>
+                <option selected disabled>
+                  Select season
+                </option>
+                {allPublicSeasons && allPublicSeasons?.length > 0 ? (
+                  allPublicSeasons?.map((item, idx) => (
+                    <option key={idx} value={JSON.stringify(item)}>
+                      {item?.name}
+                    </option>
+                  ))
+                ) : (
+                  <option disabled>No season found</option>
+                )}
               </select>
             </label>
             <div className=" mt-[20px]">
@@ -316,7 +358,7 @@ const DashBoard = () => {
               <button
                 type="submit"
                 className="bg-base py-10 w-full rounded-3 mt-[30px] text-white font-semibold"
-                disabled={isLoading}
+                disabled={isLoading || !selectedLeague || !selectedSeason}
               >
                 {isLoading ? "Creating..." : "Submit"}
               </button>

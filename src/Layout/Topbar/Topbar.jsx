@@ -8,6 +8,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const Topbar = ({ toggle, isMobile, handleToggle }) => {
   const { user } = useContext(AuthContext);
 
+  console.log(user?.image, "ddd");
+
   return (
     <>
       <div>
@@ -91,7 +93,15 @@ const Topbar = ({ toggle, isMobile, handleToggle }) => {
               </div>
             </div>
             <div className="flex items-center gap-6">
-              <img src={profile} alt="" />
+              <img
+                src={
+                  user?.image
+                    ? `${import.meta.env.VITE_BASE_URL}/assets/${user?.image}`
+                    : profile
+                }
+                alt=""
+                className="w-[20px] h-[20px] rounded-full object-cover"
+              />
               <p>{user?.name}</p>
             </div>
             <button className="py-10 px-[23px] bg-base rounded-3 text-white">

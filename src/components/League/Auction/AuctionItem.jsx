@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import auction1 from "../../../assets/icons/auction1.png";
 
 const auctionData = [
@@ -62,6 +63,8 @@ const auctionData = [
   },
 ];
 const AuctionItem = () => {
+  const { id } = useParams();
+  console.log(id);
   return (
     <>
       <div className="bg-white rounded-3 p-20 ">

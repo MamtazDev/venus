@@ -2,16 +2,19 @@ import { useContext, useEffect, useRef, useState } from "react";
 import delet from "../../assets/icons/delete1.png";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { updateUserInfo } from "../../api/auth";
+import Swal from "sweetalert2";
 const Acount = () => {
   const fileInputRef = useRef(null);
 
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [countryNames, setCountryNames] = useState([]);
 
   const [userInfo, setUserInfo] = useState({});
   const [editedInfo, setEditedInfo] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChooseButtonClick = () => {
     fileInputRef.current.click();
@@ -19,6 +22,7 @@ const Acount = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    setEditedInfo({ ...editedInfo, image: file });
     if (file) {
       const reader = new FileReader();
 
@@ -41,7 +45,67 @@ const Acount = () => {
     setEditedInfo({ ...editedInfo, [name]: value });
   };
 
-  console.log(userInfo, "userInfo");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    if (editedInfo?.image && editedInfo?.image?.size / (1024 * 1024) > 3) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Image size should be less than 3MB.`,
+      });
+      setLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+
+    Object.entries(editedInfo).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    try {
+      const res = await updateUserInfo(formData);
+      if (res?.data?.success) {
+        const userInfo = {
+          ...res?.data?.data,
+        };
+        const userOldInfo = JSON.parse(localStorage.getItem("venusAuth"));
+        setUser(userInfo);
+        localStorage.setItem(
+          "venusAuth",
+          JSON.stringify({ ...userOldInfo, user: userInfo }),
+        );
+        setEditedInfo({});
+        setSelectedFile(null);
+        Swal.fire({
+          icon: "Success",
+          title: "Successfull!",
+          text: "User Info Updated successfully!",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error?.response?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.response?.data?.message}`,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  console.log(editedInfo, "details");
 
   useEffect(() => {
     const userData = {
@@ -77,7 +141,7 @@ const Acount = () => {
         <p className="text4 mb-[30px] mt-[5px]" style={{ color: "#9AA8D1" }}>
           View and update your account details
         </p>
-        <form className="flex flex-col gap-[24px]">
+        <form className="flex flex-col gap-[24px]" onSubmit={handleSubmit}>
           {/* <div className="grid lg:grid-cols-2 grid-cols-1 gap-20">
             <div>
               <label className="">First name</label>
@@ -145,6 +209,7 @@ const Acount = () => {
                   name=""
                   className="hidden"
                   id=""
+                  accept="image/*"
                   ref={fileInputRef}
                   onChange={handleFileChange}
                 />
@@ -191,7 +256,9 @@ const Acount = () => {
               <textarea
                 required
                 value={userInfo?.details ? userInfo?.details : ""}
+                onChange={handleInputChange}
                 type="text"
+                name="details"
                 placeholder="Write a about....."
                 className="border border-[#E1E1E1] h-[139px] w-full  p-14 rounded-8     mt-[12px]"
               />
@@ -203,7 +270,9 @@ const Acount = () => {
               <label className="">Phone Number</label>
               <input
                 required
+                onChange={handleInputChange}
                 type="number"
+                name="phoneNumber"
                 placeholder="Enter your number"
                 value={userInfo?.phoneNumber}
                 className=" opacity-100 border border-[#E1E1E1] w-full input_field input mt-[12px]"
@@ -217,7 +286,11 @@ const Acount = () => {
                 >
                   <span className="label-text pt-0 pb-0">Location</span>
                 </div>
-                <select className="w-full select border-none  mt-[12px]">
+                <select
+                  className="w-full select border-none  mt-[12px]"
+                  onChange={handleInputChange}
+                  name="country"
+                >
                   {countryNames &&
                     countryNames?.length > 0 &&
                     countryNames.map((item, idx) => (
@@ -236,13 +309,19 @@ const Acount = () => {
 
           <div className="flex gap-20">
             <button
+              type="submit"
               className="py-10 px-[22px] bg-base text-white text2 rounded-3 "
               style={{ color: "#fff" }}
+              disabled={loading || Object.keys(editedInfo).length === 0}
             >
               {" "}
-              Save changes
+              {loading ? "Saving..." : "Save changes"}
             </button>
-            <button className="rounded-3 bg-[#E9E9F7] py-10 px-[45px] font-medium">
+
+            <button
+              type="button"
+              className="rounded-3 bg-[#E9E9F7] py-10 px-[45px] font-medium"
+            >
               Cancel
             </button>
           </div>
