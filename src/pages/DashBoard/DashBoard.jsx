@@ -3,6 +3,7 @@ import NoFoundData from "../../components/NoFoundData/NoFoundData";
 import { useEffect, useState } from "react";
 import { createLeague, getUserLeaguesInfo, joinLeague } from "../../api/league";
 import Swal from "sweetalert2";
+import { getAllPublicLeagues } from "../../api/publicApis";
 const DashBoard = () => {
   const [userLeagueDatas, setUserLeagueDatas] = useState([]);
   const [pastLeagueDatas, setPastLeagueDatas] = useState([]);
@@ -105,8 +106,20 @@ const DashBoard = () => {
     }
   };
 
+  const fetchPublicLeagueInfo = async () => {
+    const res = await getAllPublicLeagues();
+    console.log(res, "reeesasdf");
+  };
+
   useEffect(() => {
     fetchUserLeagueInfo();
+    fetchPublicLeagueInfo();
+
+    // fetch(
+    //   "https://api.sportmonks.com/v3/football/leagues?api_token=7c0V4CPUaauLeyRb8LjqaCdLZxidiGvmUOd7P1PWTPUiasZLNzX1TRFgOMzD",
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data, "dfkfskfj"));
   }, []);
   return (
     <div>

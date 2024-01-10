@@ -45,7 +45,9 @@ const General = ({ leagueBasicInfo }) => {
           <input
             type="text"
             className="  w-full border-0 py-10 ps-20 font-sans text-sm text-[#000] bg-light_sky mt-[15px] cursor-copy"
-            value={`https://calcuttaleague.com/joinLeague?inviteCode=${leagueBasicInfo?.inviteCode}`}
+            value={`${
+              import.meta.env.VITE_MAIN_WEBSITE
+            }/joinLeague?inviteCode=${leagueBasicInfo?.inviteCode}`}
           />
         </div>
       </div>
