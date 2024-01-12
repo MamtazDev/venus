@@ -12,6 +12,7 @@ import NotificationsSetting from "../components/SettingPagte/NotificationsSettin
 import EmailSetting from "../components/SettingPagte/EmailSetting";
 import PrivateRoutes from "./PrivateRoutes";
 import JoinLeague from "../pages/JoinLeague/JoinLeague";
+import LeagueInfoProvider from "../contexts/LeagueInfoProvider";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ export const router = createBrowserRouter([
 
       {
         path: "/league/:id",
-        element: <League />,
+        element: (
+          <LeagueInfoProvider>
+            <League />
+          </LeagueInfoProvider>
+        ),
       },
       {
         path: "/joinLeague",

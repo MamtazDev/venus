@@ -26,22 +26,24 @@ const JoinLeague = () => {
           title: "Oops...",
           text: `${error?.response?.data?.message}`,
         });
-        // navigate("/");
+        navigate("/");
       } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: `${error?.message}`,
         });
-        // navigate("/");
+        navigate("/");
       }
     } finally {
     }
   };
 
+  console.log(location, "ll");
+
   useEffect(() => {
     joiningLeague();
-  }, [inviteCode]);
+  }, []);
 
   return (
     <div style={{ height: "80vh", display: "flex", justifyContent: "center" }}>

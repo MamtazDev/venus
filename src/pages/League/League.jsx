@@ -15,7 +15,9 @@ import settingActive from "../../assets/icons/yellowsetting.png";
 
 import team from "../../assets/icons/team.png";
 import teamActive from "../../assets/icons/yellowteam.png";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { getLeagueInfo } from "../../api/league";
+import { getAllTeamsBySeasonId } from "../../api/publicApis";
 
 const League = () => {
   const data = [
@@ -46,6 +48,30 @@ const League = () => {
     setSelectBtn(tab);
     localStorage.setItem("activeTab", tab);
   };
+
+  // const [leagueBasicInfo, setLeagueBasicInfo] = useState(null);
+  // const [allTeamsInfo, setAllTeamsInfo] = useState(null);
+
+  // const { id } = useParams();
+
+  // // leagueInfo
+  // const fetchLeagueInfo = async () => {
+  //   const leagueRes = await getLeagueInfo(id);
+  //   setLeagueBasicInfo(leagueRes?.data);
+
+  // };
+
+  // // leagueteams
+  // const fetchAllTeams = async () => {
+  //   const teamsRes = await getAllTeamsBySeasonId(leagueBasicInfo?.eventScopeId);
+  //   setAllTeamsInfo(teamsRes?.data);
+  // };
+
+  // useEffect(() => {
+  //   fetchLeagueInfo();
+  //   fetchAllTeams();
+  // }, [id, leagueBasicInfo?.eventScopeId]);
+
   useEffect(() => {
     setSelectBtn(
       localStorage.getItem("activeTab")
@@ -60,7 +86,7 @@ const League = () => {
         <div className="bg-white ps-25 mb-[20px] border border-[#EEE]">
           <div className="flex gap-[75px]  items-end overflow-x-auto ">
             {data.map((data, index) => (
-              <>
+              <div key={index}>
                 {selectBtn === `${data.title}` ? (
                   <Link
                     to="#"
@@ -90,7 +116,7 @@ const League = () => {
                     </p>
                   </Link>
                 )}
-              </>
+              </div>
             ))}
           </div>
         </div>

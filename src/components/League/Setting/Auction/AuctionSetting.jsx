@@ -1,4 +1,76 @@
+import { useContext, useEffect, useState } from "react";
+import { LeagueContext } from "../../../../contexts/LeagueInfoProvider";
+import { updateLeagueAuctionSettings } from "../../../../api/auction";
+import Swal from "sweetalert2";
+
 const AuctionSetting = () => {
+  const { auctionSettings, setAutionSettings } = useContext(LeagueContext);
+  const [settings, setSettings] = useState({});
+  const [editingInfo, setEditingInfo] = useState({});
+
+  const [loading, setLoading] = useState(false);
+
+  console.log(auctionSettings, "handleSave");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSettings({ ...settings, [name]: Number(value) });
+    setEditingInfo({ ...editingInfo, [name]: Number(value) });
+  };
+
+  const handleCheckboxChange = () => {
+    setSettings({ ...settings, allowUnslodTeams: !settings?.allowUnslodTeams });
+    setEditingInfo({
+      ...editingInfo,
+      allowUnslodTeams: !settings?.allowUnslodTeams,
+    });
+  };
+
+  const handleSave = async () => {
+    setLoading(true);
+    try {
+      const res = await updateLeagueAuctionSettings({
+        id: auctionSettings?._id,
+        data: editingInfo,
+      });
+      if (res?.data?.success) {
+        setAutionSettings(res?.data?.data);
+        Swal.fire({
+          icon: "success",
+          title: "Successfull!",
+          text: "Auction settings update successfully!",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error?.response?.data?.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.response?.data?.message}`,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const info = {
+      auctionTime: auctionSettings?.auctionTime,
+      minimumBid: auctionSettings?.minimumBid,
+      minimumBuyin: auctionSettings?.minimumBuyin,
+      maximumBuyin: auctionSettings?.maximumBuyin,
+      allowUnslodTeams: auctionSettings?.allowUnslodTeams,
+    };
+    setSettings(info);
+  }, [auctionSettings]);
   return (
     <>
       <div className="overflow-x-auto">
@@ -19,10 +91,13 @@ const AuctionSetting = () => {
               </td>
               <td className="font-medium text-sm text-text_color1 ">
                 <input
-                  type="text"
-                  defaultValue="15 Seconds"
+                  name="auctionTime"
+                  type="number"
+                  value={settings?.auctionTime}
                   className="p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]"
                   placeholder="15 Seconds"
+                  min="1"
+                  onChange={handleInputChange}
                 />
               </td>
             </tr>
@@ -33,9 +108,12 @@ const AuctionSetting = () => {
               <td className="font-medium text-sm text-text_color1 ">
                 <input
                   type="number"
-                  defaultValue="$ 1"
+                  name="minimumBid"
+                  value={settings?.minimumBid}
                   className="p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]"
                   placeholder="$ 1"
+                  min="1"
+                  onChange={handleInputChange}
                 />
               </td>
             </tr>
@@ -46,9 +124,12 @@ const AuctionSetting = () => {
               <td className="font-medium text-sm text-text_color1 ">
                 <input
                   type="number"
-                  defaultValue="$ 5"
+                  name="minimumBuyin"
+                  value={settings?.minimumBuyin}
                   className="p-10 bg-white rounded-8  border border-[#E1E1E1]"
                   placeholder="$ 5"
+                  min="1"
+                  onChange={handleInputChange}
                 />
               </td>
             </tr>
@@ -59,9 +140,12 @@ const AuctionSetting = () => {
               <td className="font-medium text-sm text-text_color1 ">
                 <input
                   type="number"
-                  defaultValue="$"
+                  name="maximumBuyin"
+                  value={settings?.maximumBuyin}
                   className="p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]"
                   placeholder=""
+                  min="1"
+                  onChange={handleInputChange}
                 />
               </td>
             </tr>
@@ -72,10 +156,12 @@ const AuctionSetting = () => {
               <td className="text-left w-[193px] me-[28px]">
                 <input
                   className="auction_checkbox h-[16px] w-[16px] bg-white rounded-8"
-                  style={{ opacity: "1" }}
+                  style={{ opacity: "1", cursor: "pointer" }}
                   type="checkbox"
                   name=""
-                  id=""
+                  checked={settings?.allowUnslodTeams}
+                  onChange={handleCheckboxChange}
+                  readOnly
                 />
               </td>
             </tr>
@@ -84,7 +170,11 @@ const AuctionSetting = () => {
       </div>
 
       <div className="flex justify-center mt-[30px] ">
-        <button className="bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold ">
+        <button
+          className="bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold "
+          onClick={handleSave}
+          disabled={loading || Object.keys(editingInfo).length === 0}
+        >
           Save Changes
         </button>
       </div>

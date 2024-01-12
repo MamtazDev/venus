@@ -17,3 +17,8 @@ export const getSeasonsByLeagueId = async (leagueId) => {
   const response = AXIOS.get(`/public-api/all-seasons/${leagueId}`);
   return response;
 };
+
+export const getAllTeamsBySeasonId = async (seasonId) => {
+  const response = AXIOS.get(`/public-api/all-teams/${seasonId}`);
+  return response;
+};

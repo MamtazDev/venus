@@ -22,39 +22,6 @@ const SettingHeader = () => {
     localStorage.setItem("activeTabs", tab);
   };
 
-  const [leagueInfo, setLeagueInfo] = useState({});
-  const [loading, setLoading] = useState(false);
-
-  const { id } = useParams();
-
-  const fetchLeagueUsersData = async () => {
-    setLoading(true);
-    let info = {};
-
-    try {
-      const res = await getLeaguesUsersData(id);
-      if (res?.data) {
-        info.leagueUsersdata = res?.data;
-      }
-
-      const leagueRes = await getLeagueInfo(id);
-      if (leagueRes?.data) {
-        info.leagueBasicInfo = leagueRes?.data;
-      }
-
-      setLeagueInfo(info);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  console.log(leagueInfo, "dff");
-
-  useEffect(() => {
-    fetchLeagueUsersData();
-  }, [id]);
   useEffect(() => {
     setSelectBtn(
       localStorage.getItem("activeTabs")
@@ -85,7 +52,7 @@ const SettingHeader = () => {
       </div>
 
       {selectBtn === "General" ? (
-        <General leagueBasicInfo={leagueInfo?.leagueBasicInfo} />
+        <General />
       ) : selectBtn === "Roaster" ? (
         <Roaster />
       ) : selectBtn === "Auction" ? (

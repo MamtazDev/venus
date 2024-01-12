@@ -105,11 +105,15 @@ const AuctionPanel = () => {
       <dialog id="admin_modal" className="modal">
         <div className="modal-box bg-white  max-w-[100%] h-[100%] rounded-3">
           <div className="modal-action mt-0  flex-col justify-end text-right">
-            <form>
-              <button type="submit" className="w-[30px]">
-                x
-              </button>
-            </form>
+            {/* <form> */}
+            <button
+              type="button"
+              className="w-[30px]"
+              onClick={() => document.getElementById("admin_modal").close()}
+            >
+              x
+            </button>
+            {/* </form> */}
           </div>
           <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] pt-[26px]">
             Admin Panel
@@ -183,7 +187,11 @@ const AuctionPanel = () => {
         <div className="modal-box bg-white max-w-[100%] h-[100%] rounded-3">
           <div className="modal-action mt-0  flex-col justify-end text-right">
             <form>
-              <button type="submit" className="w-[30px]">
+              <button
+                type="button"
+                className="w-[30px]"
+                onClick={() => document.getElementById("show_rules").close()}
+              >
                 x
               </button>
             </form>

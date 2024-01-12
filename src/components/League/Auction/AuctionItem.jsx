@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import auction1 from "../../../assets/icons/auction1.png";
+import { useContext } from "react";
+import { LeagueContext } from "../../../contexts/LeagueInfoProvider";
 
 const auctionData = [
   {
@@ -63,8 +65,8 @@ const auctionData = [
   },
 ];
 const AuctionItem = () => {
-  const { id } = useParams();
-  console.log(id);
+  const { allTeamsInfo } = useContext(LeagueContext);
+
   return (
     <>
       <div className="bg-white rounded-3 p-20 ">
@@ -78,17 +80,28 @@ const AuctionItem = () => {
         </div>
         {/* items */}
         <div className="bg-sky_bg1 p-20">
-          {auctionData.map((data, index) => (
-            <>
-              <div
-                key={index}
-                className="flex gap-[15px] items-center mb-[18px]"
-              >
-                <img src={data.img} alt="auction" />
-                <p className="text1">{data.title}</p>
-              </div>
-            </>
-          ))}
+          {allTeamsInfo &&
+            allTeamsInfo?.length > 0 &&
+            allTeamsInfo.map((data, index) => (
+              <>
+                <div
+                  key={index}
+                  className="flex gap-[15px] items-center mb-[18px]"
+                >
+                  <img
+                    src={data?.image_path}
+                    alt="auction"
+                    style={{
+                      width: "27px",
+                      height: "27px",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <p className="text1">{data.name}</p>
+                </div>
+              </>
+            ))}
         </div>
       </div>
     </>
