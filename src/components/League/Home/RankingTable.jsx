@@ -59,7 +59,7 @@ const RankingTable = ({ leagueUsersdata, loading }) => {
                         1
                       </th>
                       <td className="font-medium text-sm text-text_color1 text-center">
-                        {item?.userName}
+                        {item?.user?.name}
                       </td>
                       <td className="font-medium text-sm text-text_color1 text-center">
                         ${(item?.buyIn).toFixed(2)}

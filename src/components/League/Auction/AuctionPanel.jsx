@@ -1,17 +1,95 @@
 /* eslint-disable no-unused-vars */
+import { useContext, useState } from "react";
 import auction1 from "../../../assets/icons/auction1.png";
 import BidMember from "./BidMember";
 import Message from "./Message";
+import { LeagueContext } from "../../../contexts/LeagueInfoProvider";
+import toast from "react-hot-toast";
+import { formatTime } from "../../../utils/formatTime";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const AuctionPanel = () => {
+  const {
+    allTeamsInfo,
+    auctionSettings,
+    selectedTeam,
+    setSelectedTeam,
+    leagueUsersData,
+  } = useContext(LeagueContext);
+
+  const { user } = useContext(AuthContext);
+
+  const [seconds, setSeconds] = useState(0);
+  const [bidAmount, setBidAmount] = useState(null);
+  const [bidderInfo, setBidderInfo] = useState(null);
+
+  const startTimer = () => {
+    const timer = setInterval(() => {
+      setSeconds((prevSeconds) => {
+        if (prevSeconds === 0) {
+          clearInterval(timer);
+
+          handleTimerEnd();
+
+          return 0;
+        }
+        return prevSeconds - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  };
+
+  const handleTimerEnd = () => {
+    console.log("Timer ended!");
+  };
+
+  const handleSelectTeam = (data) => {
+    setSelectedTeam(data);
+    document.getElementById("admin_modal").close();
+    setSeconds(auctionSettings?.auctionTime);
+    startTimer();
+  };
+
+  const handleBidButtonClick = () => {
+    if (
+      bidAmount < auctionSettings?.minimumBid ||
+      bidderInfo?.amount > bidAmount
+    ) {
+      toast.error("Bid rejected");
+    } else {
+      setSeconds(auctionSettings?.auctionTime);
+      setBidderInfo({
+        bidderName: user?.name,
+        bidderId: user?._id,
+        amount: bidAmount,
+      });
+      setBidAmount(null);
+    }
+  };
+
+  console.log(user, "user");
   return (
     <>
       <div className="px-20 pt-[24px] pb-20 bg-white rounded-3">
         <div className="flex flex-col lg:flex-row lg:gap-0 gap-20 justify-between items-center">
-          <div className="flex items-center gap-8">
-            <img src={auction1} alt="" />
-            <p className="text-lg font-semibold text-text_dark_grey">Alabama</p>
-          </div>
+          {selectedTeam && (
+            <div className="flex items-center gap-8">
+              <img
+                src={selectedTeam?.image_path}
+                alt=""
+                style={{
+                  width: "27px",
+                  height: "27px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+              <p className="text-lg font-semibold text-text_dark_grey">
+                {selectedTeam?.name}
+              </p>
+            </div>
+          )}
           {/* buttons */}
           <div className="flex gap-10 flex-wrap">
             <button
@@ -41,10 +119,10 @@ const AuctionPanel = () => {
             </div>
             <div className=" flex justify-between items-center mt-[15px]">
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
-                $8.00
+                ${bidderInfo?.amount ? bidderInfo?.amount?.toFixed(2) : "00.00"}
               </p>
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
-                John Smith
+                {bidderInfo?.bidderName ? bidderInfo?.bidderName : "N/A"}
               </p>
             </div>
           </div>
@@ -55,12 +133,20 @@ const AuctionPanel = () => {
                   Time Remaining
                 </p>
                 <p className="text-xl font-medium font-sans text-text_dark_grey ">
-                  00.00
+                  {formatTime(seconds)}
                 </p>
               </div>
-              <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3">
-                Undo
-              </button>
+              {bidderInfo && (
+                <button
+                  onClick={() => {
+                    setBidderInfo(null);
+                    setBidAmount(null);
+                  }}
+                  className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3"
+                >
+                  Undo
+                </button>
+              )}
             </div>
           </div>
           {/*  */}
@@ -70,23 +156,33 @@ const AuctionPanel = () => {
                 Total Spent
               </p>
               <p className="text-xl font-medium font-sans  text-text_dark_grey ">
-                $10.00
+                $00.00
               </p>
             </div>
           </div>
           <div className="h-[110px] p-15  border border-[#EEE] ">
             <div className="flex justify-center  ">
-              <div className="text-[12px] font-semibold text-white px-14 py-10 h-[36px] w-[36px] bg-dark_sky">
+              {/* <div className="text-[12px] font-semibold text-white px-14 py-10 h-[36px] w-[36px] bg-dark_sky"> */}
+              <button
+                disabled={!bidAmount || seconds === 0}
+                className="text-[12px] font-semibold text-white px-14 py-10 h-[36px] w-[36px] bg-base disabled:bg-dark_sky"
+              >
                 $
-              </div>
+              </button>
               <input
                 type="number"
                 className="bg-light_sky text-center w-full"
-                defaultValue="0"
+                min="1"
+                defaultValue={1}
+                onChange={(e) => setBidAmount(Number(e.target.value))}
               />
-              <div className="text-[12px] font-semibold text-white px-[29px] py-[11px]   bg-dark_sky">
+              <button
+                disabled={!bidAmount || seconds === 0}
+                className="text-[12px] font-semibold text-white px-[29px] py-[11px]  bg-base  disabled:bg-dark_sky "
+                onClick={handleBidButtonClick}
+              >
                 Bid
-              </div>
+              </button>
             </div>
             <button
               className="w-full bg-base text-white p-10 mt-[10px]"
@@ -97,7 +193,7 @@ const AuctionPanel = () => {
           </div>
         </div>
       </div>
-      <BidMember />
+      <BidMember leagueUsersData={leagueUsersData} />
       {/*  ijmessage  */}
       <Message />
       {/* admin panel modal start */}
@@ -143,26 +239,29 @@ const AuctionPanel = () => {
                 </tr>
               </thead>
               <tbody>
-                {[1, 2, 3, 4, 5, 6].map((data, index) => (
-                  <>
+                {allTeamsInfo &&
+                  allTeamsInfo?.length > 0 &&
+                  allTeamsInfo?.map((data, index) => (
                     <tr
                       key={index}
                       className="border-y border-border2 bg-white text3 items-center"
                       style={{ color: "#222" }}
                     >
                       <td className="ps-[40px] text-left  gap-8 items-center">
-                        Shamin
+                        {data?.name}
                       </td>
                       <td className="text-left  py-[17px]"></td>
                       <td className="text-left  py-[17px]">$0.00</td>
                       <td className="text-right  py-[17px]">
-                        <button className="p-10 bg-base text-white rounded-3">
+                        <button
+                          className="p-10 bg-base text-white rounded-3"
+                          onClick={() => handleSelectTeam(data)}
+                        >
                           Set Next Item
                         </button>
                       </td>
                     </tr>
-                  </>
-                ))}
+                  ))}
               </tbody>
             </table>
             <div className="text-center mt-[50px]">

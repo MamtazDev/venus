@@ -1,5 +1,6 @@
 import active from "../../../assets/icons/greencircle.png";
-const BidMember = () => {
+const BidMember = ({ leagueUsersData }) => {
+  console.log(leagueUsersData, "leagueUsersData");
   return (
     <div>
       {/* my team */}
@@ -23,13 +24,17 @@ const BidMember = () => {
             <p className="text2 pb-[15px]">Member</p>
             <p className="text2 pb-[15px]">Total Paid</p>
           </div>
-          <div className="flex justify-between  pt-10 ">
-            <p className="text1 pb-[10px] flex items-center gap-[5px] ">
-              {" "}
-              <img src={active} alt="" /> John Smith
-            </p>
-            <p className="text1 pb-[10px]">$10.00</p>
-          </div>
+          {leagueUsersData &&
+            leagueUsersData?.length > 0 &&
+            leagueUsersData.map((item, idx) => (
+              <div className="flex justify-between  pt-10 " key={idx}>
+                <p className="text1 pb-[10px] flex items-center gap-[5px] ">
+                  {" "}
+                  <img src={active} alt="" /> {item?.user?.name}
+                </p>
+                <p className="text1 pb-[10px]">${item?.buyIn.toFixed(2)}</p>
+              </div>
+            ))}
         </div>
       </div>
     </div>

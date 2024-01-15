@@ -83,24 +83,22 @@ const AuctionItem = () => {
           {allTeamsInfo &&
             allTeamsInfo?.length > 0 &&
             allTeamsInfo.map((data, index) => (
-              <>
-                <div
-                  key={index}
-                  className="flex gap-[15px] items-center mb-[18px]"
-                >
-                  <img
-                    src={data?.image_path}
-                    alt="auction"
-                    style={{
-                      width: "27px",
-                      height: "27px",
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <p className="text1">{data.name}</p>
-                </div>
-              </>
+              <div
+                key={index}
+                className="flex gap-[15px] items-center mb-[18px]"
+              >
+                <img
+                  src={data?.image_path}
+                  alt="auction"
+                  style={{
+                    width: "27px",
+                    height: "27px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+                <p className="text1">{data.name}</p>
+              </div>
             ))}
         </div>
       </div>

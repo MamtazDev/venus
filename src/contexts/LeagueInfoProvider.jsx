@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getAllTeamsBySeasonId } from "../api/publicApis";
-import { getLeagueInfo } from "../api/league";
+import { getLeagueInfo, getLeaguesUsersData } from "../api/league";
 import { useParams } from "react-router-dom";
 import { getLeagueAuctionSettings } from "../api/auction";
 
@@ -10,6 +10,8 @@ const LeagueInfoProvider = ({ children }) => {
   const [leagueBasicInfo, setLeagueBasicInfo] = useState(null);
   const [allTeamsInfo, setAllTeamsInfo] = useState(null);
   const [auctionSettings, setAutionSettings] = useState(null);
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [leagueUsersData, setLeagueUserData] = useState(null);
 
   const { id } = useParams();
 
@@ -20,6 +22,9 @@ const LeagueInfoProvider = ({ children }) => {
 
     const auctionSettingsRes = await getLeagueAuctionSettings(id);
     setAutionSettings(auctionSettingsRes?.data);
+
+    const res = await getLeaguesUsersData(id);
+    setLeagueUserData(res?.data);
   };
 
   // leagueteams
@@ -27,6 +32,8 @@ const LeagueInfoProvider = ({ children }) => {
     const teamsRes = await getAllTeamsBySeasonId(leagueBasicInfo?.eventScopeId);
     setAllTeamsInfo(teamsRes?.data);
   };
+
+  // selected Teams info
 
   useEffect(() => {
     fetchLeagueInfo();
@@ -41,6 +48,10 @@ const LeagueInfoProvider = ({ children }) => {
     id,
     auctionSettings,
     setAutionSettings,
+    selectedTeam,
+    setSelectedTeam,
+    leagueUsersData,
+    setLeagueUserData,
   };
 
   return (
