@@ -2,10 +2,20 @@
 
 import NoFoundData from "../../NoFoundData/NoFoundData";
 import delet from "../../../assets/icons/delete.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { LeagueContext } from "../../../contexts/LeagueInfoProvider";
 
 const Team = () => {
   const [payout, setPayout] = useState(false);
+  const {
+    allTeamsInfo,
+    leagueAuctions,
+    leagueUsersData,
+    leagueBasicInfo,
+    loadingInfo,
+  } = useContext(LeagueContext);
+
+  console.log(allTeamsInfo, "jfkjdsf");
 
   const handlePayout = () => {
     setPayout(true);
@@ -27,31 +37,40 @@ const Team = () => {
             </tr>
           </thead>
           <tbody>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((data, index) => (
-              <>
-                <tr
-                  key={index}
-                  className="border-y border-border2 bg-white text3 items-center"
-                  style={{ color: "#222" }}
-                >
-                  <td className="text-left  gap-8 items-center  ps-[49px] ">
-                    Shamin
-                  </td>
-                  <td className="text-left  py-[17px]"></td>
-                  <td className="text-center  py-[17px]">$0.00</td>
-                  <td className="text-right pe-[34px]  py-[17px]">
-                    <button
-                      className="p-10 bg-base text-white rounded-3"
-                      onClick={() =>
-                        document.getElementById("pay_team_modal").showModal()
-                      }
-                    >
-                      Pay Team
-                    </button>
-                  </td>
-                </tr>
-              </>
-            ))}
+            {allTeamsInfo?.length > 0 &&
+              allTeamsInfo?.map((data, index) => {
+                const isBidded = leagueAuctions?.find(
+                  (i) => i.team.id === data?.id && i.price,
+                );
+
+                console.log(isBidded, "isBidded");
+                return (
+                  <tr
+                    key={index}
+                    className="border-y border-border2 bg-white text3 items-center"
+                    style={{ color: "#222" }}
+                  >
+                    <td className="text-left  gap-8 items-center  ps-[49px] ">
+                      {data?.name}
+                    </td>
+                    <td className="text-left  py-[17px]">
+                      {isBidded?.owner?.name}
+                    </td>
+                    <td className="text-center  py-[17px]">$0.00</td>
+                    <td className="text-right pe-[34px]  py-[17px]">
+                      <button
+                        className="p-10 bg-base text-white rounded-3"
+                        onClick={() =>
+                          document.getElementById("pay_team_modal").showModal()
+                        }
+                        disabled={!isBidded}
+                      >
+                        Pay Team
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
@@ -60,11 +79,13 @@ const Team = () => {
       <dialog id="pay_team_modal" className="modal">
         <div className="modal-box bg-white max-w-[100%] h-[577px] rounded-3">
           <div className="modal-action mt-0 mb-[20px] flex-col justify-end text-right">
-            <form>
-              <button type="submit" className="w-[30px]">
-                x
-              </button>
-            </form>
+            <button
+              type="button"
+              className="w-[30px]"
+              onClick={() => document.getElementById("pay_team_modal").close()}
+            >
+              x
+            </button>
           </div>
           <div className="flex justify-between">
             <h3 className="text-2xl font-sans text-text_dark_grey font-semibold text-center mb-[20px] ">

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import auction1 from "../../../assets/icons/auction1.png";
 import BidMember from "./BidMember";
 import Message from "./Message";
@@ -7,6 +7,8 @@ import { LeagueContext } from "../../../contexts/LeagueInfoProvider";
 import toast from "react-hot-toast";
 import { formatTime } from "../../../utils/formatTime";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import Swal from "sweetalert2";
+import { createAuction, setTeamOwner } from "../../../api/auction";
 
 const AuctionPanel = () => {
   const {
@@ -15,6 +17,11 @@ const AuctionPanel = () => {
     selectedTeam,
     setSelectedTeam,
     leagueUsersData,
+    leagueBasicInfo,
+    leagueAuctions,
+    fetchAllTeams,
+    fetchLeagueAuctions,
+    fetchLeagueInfo,
   } = useContext(LeagueContext);
 
   const { user } = useContext(AuthContext);
@@ -22,6 +29,10 @@ const AuctionPanel = () => {
   const [seconds, setSeconds] = useState(0);
   const [bidAmount, setBidAmount] = useState(null);
   const [bidderInfo, setBidderInfo] = useState(null);
+  const [settingTeam, setSettingTeam] = useState(false);
+  const bidderInfoRef = useRef(bidderInfo);
+
+  const myTeams = leagueAuctions?.filter((i) => i.owner?._id === user?._id);
 
   const startTimer = () => {
     const timer = setInterval(() => {
@@ -40,21 +51,59 @@ const AuctionPanel = () => {
     return () => clearInterval(timer);
   };
 
-  const handleTimerEnd = () => {
-    console.log("Timer ended!");
+  const handleTimerEnd = async () => {
+    // const info = {
+    //   owner: bidderInfoRef.current?.bidderId,
+    //   price: bidderInfoRef.current?.amount,
+    // };
+    // console.log(info, "info");
+
+    try {
+      const res = await setTeamOwner({
+        auctionId: leagueAuctions[0]?._id,
+        data: {
+          owner: bidderInfoRef.current?.bidderId,
+          price: bidderInfoRef.current?.amount,
+        },
+      });
+    
+      if (res?.data?.success) {
+        fetchAllTeams();
+        fetchLeagueAuctions();
+        fetchLeagueInfo();
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
   };
 
-  const handleSelectTeam = (data) => {
-    setSelectedTeam(data);
-    document.getElementById("admin_modal").close();
-    setSeconds(auctionSettings?.auctionTime);
-    startTimer();
+  const handleSelectTeam = async (data) => {
+    setSettingTeam(true);
+    const info = {
+      leagueId: leagueBasicInfo?._id,
+      team: data,
+    };
+
+    try {
+      const res = await createAuction(info);
+      if (res?.data?.success) {
+        setSelectedTeam(data);
+        document.getElementById("admin_modal").close();
+        setSeconds(auctionSettings?.auctionTime);
+        startTimer();
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    } finally {
+      setSettingTeam(false);
+    }
   };
 
   const handleBidButtonClick = () => {
     if (
       bidAmount < auctionSettings?.minimumBid ||
-      bidderInfo?.amount > bidAmount
+      bidderInfo?.amount > bidAmount ||
+      leagueAuctions[0]?.price > bidAmount
     ) {
       toast.error("Bid rejected");
     } else {
@@ -64,11 +113,67 @@ const AuctionPanel = () => {
         bidderId: user?._id,
         amount: bidAmount,
       });
+      bidderInfoRef.current = {
+        bidderName: user?.name,
+        bidderId: user?._id,
+        amount: bidAmount,
+      };
       setBidAmount(null);
     }
   };
 
-  console.log(user, "user");
+  const handleResetClock = () => {
+    document.getElementById("admin_modal").close();
+    setSeconds(auctionSettings?.auctionTime);
+    if (seconds === 0) {
+      startTimer();
+    }
+  };
+
+  // const filteredTeam = allTeamsInfo?.filter((i) =>
+  //   leagueAuctions?.find((j) => i.id !== j.team?.id),
+  // );
+
+  const handleRandomItem = async () => {
+    const filteredTeam = allTeamsInfo?.filter(
+      (team) => !leagueAuctions.some((auction) => auction.team.id === team.id),
+    );
+
+    const randomIndex = Math.floor(Math.random() * filteredTeam?.length);
+    const selectedObject = filteredTeam[randomIndex];
+
+    setSettingTeam(true);
+    const info = {
+      leagueId: leagueBasicInfo?._id,
+      team: selectedObject,
+    };
+    try {
+      const res = await createAuction(info);
+      if (res?.data?.success) {
+        setSelectedTeam(selectedObject);
+        setSeconds(auctionSettings?.auctionTime);
+        startTimer();
+        document.getElementById("admin_modal").close();
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    } finally {
+      setSettingTeam(false);
+    }
+  };
+
+  // console.log(bidderInfoRef, "hjkhjk");
+
+  // useEffect(() => {
+  //   bidderInfoRef.current = bidderInfo;
+  // }, [bidderInfo]);
+
+  // useEffect(() => {
+  //   if (bidderInfo) {
+  //     // startTimer();
+  //   }
+  // }, [bidderInfo]);
+
   return (
     <>
       <div className="px-20 pt-[24px] pb-20 bg-white rounded-3">
@@ -93,15 +198,24 @@ const AuctionPanel = () => {
           {/* buttons */}
           <div className="flex gap-10 flex-wrap">
             <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3"
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky"
               onClick={() => document.getElementById("admin_modal").showModal()}
+              disabled={seconds > 0}
             >
               Admin Panel
             </button>
-            <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3">
+            <button
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky"
+              disabled={seconds > 0 || settingTeam}
+              onClick={handleRandomItem}
+            >
               Next Item ( Random)
             </button>
-            <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3">
+            <button
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky"
+              onClick={handleResetClock}
+              disabled={!selectedTeam}
+            >
               Reset Clock
             </button>
           </div>
@@ -119,10 +233,19 @@ const AuctionPanel = () => {
             </div>
             <div className=" flex justify-between items-center mt-[15px]">
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
-                ${bidderInfo?.amount ? bidderInfo?.amount?.toFixed(2) : "00.00"}
+                $
+                {bidderInfo?.amount
+                  ? bidderInfo?.amount?.toFixed(2)
+                  : leagueAuctions?.length > 0 && leagueAuctions[0]?.price
+                    ? leagueAuctions[0].price.toFixed(2)
+                    : "00.00"}
               </p>
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
-                {bidderInfo?.bidderName ? bidderInfo?.bidderName : "N/A"}
+                {bidderInfo?.bidderName
+                  ? bidderInfo?.bidderName
+                  : leagueAuctions?.length > 0 && leagueAuctions[0]?.owner?.name
+                    ? leagueAuctions[0]?.owner?.name
+                    : "N/A"}
               </p>
             </div>
           </div>
@@ -156,7 +279,11 @@ const AuctionPanel = () => {
                 Total Spent
               </p>
               <p className="text-xl font-medium font-sans  text-text_dark_grey ">
-                $00.00
+                {myTeams?.length > 0
+                  ? `$${myTeams
+                      ?.reduce((total, current) => total + current?.price, 0)
+                      .toFixed(2)}`
+                  : "$00.00"}
               </p>
             </div>
           </div>
@@ -193,9 +320,13 @@ const AuctionPanel = () => {
           </div>
         </div>
       </div>
-      <BidMember leagueUsersData={leagueUsersData} />
+      <BidMember
+        leagueUsersData={leagueUsersData}
+        user={user}
+        leagueAuctions={leagueAuctions}
+      />
       {/*  ijmessage  */}
-      <Message />
+      <Message leagueBasicInfo={leagueBasicInfo} />
       {/* admin panel modal start */}
 
       <dialog id="admin_modal" className="modal">
@@ -218,10 +349,18 @@ const AuctionPanel = () => {
             <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3">
               Admin Panel
             </button>
-            <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3">
+            <button
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3"
+              onClick={handleRandomItem}
+              disabled={seconds > 0 || settingTeam}
+            >
               Next Item ( Random)
             </button>
-            <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3">
+            <button
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3"
+              onClick={handleResetClock}
+              disabled={!selectedTeam}
+            >
               Reset Clock
             </button>
           </div>
@@ -241,27 +380,50 @@ const AuctionPanel = () => {
               <tbody>
                 {allTeamsInfo &&
                   allTeamsInfo?.length > 0 &&
-                  allTeamsInfo?.map((data, index) => (
-                    <tr
-                      key={index}
-                      className="border-y border-border2 bg-white text3 items-center"
-                      style={{ color: "#222" }}
-                    >
-                      <td className="ps-[40px] text-left  gap-8 items-center">
-                        {data?.name}
-                      </td>
-                      <td className="text-left  py-[17px]"></td>
-                      <td className="text-left  py-[17px]">$0.00</td>
-                      <td className="text-right  py-[17px]">
-                        <button
-                          className="p-10 bg-base text-white rounded-3"
-                          onClick={() => handleSelectTeam(data)}
-                        >
-                          Set Next Item
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  allTeamsInfo?.map((data, index) => {
+                    const isBidded = leagueAuctions?.find(
+                      (i) => i.team.id === data?.id,
+                    );
+
+                    return (
+                      <tr
+                        key={index}
+                        className="border-y border-border2 bg-white text3 items-center"
+                        style={{ color: "#222" }}
+                      >
+                        <td className="ps-[40px] text-left  gap-8 items-center">
+                          {data?.name}
+                        </td>
+                        <td className="text-left  py-[17px]">
+                          {isBidded ? isBidded?.owner?.name : ""}
+                        </td>
+                        <td className="text-left  py-[17px]">
+                          {isBidded?.price
+                            ? `$${isBidded?.price?.toFixed(2)}`
+                            : "$0.00"}{" "}
+                        </td>
+                        <td className="text-right  py-[17px]">
+                          {isBidded ? (
+                            <button
+                              className="p-10 bg-[#ff2500] text-white rounded-3"
+                              // onClick={() => handleSelectTeam(data)}
+                              // disabled={settingTeam}
+                            >
+                              Reset
+                            </button>
+                          ) : (
+                            <button
+                              className="p-10 bg-base text-white rounded-3"
+                              onClick={() => handleSelectTeam(data)}
+                              disabled={settingTeam}
+                            >
+                              {settingTeam ? "Loading..." : "Set Next Item"}
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
             <div className="text-center mt-[50px]">
@@ -310,9 +472,10 @@ const AuctionPanel = () => {
                   <td className="font-medium text-sm text-text_color1 ">
                     <input
                       type="text"
-                      defaultValue="15 Seconds"
+                      value={`${auctionSettings?.auctionTime} Seconds`}
                       className="p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]"
                       placeholder="15 Seconds"
+                      readOnly
                     />
                   </td>
                 </tr>
@@ -323,9 +486,10 @@ const AuctionPanel = () => {
                   <td className="font-medium text-sm text-text_color1 ">
                     <input
                       type="text"
-                      defaultValue="$ 5"
+                      value={`$ ${auctionSettings?.minimumBid}`}
                       className="p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]"
                       placeholder="$ 5"
+                      readOnly
                     />
                   </td>
                 </tr>
@@ -336,9 +500,10 @@ const AuctionPanel = () => {
                   <td className="font-medium text-sm text-text_color1 ">
                     <input
                       type="text"
-                      defaultValue="No"
+                      value={auctionSettings?.allowUnslodTeams ? "Yes" : "No"}
                       className="p-10 bg-white rounded-8 opacity-100 border border-[#E1E1E1]"
                       placeholder="No"
+                      readOnly
                     />
                   </td>
                 </tr>

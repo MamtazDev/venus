@@ -1,6 +1,10 @@
 import active from "../../../assets/icons/greencircle.png";
-const BidMember = ({ leagueUsersData }) => {
-  console.log(leagueUsersData, "leagueUsersData");
+const BidMember = ({ leagueUsersData, user, leagueAuctions }) => {
+  // console.log(leagueUsersData, "leagueUsersData");
+  console.log(leagueAuctions, "fjksdfj");
+
+  const myTeams = leagueAuctions?.filter((i) => i.owner?._id === user?._id);
+
   return (
     <div>
       {/* my team */}
@@ -10,14 +14,17 @@ const BidMember = ({ leagueUsersData }) => {
             <p className="text2 pb-[15px]">My Team</p>
             <p className="text2 pb-[15px]">Paid</p>
           </div>
-          <div className="flex justify-between  border-b border-border2 pt-10 ">
-            <p className="text1 pb-[10px]">Alabama</p>
-            <p className="text1 pb-[10px]">$10.00</p>
-          </div>
-          <div className="flex justify-between pt-10 ">
+          {myTeams?.length > 0 &&
+            myTeams?.map((i, idx) => (
+              <div className="flex justify-between  border-b border-border2 pt-10 ">
+                <p className="text1 pb-[10px]">{i?.team?.name}</p>
+                <p className="text1 pb-[10px]">${i?.price?.toFixed(2)}</p>
+              </div>
+            ))}
+          {/* <div className="flex justify-between pt-10 ">
             <p className="text1 pb-[10px]">Houston</p>
             <p className="text1 pb-[10px]">$1.00</p>
-          </div>
+          </div> */}
         </div>
         <div className="px-20 pt-[24px] pb-20 bg-white mt-[10px]">
           <div className="flex justify-between  border-b border-border2">

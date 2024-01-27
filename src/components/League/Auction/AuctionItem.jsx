@@ -65,7 +65,7 @@ const auctionData = [
   },
 ];
 const AuctionItem = () => {
-  const { allTeamsInfo } = useContext(LeagueContext);
+  const { allTeamsInfo, leagueAuctions } = useContext(LeagueContext);
 
   return (
     <>
@@ -75,31 +75,53 @@ const AuctionItem = () => {
             Action Item
           </p>
           <p className="text-base text-text_dark_grey font-semibold font-sans ">
-            PrizePool: $10
+            PrizePool:{" "}
+            {leagueAuctions?.length > 0
+              ? `$${leagueAuctions
+                  ?.filter((i) => i.price)
+                  .reduce((total, current) => total + current?.price, 0)
+                  ?.toFixed(2)}`
+              : "$00.00"}
           </p>
         </div>
         {/* items */}
         <div className="bg-sky_bg1 p-20">
           {allTeamsInfo &&
             allTeamsInfo?.length > 0 &&
-            allTeamsInfo.map((data, index) => (
-              <div
-                key={index}
-                className="flex gap-[15px] items-center mb-[18px]"
-              >
-                <img
-                  src={data?.image_path}
-                  alt="auction"
-                  style={{
-                    width: "27px",
-                    height: "27px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-                <p className="text1">{data.name}</p>
-              </div>
-            ))}
+            allTeamsInfo.map((data, index) => {
+              const isBidded = leagueAuctions?.find(
+                (i) => i.team.id === data?.id && i.price,
+              );
+
+              return (
+                <div
+                  className={`px-[8px] py-[10px] flex justify-between items-center mb-1 ${
+                    isBidded &&
+                    " border border-dashed border-border_grey rounded-5"
+                  }`}
+                >
+                  <div key={index} className="flex gap-[15px] items-center ">
+                    <img
+                      src={data?.image_path}
+                      alt="auction"
+                      style={{
+                        width: "27px",
+                        height: "27px",
+                        borderRadius: "50%",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <p className="text1">{data.name}</p>
+                  </div>
+                  {isBidded && (
+                    <div>
+                      <p className="text1">{isBidded?.owner?.name}</p>
+                      <p className="text1">${isBidded?.price?.toFixed(2)}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

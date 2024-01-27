@@ -6,3 +6,16 @@ export const formatTime = (time) => {
     "0",
   )}`;
 };
+
+export const formateToClockTime = (time) => {
+  const date = new Date(time);
+
+  const options = {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+
+  const formattedTime = new Intl.DateTimeFormat("en-US", options).format(date);
+  return formattedTime;
+};
