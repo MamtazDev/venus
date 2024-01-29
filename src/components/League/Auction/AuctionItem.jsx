@@ -64,6 +64,10 @@ const auctionData = [
     title: "Tennessee",
   },
 ];
+
+
+
+
 const AuctionItem = () => {
   const { allTeamsInfo, leagueAuctions } = useContext(LeagueContext);
 
