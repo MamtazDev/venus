@@ -66,7 +66,7 @@ const AuctionPanel = () => {
           price: bidderInfoRef.current?.amount,
         },
       });
-    
+
       if (res?.data?.success) {
         fetchAllTeams();
         fetchLeagueAuctions();
@@ -198,21 +198,21 @@ const AuctionPanel = () => {
           {/* buttons */}
           <div className="flex gap-10 flex-wrap">
             <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky"
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
               onClick={() => document.getElementById("admin_modal").showModal()}
               disabled={seconds > 0}
             >
               Admin Panel
             </button>
             <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky"
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
               disabled={seconds > 0 || settingTeam}
               onClick={handleRandomItem}
             >
               Next Item ( Random)
             </button>
             <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky"
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
               onClick={handleResetClock}
               disabled={!selectedTeam}
             >
@@ -265,7 +265,7 @@ const AuctionPanel = () => {
                     setBidderInfo(null);
                     setBidAmount(null);
                   }}
-                  className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3"
+                  className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton"
                 >
                   Undo
                 </button>
@@ -305,14 +305,14 @@ const AuctionPanel = () => {
               />
               <button
                 disabled={!bidAmount || seconds === 0}
-                className="text-[12px] font-semibold text-white px-[29px] py-[11px]  bg-base  disabled:bg-dark_sky "
+                className="text-[12px] font-semibold text-white px-[29px] py-[11px]  bg-base  disabled:bg-dark_sky customButton"
                 onClick={handleBidButtonClick}
               >
                 Bid
               </button>
             </div>
             <button
-              className="w-full bg-base text-white p-10 mt-[10px]"
+              className="w-full bg-base text-white p-10 mt-[10px] customButton"
               onClick={() => document.getElementById("show_rules").showModal()}
             >
               Show Rules
@@ -346,18 +346,18 @@ const AuctionPanel = () => {
             Admin Panel
           </h3>
           <div className="flex  justify-around">
-            <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3">
+            <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton">
               Admin Panel
             </button>
             <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3"
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton"
               onClick={handleRandomItem}
               disabled={seconds > 0 || settingTeam}
             >
               Next Item ( Random)
             </button>
             <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3"
+              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton"
               onClick={handleResetClock}
               disabled={!selectedTeam}
             >
@@ -413,7 +413,7 @@ const AuctionPanel = () => {
                             </button>
                           ) : (
                             <button
-                              className="p-10 bg-base text-white rounded-3"
+                              className="p-10 bg-base text-white rounded-3 customButton"
                               onClick={() => handleSelectTeam(data)}
                               disabled={settingTeam}
                             >

@@ -59,7 +59,7 @@ const Team = () => {
                     <td className="text-center  py-[17px]">$0.00</td>
                     <td className="text-right pe-[34px]  py-[17px]">
                       <button
-                        className="p-10 bg-base text-white rounded-3"
+                        className="p-10 bg-base text-white rounded-3 customButton"
                         onClick={() =>
                           document.getElementById("pay_team_modal").showModal()
                         }
@@ -97,12 +97,12 @@ const Team = () => {
           </div>
           <div>
             <button
-              className="py-10 px-23 bg-base text-white rounded-3 me-[10px]"
+              className="py-10 px-23 bg-base text-white rounded-3 me-[10px] customButton"
               onClick={handlePayout}
             >
               Add Payout
             </button>
-            <button className="py-10 px-23 bg-base text-white rounded-3">
+            <button className="py-10 px-23 bg-base text-white rounded-3 customButton">
               Save
             </button>
 

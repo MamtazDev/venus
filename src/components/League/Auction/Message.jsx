@@ -65,7 +65,7 @@ const Message = ({ leagueBasicInfo }) => {
           />
           <button
             disabled={!message}
-            className="bg-base px-20 py-10"
+            className="bg-base px-20 py-10 customButton cursor-pointer"
             onClick={handleMessageSend}
           >
             <img src={send} alt="" />

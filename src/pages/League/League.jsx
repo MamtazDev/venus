@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Home from "../../components/League/Home/Home";
 import Auction from "../../components/League/Auction/Auction";
 import Setting from "../../components/League/Setting/Setting";
@@ -18,6 +18,7 @@ import teamActive from "../../assets/icons/yellowteam.png";
 import { Link, useParams } from "react-router-dom";
 import { getLeagueInfo } from "../../api/league";
 import { getAllTeamsBySeasonId } from "../../api/publicApis";
+import { LeagueContext } from "../../contexts/LeagueInfoProvider";
 
 const League = () => {
   const data = [
@@ -43,7 +44,8 @@ const League = () => {
     },
   ];
 
-  const [selectBtn, setSelectBtn] = useState("Home");
+  const { selectBtn, setSelectBtn } = useContext(LeagueContext);
+
   const tabChangerHandler = (tab) => {
     setSelectBtn(tab);
     localStorage.setItem("activeTab", tab);
@@ -73,11 +75,11 @@ const League = () => {
   // }, [id, leagueBasicInfo?.eventScopeId]);
 
   useEffect(() => {
-    setSelectBtn(
-      localStorage.getItem("activeTab")
-        ? localStorage.getItem("activeTab")
-        : localStorage.setItem("activeTab", "Home"),
-    );
+    // setSelectBtn(
+    //   localStorage.getItem("activeTab")
+    //     ? localStorage.getItem("activeTab")
+    //     : localStorage.setItem("activeTab", "Home"),
+    // );
   }, []);
 
   return (

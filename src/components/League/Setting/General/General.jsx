@@ -2,7 +2,7 @@ import { useContext } from "react";
 import edit from "../../../../assets/icons/edit.svg";
 import { LeagueContext } from "../../../../contexts/LeagueInfoProvider";
 const General = () => {
-  const { leagueBasicInfo } = useContext(LeagueContext);
+  const { leagueBasicInfo, setSelectBtn } = useContext(LeagueContext);
   return (
     <>
       {/* delete league */}
@@ -11,7 +11,10 @@ const General = () => {
           <h2 className="font-sans font-semibold text-lg text-text_dark_grey ">
             Delete League
           </h2>
-          <button className="py-10 px-23 bg-base text-white rounded-3">
+          <button
+            className="py-10 px-23 bg-base text-white rounded-3 customButton"
+            onClick={() => setSelectBtn("Team")}
+          >
             Pay Team
           </button>
         </div>

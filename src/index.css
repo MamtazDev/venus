@@ -152,7 +152,6 @@ input {
   /* border: 1px solid #a4b2b9 !important; */
   /* opacity: 0.3; */
   /* padding: 20px; */
-  
 }
 
 input:focus,
@@ -430,7 +429,6 @@ select > option {
 
 input,
 select {
-
   color: #414141 !important;
   /* border: 1px solid #2e1818; */
   /* border-radius: 8px; */
@@ -455,4 +453,37 @@ select {
 }
 .transitioning {
   opacity: 0;
+}
+
+.customButton {
+  transition: 0.3s ease-in-out;
+}
+.customButton:hover {
+  background-color: #2c2ce2;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-button {
+  width: 8px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eee;
+  border: thin solid lightgray;
+  box-shadow: 0px 0px 3px #dfdfdf inset;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border: thin solid gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7d7d7d;
 }

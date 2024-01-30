@@ -189,12 +189,12 @@ const Acount = () => {
           <div>
             <label htmlFor="">Image</label>
             <div className="flex  items-center justify-between">
-              <div className="flex gap-15 mt-[12px]">
+              <div className="flex items-center gap-15 mt-[12px]">
                 {selectedFile && (
                   <img
                     src={selectedFile}
                     alt="Selected"
-                    className="w-[24px] h-[24px] object-cover rounded-full"
+                    className="w-[60px] h-[60px] object-cover rounded-full"
                   />
                 )}
                 <button

@@ -171,7 +171,7 @@ const AuctionSetting = () => {
 
       <div className="flex justify-center mt-[30px] ">
         <button
-          className="bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold "
+          className="bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold customButton"
           onClick={handleSave}
           disabled={loading || Object.keys(editingInfo).length === 0}
         >

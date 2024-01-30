@@ -23,11 +23,11 @@ const SettingHeader = () => {
   };
 
   useEffect(() => {
-    setSelectBtn(
-      localStorage.getItem("activeTabs")
-        ? localStorage.getItem("activeTabs")
-        : localStorage.setItem("activeTabs", "General"),
-    );
+    // setSelectBtn(
+    //   localStorage.getItem("activeTabs")
+    //     ? localStorage.getItem("activeTabs")
+    //     : localStorage.setItem("activeTabs", "General"),
+    // );
   }, []);
   return (
     <>

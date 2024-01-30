@@ -24,6 +24,7 @@ const LeagueInfoProvider = ({ children }) => {
   const [leagueUsersData, setLeagueUserData] = useState(null);
   const [leagueAuctions, setLeaguesAuctions] = useState(null);
   const [auctionMessages, setAuctionMessages] = useState(null);
+  const [selectBtn, setSelectBtn] = useState("Home");
 
   const { id } = useParams();
 
@@ -86,6 +87,8 @@ const LeagueInfoProvider = ({ children }) => {
     fetchLeagueInfo,
     fetchLeagueMessages,
     auctionMessages,
+    selectBtn,
+    setSelectBtn,
     // loadingInfo,
   };
 

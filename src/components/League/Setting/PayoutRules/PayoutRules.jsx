@@ -61,7 +61,7 @@ const PayoutRules = () => {
         </div>
       </div>
       <div className="flex justify-center mt-[30px] ">
-        <button className="bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold ">
+        <button className="bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold customButton">
           Save Changes
         </button>
       </div>
@@ -86,7 +86,7 @@ const PayoutRules = () => {
         </table>
       </div>
       <div className="flex justify-center mt-[30px] ">
-        <button className="bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold ">
+        <button className="bg-base rounded-3 py-[12px] px-14 text-white font-sans text-base font-semibold customButton">
           Save Payout Info
         </button>
       </div>

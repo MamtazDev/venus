@@ -7,6 +7,7 @@ import {
   getAllPublicLeagues,
   getSeasonsByLeagueId,
 } from "../../api/publicApis";
+import { RotatingLines } from "react-loader-spinner";
 const DashBoard = () => {
   const [userLeagueDatas, setUserLeagueDatas] = useState([]);
   const [pastLeagueDatas, setPastLeagueDatas] = useState([]);
@@ -127,10 +128,14 @@ const DashBoard = () => {
     }
   };
 
+  const [loading, setLoading] = useState(false);
+
   const fetchUserLeagueInfo = async () => {
+    setLoading(true);
     const res = await getUserLeaguesInfo();
     if (res?.data) {
       setUserLeagueDatas(res?.data);
+      setLoading(false);
     }
   };
 
@@ -157,14 +162,14 @@ const DashBoard = () => {
         </div>
         <div className="flex gap-10 flex-wrap">
           <button
-            className=" lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold"
+            className=" lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold customButton"
             onClick={() => document.getElementById("my_modal_1").showModal()}
           >
             Start a League
           </button>
           <button
             onClick={() => document.getElementById("my_modal_2").showModal()}
-            className="lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold"
+            className="lg:py-14 py-12  lg:px-20 px-10 bg-base text-white rounded-[3px] text-sm font-semibold customButton"
           >
             Join a League
           </button>
@@ -216,8 +221,28 @@ const DashBoard = () => {
                 </tbody>
               ))}
           </table>
+          {loading && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+                height: "100px",
+              }}
+            >
+              <RotatingLines
+                visible={true}
+                height="50"
+                width="50"
+                strokeColor="#9aa8d1"
+                strokeWidth="5"
+                animationDuration="5"
+                ariaLabel="rotating-lines-loading"
+              />
+            </div>
+          )}
 
-          {userLeagueDatas?.length === 0 && (
+          {userLeagueDatas?.length === 0 && !loading && (
             <>
               <NoFoundData />
             </>

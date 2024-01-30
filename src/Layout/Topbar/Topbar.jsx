@@ -5,10 +5,11 @@ import cross from "../../assets/icons/cross.png";
 import pro1 from "../../assets/icons/pro1.png";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
 const Topbar = ({ toggle, isMobile, handleToggle }) => {
   const { user } = useContext(AuthContext);
 
-  console.log(user?.image, "ddd");
+  const navigate = useNavigate();
 
   return (
     <>
@@ -43,7 +44,7 @@ const Topbar = ({ toggle, isMobile, handleToggle }) => {
               </div>
               <div
                 tabIndex={0}
-                className="dropdown-content z-[1] menu bg-white rounded-3 w-[425px] pt-[32px] px-[24px] pb-[24px]"
+                className="dropdown-content z-[1] menu bg-white rounded-3 w-[425px] pt-[32px] px-[24px] pb-[24px] drop-shadow-lg"
               >
                 <div className="flex justify-between">
                   <p className="text7">Notification</p>
@@ -92,7 +93,10 @@ const Topbar = ({ toggle, isMobile, handleToggle }) => {
                 </button>
               </div>
             </div>
-            <div className="flex items-center gap-6">
+            <div
+              className="flex items-center gap-6 cursor-pointer"
+              onClick={() => navigate("/setting")}
+            >
               <img
                 src={
                   user?.image
@@ -104,7 +108,7 @@ const Topbar = ({ toggle, isMobile, handleToggle }) => {
               />
               <p>{user?.name}</p>
             </div>
-            <button className="py-10 px-[23px] bg-base rounded-3 text-white">
+            <button className="py-10 px-[23px] bg-base rounded-3 text-white customButton">
               Leave
             </button>
           </div>
