@@ -1,5 +1,9 @@
+import { useState } from "react";
 import active from "../../../assets/icons/greencircle.png";
-const BidMember = ({ leagueUsersData, user, leagueAuctions }) => {
+import { useEffect } from "react";
+
+
+const BidMember = ({ leagueUsersData, user, leagueAuctions, socketUser }) => {
   // console.log(leagueUsersData, "leagueUsersData");
   console.log(leagueAuctions, "fjksdfj");
 
@@ -36,8 +40,7 @@ const BidMember = ({ leagueUsersData, user, leagueAuctions }) => {
             leagueUsersData.map((item, idx) => (
               <div className="flex justify-between  pt-10 " key={idx}>
                 <p className="text1 pb-[10px] flex items-center gap-[5px] ">
-                  {" "}
-                  <img src={active} alt="" /> {item?.user?.name}
+                  <ACtiveChecker active={active} item ={item} socketUser={socketUser}  />
                 </p>
                 <p className="text1 pb-[10px]">${item?.buyIn.toFixed(2)}</p>
               </div>
@@ -49,3 +52,30 @@ const BidMember = ({ leagueUsersData, user, leagueAuctions }) => {
 };
 
 export default BidMember;
+
+
+
+
+function ACtiveChecker({active,item, socketUser }) {
+
+
+  const [isActive, setIsActive ] = useState(false)
+
+
+  useEffect(() => {
+
+    const userExists = socketUser.some(user => user.userId === item.user._id);
+    userExists &&  setIsActive(true)
+
+    console.log("item", item.user._id)
+    console.log("item userExists: ", userExists)
+
+  }, [item])
+
+
+
+  return (
+    <> {isActive &&  <img src={active} alt="" />}  {item?.user?.name}</>
+  )
+}
+

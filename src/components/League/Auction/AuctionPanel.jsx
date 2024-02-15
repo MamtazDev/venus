@@ -10,6 +10,10 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { createAuction, setTeamOwner } from "../../../api/auction";
 
+import io from 'socket.io-client';
+
+
+
 const AuctionPanel = () => {
   const {
     allTeamsInfo,
@@ -29,12 +33,56 @@ const AuctionPanel = () => {
   const [seconds, setSeconds] = useState(0);
   const [bidAmount, setBidAmount] = useState(null);
   const [bidderInfo, setBidderInfo] = useState(null);
+  const [socketUser, setSocketUser] = useState([]);
   const [settingTeam, setSettingTeam] = useState(false);
   const bidderInfoRef = useRef(bidderInfo);
 
   const myTeams = leagueAuctions?.filter((i) => i.owner?._id === user?._id);
 
+
+  useEffect(() => {
+    console.log("leagueUsersData:", user._id)
+  })
+
+
+  const socket = io('http://localhost:8900'); // Replace with your server URL
+
+  socket.on('connection', () => {
+    console.log('Connected to socket server');
+  });
+  
+  useEffect(() => {
+    
+
+
+    socket.emit("addUser", user._id);
+    socket.on("getUsers", (users) => {
+      console.log("getUsers", users);
+      setSocketUser(users)
+    });
+
+    socket.on("getHigherBid", (addHigher) => {
+      console.log("getHigherBid", addHigher);
+      setBidAmount(addHigher);
+      // setSocketUser(users)
+    });
+
+    
+
+    // socket.on('message', (data) => {
+    //   console.log('Message from server:', data);
+    // });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+
+
   const startTimer = () => {
+
+    //start timer
     const timer = setInterval(() => {
       setSeconds((prevSeconds) => {
         if (prevSeconds === 0) {
@@ -44,6 +92,8 @@ const AuctionPanel = () => {
 
           return 0;
         }
+        
+       //changeing  timer
         return prevSeconds - 1;
       });
     }, 1000);
@@ -129,6 +179,15 @@ const AuctionPanel = () => {
       startTimer();
     }
   };
+
+
+  const highBitHandler = (e) => {
+
+    socket.emit("addHigherBid", Number(e.target.value));
+    
+
+  }
+
 
   // const filteredTeam = allTeamsInfo?.filter((i) =>
   //   leagueAuctions?.find((j) => i.id !== j.team?.id),
@@ -234,11 +293,11 @@ const AuctionPanel = () => {
             <div className=" flex justify-between items-center mt-[15px]">
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
                 $
-                {bidderInfo?.amount
+                {/* {bidderInfo?.amount
                   ? bidderInfo?.amount?.toFixed(2)
                   : leagueAuctions?.length > 0 && leagueAuctions[0]?.price
                     ? leagueAuctions[0].price.toFixed(2)
-                    : "00.00"}
+                    : "00.00"} */} {bidAmount}
               </p>
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
                 {bidderInfo?.bidderName
@@ -301,7 +360,8 @@ const AuctionPanel = () => {
                 className="bg-light_sky text-center w-full"
                 min="1"
                 defaultValue={1}
-                onChange={(e) => setBidAmount(Number(e.target.value))}
+                // onChange={(e) => setBidAmount(Number(e.target.value))}
+                onChange={(e) => highBitHandler(e)}
               />
               <button
                 disabled={!bidAmount || seconds === 0}
@@ -321,6 +381,7 @@ const AuctionPanel = () => {
         </div>
       </div>
       <BidMember
+        socketUser={socketUser}
         leagueUsersData={leagueUsersData}
         user={user}
         leagueAuctions={leagueAuctions}
