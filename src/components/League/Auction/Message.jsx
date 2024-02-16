@@ -4,6 +4,7 @@ import { addMessage } from "../../../api/auction";
 import { useContext } from "react";
 import { LeagueContext } from "../../../contexts/LeagueInfoProvider";
 import { formateToClockTime } from "../../../utils/formatTime";
+
 const Message = ({ leagueBasicInfo }) => {
   const [message, setMessage] = useState("");
   const { auctionMessages, fetchLeagueMessages } = useContext(LeagueContext);
