@@ -25,6 +25,9 @@ const AuctionPanel = () => {
     fetchAllTeams,
     fetchLeagueAuctions,
     fetchLeagueInfo,
+    auctionMessages,
+    fetchLeagueMessages,
+    setAuctionMessages,
   } = useContext(LeagueContext);
 
   const { user } = useContext(AuthContext);
@@ -55,6 +58,11 @@ const AuctionPanel = () => {
     socket.on("getHigherBid", (addHigher) => {
       console.log("getHigherBid", addHigher);
       setBidAmount(addHigher);
+    });
+
+    socket.on("message", (msg) => {
+      console.log("message", msg);
+      setAuctionMessages((current) => [...current, msg]);
     });
 
     return () => {
@@ -383,7 +391,13 @@ const AuctionPanel = () => {
         leagueAuctions={leagueAuctions}
       />
       {/*  ijmessage  */}
-      <Message leagueBasicInfo={leagueBasicInfo} />
+      <Message
+        leagueBasicInfo={leagueBasicInfo}
+        auctionMessages={auctionMessages}
+        fetchLeagueMessages={fetchLeagueMessages}
+        setAuctionMessages={setAuctionMessages}
+        socket={socket}
+      />
       {/* admin panel modal start */}
 
       <dialog id="admin_modal" className="modal">
