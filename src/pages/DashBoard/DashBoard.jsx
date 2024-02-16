@@ -208,14 +208,14 @@ const DashBoard = () => {
                       </Link>
                     </th>
                     <td className="font-medium text-sm text-text_color1 ">
-                      ${(item?.league?.buyIn).toFixed(2)}
+                      ${item?.league?.buyIn?.toFixed(2)}
                     </td>
                     <td className="font-medium text-sm text-text_color1 ">
-                      ${(item?.league?.currentPayout).toFixed(2)}
+                      ${item?.league?.currentPayout?.toFixed(2)}
                     </td>
                     <td className="font-medium text-sm text-text_color1 ">
                       {" "}
-                      ${(item?.league?.netReturn).toFixed(2)}
+                      ${item?.league?.netReturn?.toFixed(2)}
                     </td>
                   </tr>
                 </tbody>

@@ -11,9 +11,7 @@ import Swal from "sweetalert2";
 import { createAuction, setTeamOwner } from "../../../api/auction";
 import { addNotification } from "../../../api/notificationApi";
 
-import io from 'socket.io-client';
-
-
+import io from "socket.io-client";
 
 const AuctionPanel = () => {
   const {
@@ -41,49 +39,30 @@ const AuctionPanel = () => {
 
   const myTeams = leagueAuctions?.filter((i) => i.owner?._id === user?._id);
 
+  const socket = io(`${import.meta.env.VITE_BASE_URL}`);
 
-  useEffect(() => {
-    console.log("leagueUsersData:", user._id)
-  })
-
-
-  const socket = io('http://localhost:8900'); // Replace with your server URL
-
-  socket.on('connection', () => {
-    console.log('Connected to socket server');
+  socket.on("connection", () => {
+    console.log("Connected to socket server");
   });
-  
+
   useEffect(() => {
-    
-
-
     socket.emit("addUser", user._id);
     socket.on("getUsers", (users) => {
       console.log("getUsers", users);
-      setSocketUser(users)
+      setSocketUser(users);
     });
 
     socket.on("getHigherBid", (addHigher) => {
       console.log("getHigherBid", addHigher);
       setBidAmount(addHigher);
-      // setSocketUser(users)
     });
-
-    
-
-    // socket.on('message', (data) => {
-    //   console.log('Message from server:', data);
-    // });
 
     return () => {
       socket.disconnect();
     };
   }, []);
 
-
-
   const startTimer = () => {
-
     //start timer
     const timer = setInterval(() => {
       setSeconds((prevSeconds) => {
@@ -94,8 +73,8 @@ const AuctionPanel = () => {
 
           return 0;
         }
-        
-       //changeing  timer
+
+        //changeing  timer
         return prevSeconds - 1;
       });
     }, 1000);
@@ -193,14 +172,9 @@ const AuctionPanel = () => {
     }
   };
 
-
   const highBitHandler = (e) => {
-
     socket.emit("addHigherBid", Number(e.target.value));
-    
-
-  }
-
+  };
 
   // const filteredTeam = allTeamsInfo?.filter((i) =>
   //   leagueAuctions?.find((j) => i.id !== j.team?.id),
@@ -233,6 +207,10 @@ const AuctionPanel = () => {
       setSettingTeam(false);
     }
   };
+
+  useEffect(() => {
+    fetchLeagueInfo();
+  }, [socketUser]);
 
   // console.log(bidderInfoRef, "hjkhjk");
 
@@ -314,7 +292,8 @@ const AuctionPanel = () => {
                   ? bidderInfo?.amount?.toFixed(2)
                   : leagueAuctions?.length > 0 && leagueAuctions[0]?.price
                     ? leagueAuctions[0].price.toFixed(2)
-                    : "00.00"} */} {bidAmount}
+                    : "00.00"} */}{" "}
+                {bidAmount}
               </p>
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
                 {bidderInfo?.bidderName

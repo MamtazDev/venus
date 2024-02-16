@@ -2,10 +2,9 @@ import { useState } from "react";
 import active from "../../../assets/icons/greencircle.png";
 import { useEffect } from "react";
 
-
 const BidMember = ({ leagueUsersData, user, leagueAuctions, socketUser }) => {
   // console.log(leagueUsersData, "leagueUsersData");
-  console.log(leagueAuctions, "fjksdfj");
+  console.log(socketUser, "socketUser");
 
   const myTeams = leagueAuctions?.filter((i) => i.owner?._id === user?._id);
 
@@ -40,7 +39,11 @@ const BidMember = ({ leagueUsersData, user, leagueAuctions, socketUser }) => {
             leagueUsersData.map((item, idx) => (
               <div className="flex justify-between  pt-10 " key={idx}>
                 <p className="text1 pb-[10px] flex items-center gap-[5px] ">
-                  <ACtiveChecker active={active} item ={item} socketUser={socketUser}  />
+                  <ACtiveChecker
+                    active={active}
+                    item={item}
+                    socketUser={socketUser}
+                  />
                 </p>
                 <p className="text1 pb-[10px]">${item?.buyIn.toFixed(2)}</p>
               </div>
@@ -53,29 +56,12 @@ const BidMember = ({ leagueUsersData, user, leagueAuctions, socketUser }) => {
 
 export default BidMember;
 
-
-
-
-function ACtiveChecker({active,item, socketUser }) {
-
-
-  const [isActive, setIsActive ] = useState(false)
-
-
-  useEffect(() => {
-
-    const userExists = socketUser.some(user => user.userId === item.user._id);
-    userExists &&  setIsActive(true)
-
-    console.log("item", item.user._id)
-    console.log("item userExists: ", userExists)
-
-  }, [item])
-
-
-
+function ACtiveChecker({ active, item, socketUser }) {
+  const activeUser = socketUser.find((i) => i.userId === item.user._id);
   return (
-    <> {isActive &&  <img src={active} alt="" />}  {item?.user?.name}</>
-  )
+    <>
+      {" "}
+      {activeUser && <img src={active} alt="" />} {item?.user?.name}
+    </>
+  );
 }
-
