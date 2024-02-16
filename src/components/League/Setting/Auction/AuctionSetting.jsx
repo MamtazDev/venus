@@ -2,9 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { LeagueContext } from "../../../../contexts/LeagueInfoProvider";
 import { updateLeagueAuctionSettings } from "../../../../api/auction";
 import Swal from "sweetalert2";
+import { RotatingLines } from "react-loader-spinner";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const AuctionSetting = () => {
-  const { auctionSettings, setAutionSettings } = useContext(LeagueContext);
+  const { auctionSettings, setAutionSettings, leagueBasicInfo } =
+    useContext(LeagueContext);
+  const { user } = useContext(AuthContext);
+
   const [settings, setSettings] = useState({});
   const [editingInfo, setEditingInfo] = useState({});
 
@@ -169,15 +174,33 @@ const AuctionSetting = () => {
         </table>
       </div>
 
-      <div className="flex justify-center mt-[30px] ">
-        <button
-          className="bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold customButton"
-          onClick={handleSave}
-          disabled={loading || Object.keys(editingInfo).length === 0}
-        >
-          Save Changes
-        </button>
-      </div>
+      {leagueBasicInfo?.creatorId === user?._id && (
+        <div className="flex justify-center mt-[30px] ">
+          <button
+            className="bg-base rounded-8 py-[12px] px-14 text-white font-sans text-base font-semibold customButton"
+            onClick={handleSave}
+            disabled={loading || Object.keys(editingInfo).length === 0}
+          >
+            {loading ? (
+              <div className="flex justify-center gap-3">
+                {" "}
+                <RotatingLines
+                  visible={true}
+                  height="20"
+                  width="20"
+                  strokeColor="#9aa8d1"
+                  strokeWidth="5"
+                  animationDuration="5"
+                  ariaLabel="rotating-lines-loading"
+                />
+                Saveing...
+              </div>
+            ) : (
+              "Save Changes"
+            )}
+          </button>
+        </div>
+      )}
     </>
   );
 };

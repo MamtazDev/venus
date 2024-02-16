@@ -108,9 +108,9 @@ const Topbar = ({ toggle, isMobile, handleToggle }) => {
               />
               <p>{user?.name}</p>
             </div>
-            <button className="py-10 px-[23px] bg-base rounded-3 text-white customButton">
+            {/* <button className="py-10 px-[23px] bg-base rounded-3 text-white customButton">
               Leave
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

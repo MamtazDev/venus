@@ -9,6 +9,7 @@ import Progress from "react-progressbar";
 import Swal from "sweetalert2";
 import { login } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { RotatingLines } from "react-loader-spinner";
 
 const Login = () => {
   const { setUser, setToken } = useContext(AuthContext);
@@ -138,7 +139,23 @@ const Login = () => {
                 className="w-full mt-10 py-14 lg:py-21  lg:px-20 px-10 bg-base text-white text-[20px] font-bold rounded-[3px] "
                 disabled={loading}
               >
-                {loading ? "Logging..." : "Log In"}
+                {loading ? (
+                  <div className="flex justify-center gap-3">
+                    {" "}
+                    <RotatingLines
+                      visible={true}
+                      height="20"
+                      width="20"
+                      strokeColor="#9aa8d1"
+                      strokeWidth="5"
+                      animationDuration="5"
+                      ariaLabel="rotating-lines-loading"
+                    />
+                    Logging In...
+                  </div>
+                ) : (
+                  "Log In"
+                )}
               </button>
             </form>
           </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import General from "./General/General";
 import Roaster from "./Roaster/Roaster";
 import AuctionSetting from "./Auction/AuctionSetting";
@@ -21,6 +21,9 @@ const SettingHeader = () => {
     setSelectBtn(tab);
     localStorage.setItem("activeTabs", tab);
   };
+
+  // console.log(leagueBasicInfo, "leagueBasicInfo");
+  // console.log(user, "user");
 
   useEffect(() => {
     // setSelectBtn(

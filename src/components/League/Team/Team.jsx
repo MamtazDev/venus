@@ -4,6 +4,7 @@ import NoFoundData from "../../NoFoundData/NoFoundData";
 import delet from "../../../assets/icons/delete.png";
 import { useContext, useState } from "react";
 import { LeagueContext } from "../../../contexts/LeagueInfoProvider";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Team = () => {
   const [payout, setPayout] = useState(false);
@@ -14,6 +15,8 @@ const Team = () => {
     leagueBasicInfo,
     loadingInfo,
   } = useContext(LeagueContext);
+
+  const { user } = useContext(AuthContext);
 
   console.log(allTeamsInfo, "jfkjdsf");
 
@@ -58,15 +61,19 @@ const Team = () => {
                     </td>
                     <td className="text-center  py-[17px]">$0.00</td>
                     <td className="text-right pe-[34px]  py-[17px]">
-                      <button
-                        className="p-10 bg-base text-white rounded-3 customButton"
-                        onClick={() =>
-                          document.getElementById("pay_team_modal").showModal()
-                        }
-                        disabled={!isBidded}
-                      >
-                        Pay Team
-                      </button>
+                      {leagueBasicInfo?.creatorId === user?._id && (
+                        <button
+                          className="p-10 bg-base text-white rounded-3 customButton"
+                          onClick={() =>
+                            document
+                              .getElementById("pay_team_modal")
+                              .showModal()
+                          }
+                          disabled={!isBidded}
+                        >
+                          Pay Team
+                        </button>
+                      )}
                     </td>
                   </tr>
                 );

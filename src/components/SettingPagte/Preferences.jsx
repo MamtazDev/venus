@@ -1,10 +1,90 @@
 import emailbanner from "../../assets/icons/changepass.png";
 import twofactor from "../../assets/icons/twofactor.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import EmailSetting from "./EmailSetting";
 import NotificationsSetting from "./NotificationsSetting";
+import Swal from "sweetalert2";
+import { changePassword } from "../../api/auth";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
 const Preferences = () => {
   const [step, setStep] = useState(0);
+
+  const { setUser, setToken } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage("");
+
+    const form = e.target;
+
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if (!passwordRegex.test(password)) {
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Oops...",
+      //   text: "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long.",
+      // });
+      setErrorMessage(
+        "Password must contain at least one uppercase, one lowercase, one special character, one digit and it should be at least 8 characters long.",
+      );
+      setIsLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Oops...",
+      //   text: "Password doesn't matched!",
+      // });
+      setErrorMessage("Password doesn't matched!");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const res = await changePassword({ password });
+      if (res?.data?.success) {
+        setErrorMessage("");
+        setUser(null);
+        setToken(null);
+        document.getElementById("change_pass").close();
+        localStorage.removeItem("venusAuth");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+      if (error?.response?.data?.message) {
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "Oops...",
+        //   text: `${error?.response?.data?.message}`,
+        // });
+        setErrorMessage(error?.response?.data?.message);
+      } else {
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "Oops...",
+        //   text: `${error?.message}`,
+        // });
+        setErrorMessage(error?.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <>
       {step === 0 && (
@@ -120,7 +200,10 @@ const Preferences = () => {
           </div>
           {/* change pass modal */}
           <dialog id="change_pass" className="modal">
-            <div className="modal-box bg-white h-[393px] max-w-[756px] flex justify-center items-center rounded-3">
+            <form
+              onSubmit={handleSubmit}
+              className="modal-box bg-white h-[393px] max-w-[756px] flex justify-center items-center rounded-3"
+            >
               <div className="grid lg:grid-cols-2  grid-cols-1 items-center">
                 <div className="mb-[10px]">
                   <img src={emailbanner} alt="" />
@@ -137,20 +220,30 @@ const Preferences = () => {
                   </label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="Choose a password"
                     className="py-10 px-20 bg-[#F6F8FE]  rounded-8 border border-[#EEE] w-full mt-[10px]"
                   />
                   <input
                     type="password"
                     placeholder="Confirm  password"
+                    name="confirmPassword"
                     className="py-10 px-20 bg-[#F6F8FE]  rounded-8 border border-[#EEE] w-full mt-[10px]"
                   />
-                  <button className="max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 mt-[20px]">
-                    Continue
+                  <button
+                    disabled={isLoading}
+                    className="max-w-[599px] bg-base text-white rounded-3 text-sm font-semibold font-sans w-full py-10 mt-[20px]"
+                  >
+                    {isLoading ? "Loading..." : "Continue"}
                   </button>
+                  {errorMessage && (
+                    <p className="text-xs mt-3 text-[#F44336]">
+                      {errorMessage}
+                    </p>
+                  )}
                 </div>
               </div>
-            </div>
+            </form>
             <label
               className="modal-backdrop"
               htmlFor="change_pass"

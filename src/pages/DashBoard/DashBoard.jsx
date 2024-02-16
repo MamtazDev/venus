@@ -180,7 +180,7 @@ const DashBoard = () => {
         <h2 className="lg:text-[28px] text-[20px] font-bold mb-5 ">
           Active League
         </h2>
-        <div className="overflow-x-auto">
+        <div className={!loading && "overflow-x-auto"}>
           <table className="table">
             <thead className="bg-[#F4F7FE]">
               <tr className="border-0">
@@ -385,7 +385,23 @@ const DashBoard = () => {
                 className="bg-base py-10 w-full rounded-3 mt-[30px] text-white font-semibold"
                 disabled={isLoading || !selectedLeague || !selectedSeason}
               >
-                {isLoading ? "Creating..." : "Submit"}
+                {isLoading ? (
+                  <div className="flex justify-center gap-3">
+                    {" "}
+                    <RotatingLines
+                      visible={true}
+                      height="18"
+                      width="18"
+                      strokeColor="#9aa8d1"
+                      strokeWidth="5"
+                      animationDuration="5"
+                      ariaLabel="rotating-lines-loading"
+                    />
+                    Creating...
+                  </div>
+                ) : (
+                  "Submit"
+                )}
               </button>
             </div>
 
@@ -441,7 +457,23 @@ const DashBoard = () => {
                 className="bg-base py-10 w-full rounded-3 text-white"
                 disabled={joining}
               >
-                {joining ? "Joining..." : "Submit"}
+                {joining ? (
+                  <div className="flex justify-center gap-3">
+                    {" "}
+                    <RotatingLines
+                      visible={true}
+                      height="18"
+                      width="18"
+                      strokeColor="#9aa8d1"
+                      strokeWidth="5"
+                      animationDuration="5"
+                      ariaLabel="rotating-lines-loading"
+                    />
+                    Joining...
+                  </div>
+                ) : (
+                  "Submit"
+                )}
               </button>
             </div>
 

@@ -24,3 +24,14 @@ export const getLeagueInfo = async (leagueId) => {
   const response = await AXIOS.get(`/api/league/leagueInfo/${leagueId}`);
   return response;
 };
+export const updateLeagueInfo = async ({ leagueId, data }) => {
+  const response = await AXIOS.patch(
+    `/api/league/updateLeagueInfo/${leagueId}`,
+    data,
+  );
+  return response;
+};
+export const removeUserFromLeague = async (id) => {
+  const response = await AXIOS.delete(`/api/league/removeUserFromLeague/${id}`);
+  return response;
+};

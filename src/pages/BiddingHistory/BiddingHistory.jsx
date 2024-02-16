@@ -1,5 +1,20 @@
+import { useEffect, useState } from "react";
+import { getMyBidInfo } from "../../api/auction";
+import { formatDate } from "../../utils/formatTime";
+
 const BiddingHistory = () => {
-  console.log("ok fine");
+  const [bidHistory, setBidHistory] = useState([]);
+
+  const fetchBidHistory = async () => {
+    const response = await getMyBidInfo();
+    setBidHistory(response?.data);
+  };
+
+  console.log(bidHistory, "biii");
+
+  useEffect(() => {
+    fetchBidHistory();
+  }, []);
   return (
     <>
       <div className="overflow-x-auto">
@@ -12,23 +27,24 @@ const BiddingHistory = () => {
             </tr>
           </thead>
           <tbody>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((data, index) => (
-              <>
+            {bidHistory?.length > 0 &&
+              bidHistory?.map((data, index) => (
                 <tr
                   key={index}
                   className="border-y border-border2 bg-white text3 items-center"
                   style={{ color: "#222" }}
                 >
                   <td className="text-left  gap-8 items-center ps-[40px]">
-                    Alabama
+                    {data?.team?.name}
                   </td>
-                  <td className="text-left  py-[17px]">$0.00</td>
                   <td className="text-left  py-[17px]">
-                    8 Dec at 02.00 PM GMT+6
+                    ${data?.price.toFixed(2)}
+                  </td>
+                  <td className="text-left  py-[17px]">
+                    {formatDate(data?.updatedAt)}
                   </td>
                 </tr>
-              </>
-            ))}
+              ))}
           </tbody>
         </table>
       </div>

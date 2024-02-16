@@ -37,3 +37,8 @@ export const getLeagueMessaes = async (leagueId) => {
   const res = await AXIOS.get(`/api/message/getLeagueMessages/${leagueId}`);
   return res;
 };
+
+export const getMyBidInfo = async () => {
+  const res = await AXIOS.get("/api/auction/getMybidInfo");
+  return res;
+};

@@ -9,6 +9,7 @@ import { formatTime } from "../../../utils/formatTime";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { createAuction, setTeamOwner } from "../../../api/auction";
+import { addNotification } from "../../../api/notificationApi";
 
 const AuctionPanel = () => {
   const {
@@ -30,6 +31,7 @@ const AuctionPanel = () => {
   const [bidAmount, setBidAmount] = useState(null);
   const [bidderInfo, setBidderInfo] = useState(null);
   const [settingTeam, setSettingTeam] = useState(false);
+
   const bidderInfoRef = useRef(bidderInfo);
 
   const myTeams = leagueAuctions?.filter((i) => i.owner?._id === user?._id);
@@ -60,12 +62,20 @@ const AuctionPanel = () => {
 
     try {
       const res = await setTeamOwner({
-        auctionId: leagueAuctions[0]?._id,
+        auctionId: bidderInfoRef.current?.auctionId,
         data: {
           owner: bidderInfoRef.current?.bidderId,
           price: bidderInfoRef.current?.amount,
         },
       });
+
+      const notificationData = {
+        leagueId: leagueBasicInfo?._id,
+        leagueCreatorId: leagueBasicInfo?.creatorId,
+        message: `${bidderInfoRef.current?.bidderName} bid ${bidderInfoRef.current?.amount} for ${selectedTeam?.name}`,
+      };
+
+      const notificationRes = await addNotification(notificationData);
 
       if (res?.data?.success) {
         fetchAllTeams();
@@ -90,6 +100,8 @@ const AuctionPanel = () => {
         setSelectedTeam(data);
         document.getElementById("admin_modal").close();
         setSeconds(auctionSettings?.auctionTime);
+        fetchLeagueAuctions();
+
         startTimer();
       }
     } catch (error) {
@@ -117,6 +129,7 @@ const AuctionPanel = () => {
         bidderName: user?.name,
         bidderId: user?._id,
         amount: bidAmount,
+        auctionId: leagueAuctions[0]?._id,
       };
       setBidAmount(null);
     }
@@ -196,29 +209,33 @@ const AuctionPanel = () => {
             </div>
           )}
           {/* buttons */}
-          <div className="flex gap-10 flex-wrap">
-            <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
-              onClick={() => document.getElementById("admin_modal").showModal()}
-              disabled={seconds > 0}
-            >
-              Admin Panel
-            </button>
-            <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
-              disabled={seconds > 0 || settingTeam}
-              onClick={handleRandomItem}
-            >
-              Next Item ( Random)
-            </button>
-            <button
-              className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
-              onClick={handleResetClock}
-              disabled={!selectedTeam}
-            >
-              Reset Clock
-            </button>
-          </div>
+          {leagueBasicInfo?.creatorId === user?._id && (
+            <div className="flex gap-10 flex-wrap">
+              <button
+                className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
+                onClick={() =>
+                  document.getElementById("admin_modal").showModal()
+                }
+                disabled={seconds > 0}
+              >
+                Admin Panel
+              </button>
+              <button
+                className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
+                disabled={seconds > 0 || settingTeam}
+                onClick={handleRandomItem}
+              >
+                Next Item ( Random)
+              </button>
+              <button
+                className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
+                onClick={handleResetClock}
+                disabled={!selectedTeam}
+              >
+                Reset Clock
+              </button>
+            </div>
+          )}
         </div>
         {/* bid */}
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10">
@@ -417,7 +434,9 @@ const AuctionPanel = () => {
                               onClick={() => handleSelectTeam(data)}
                               disabled={settingTeam}
                             >
-                              {settingTeam ? "Loading..." : "Set Next Item"}
+                              {settingTeam && selectedTeam?.id === data?.id
+                                ? "Loading..."
+                                : "Set Next Item"}
                             </button>
                           )}
                         </td>

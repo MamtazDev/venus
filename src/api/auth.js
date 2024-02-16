@@ -33,3 +33,8 @@ export const updateUserInfo = async (data) => {
   });
   return response;
 };
+
+export const changePassword = async (data) => {
+  const response = await AXIOS.patch(`/api/users/changePassword`, data);
+  return response;
+};

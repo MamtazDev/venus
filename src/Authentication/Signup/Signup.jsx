@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { register } from "../../api/auth";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { RotatingLines } from "react-loader-spinner";
 const Signup = () => {
   const { setUser, setToken } = useContext(AuthContext);
 
@@ -220,7 +221,23 @@ const Signup = () => {
                 className="w-full mt-10 py-21  bg-base text-white rounded-[3px] text-[20px] font-bold"
                 disabled={isLoading}
               >
-                {isLoading ? "Registering..." : "Register Now!"}
+                {isLoading ? (
+                  <div className="flex justify-center gap-3">
+                    {" "}
+                    <RotatingLines
+                      visible={true}
+                      height="20"
+                      width="20"
+                      strokeColor="#9aa8d1"
+                      strokeWidth="5"
+                      animationDuration="5"
+                      ariaLabel="rotating-lines-loading"
+                    />
+                    Registering...
+                  </div>
+                ) : (
+                  "Register Now!"
+                )}
               </button>
             </form>
           </div>

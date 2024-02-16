@@ -254,7 +254,7 @@ const Acount = () => {
             <div>
               <label className="">Details</label>
               <textarea
-                required
+                // required
                 value={userInfo?.details ? userInfo?.details : ""}
                 onChange={handleInputChange}
                 type="text"
@@ -269,7 +269,7 @@ const Acount = () => {
             <div>
               <label className="">Phone Number</label>
               <input
-                required
+                // required
                 onChange={handleInputChange}
                 type="number"
                 name="phoneNumber"
@@ -310,7 +310,7 @@ const Acount = () => {
           <div className="flex gap-20">
             <button
               type="submit"
-              className="py-10 px-[22px] bg-base text-white text2 rounded-3 "
+              className="py-10 px-[22px] bg-base text-white text2 rounded-3 customButton "
               style={{ color: "#fff" }}
               disabled={loading || Object.keys(editedInfo).length === 0}
             >
