@@ -49,10 +49,13 @@ const AuctionPanel = () => {
   });
 
   useEffect(() => {
-    socket.emit("addUser", user._id);
+    socket.emit("addUser", user._id, leagueBasicInfo?._id);
     socket.on("getUsers", (users) => {
       console.log("getUsers", users);
-      setSocketUser(users);
+      const leagueActiveUsers = users.filter(
+        (i) => i.leagueId === leagueBasicInfo?._id,
+      );
+      setSocketUser(leagueActiveUsers);
     });
 
     socket.on("getHigherBid", (addHigher) => {
@@ -62,7 +65,22 @@ const AuctionPanel = () => {
 
     socket.on("message", (msg) => {
       console.log("message", msg);
-      setAuctionMessages((current) => [...current, msg]);
+      const newMessages = msg.filter(
+        (m) => m.leagueId === leagueBasicInfo?._id,
+      );
+
+      setAuctionMessages((current) => [
+        ...current,
+        newMessages[newMessages.length - 1]?.msg,
+      ]);
+    });
+
+    socket.on("counter", (count) => {
+      if (count === "Auction End") {
+        handleTimerEnd();
+      } else {
+        setSeconds(count);
+      }
     });
 
     return () => {
@@ -71,23 +89,11 @@ const AuctionPanel = () => {
   }, []);
 
   const startTimer = () => {
-    //start timer
-    const timer = setInterval(() => {
-      setSeconds((prevSeconds) => {
-        if (prevSeconds === 0) {
-          clearInterval(timer);
-
-          handleTimerEnd();
-
-          return 0;
-        }
-
-        //changeing  timer
-        return prevSeconds - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
+    socket.emit(
+      "startTimer",
+      leagueBasicInfo?._id,
+      auctionSettings?.auctionTime,
+    );
   };
 
   const handleTimerEnd = async () => {
@@ -136,7 +142,7 @@ const AuctionPanel = () => {
       if (res?.data?.success) {
         setSelectedTeam(data);
         document.getElementById("admin_modal").close();
-        setSeconds(auctionSettings?.auctionTime);
+        // setSeconds(auctionSettings?.auctionTime);
         fetchLeagueAuctions();
 
         startTimer();
@@ -156,7 +162,8 @@ const AuctionPanel = () => {
     ) {
       toast.error("Bid rejected");
     } else {
-      setSeconds(auctionSettings?.auctionTime);
+      // setSeconds(auctionSettings?.auctionTime);
+      startTimer();
       setBidderInfo({
         bidderName: user?.name,
         bidderId: user?._id,
@@ -174,7 +181,7 @@ const AuctionPanel = () => {
 
   const handleResetClock = () => {
     document.getElementById("admin_modal").close();
-    setSeconds(auctionSettings?.auctionTime);
+    // setSeconds(auctionSettings?.auctionTime);
     if (seconds === 0) {
       startTimer();
     }
@@ -205,7 +212,7 @@ const AuctionPanel = () => {
       const res = await createAuction(info);
       if (res?.data?.success) {
         setSelectedTeam(selectedObject);
-        setSeconds(auctionSettings?.auctionTime);
+        // setSeconds(auctionSettings?.auctionTime);
         startTimer();
         document.getElementById("admin_modal").close();
       }

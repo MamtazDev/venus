@@ -41,7 +41,7 @@ const Message = ({
 
         if (response?.data?.success) {
           setMessage("");
-          socket.emit("message", response?.data?.data);
+          socket.emit("message", response?.data?.data, leagueBasicInfo?._id);
           fetchLeagueMessages();
         }
       } catch (error) {
