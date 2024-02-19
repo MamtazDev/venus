@@ -77,8 +77,10 @@ const AuctionPanel = () => {
 
     socket.on("counter", (count) => {
       if (count === "Auction End") {
+        console.log("count", count)
         handleTimerEnd();
       } else {
+        console.log("count", count)
         setSeconds(count);
       }
     });
@@ -88,13 +90,7 @@ const AuctionPanel = () => {
     };
   }, []);
 
-  const startTimer = () => {
-    socket.emit(
-      "startTimer",
-      leagueBasicInfo?._id,
-      auctionSettings?.auctionTime,
-    );
-  };
+
 
   const handleTimerEnd = async () => {
     // const info = {
@@ -154,6 +150,7 @@ const AuctionPanel = () => {
     }
   };
 
+
   const handleBidButtonClick = () => {
     if (
       bidAmount < auctionSettings?.minimumBid ||
@@ -163,7 +160,10 @@ const AuctionPanel = () => {
       toast.error("Bid rejected");
     } else {
       // setSeconds(auctionSettings?.auctionTime);
+      
       startTimer();
+
+
       setBidderInfo({
         bidderName: user?.name,
         bidderId: user?._id,
@@ -239,6 +239,14 @@ const AuctionPanel = () => {
   //   }
   // }, [bidderInfo]);
 
+
+  const startTimer = () => {
+    socket.emit(
+      "startTimer",
+      leagueBasicInfo?._id,
+      auctionSettings?.auctionTime,
+    );
+  };
   return (
     <>
       <div className="px-20 pt-[24px] pb-20 bg-white rounded-3">
