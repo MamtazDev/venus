@@ -76,6 +76,7 @@ const AuctionPanel = () => {
       if (count === "Auction End") {
         handleTimerEnd(info);
       } else {
+        console.log("count", count);
         setSeconds(count);
       }
     });
