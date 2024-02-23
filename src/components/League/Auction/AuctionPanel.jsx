@@ -38,8 +38,6 @@ const AuctionPanel = () => {
   const [socketUser, setSocketUser] = useState([]);
   const [settingTeam, setSettingTeam] = useState(false);
 
-  const bidderInfoRef = useRef(bidderInfo);
-
   const myTeams = leagueAuctions?.filter((i) => i.owner?._id === user?._id);
 
   const socket = io(`${import.meta.env.VITE_BASE_URL}`);
@@ -51,20 +49,18 @@ const AuctionPanel = () => {
   useEffect(() => {
     socket.emit("addUser", user._id, leagueBasicInfo?._id);
     socket.on("getUsers", (users) => {
-      console.log("getUsers", users);
       const leagueActiveUsers = users.filter(
         (i) => i.leagueId === leagueBasicInfo?._id,
       );
       setSocketUser(leagueActiveUsers);
     });
 
-    socket.on("getHigherBid", (addHigher) => {
-      console.log("getHigherBid", addHigher);
-      setBidAmount(addHigher);
+    socket.on("getBidInfo", (info) => {
+      console.log(info, "bidinfo");
+      setBidderInfo(info);
     });
 
     socket.on("message", (msg) => {
-      console.log("message", msg);
       const newMessages = msg.filter(
         (m) => m.leagueId === leagueBasicInfo?._id,
       );
@@ -75,9 +71,10 @@ const AuctionPanel = () => {
       ]);
     });
 
-    socket.on("counter", (count) => {
+    socket.on("counter", (count, info) => {
+      console.log(count, "timerrr");
       if (count === "Auction End") {
-        handleTimerEnd();
+        handleTimerEnd(info);
       } else {
         setSeconds(count);
       }
@@ -89,6 +86,7 @@ const AuctionPanel = () => {
   }, []);
 
   const startTimer = () => {
+    console.log("fsjfskf");
     socket.emit(
       "startTimer",
       leagueBasicInfo?._id,
@@ -96,26 +94,23 @@ const AuctionPanel = () => {
     );
   };
 
-  const handleTimerEnd = async () => {
-    // const info = {
-    //   owner: bidderInfoRef.current?.bidderId,
-    //   price: bidderInfoRef.current?.amount,
-    // };
-    // console.log(info, "info");
+  console.log(bidderInfo, "dddd");
 
+  const handleTimerEnd = async (info) => {
+    console.log(bidderInfo, "dddd");
     try {
       const res = await setTeamOwner({
-        auctionId: bidderInfoRef.current?.auctionId,
+        auctionId: info?.auctionId,
         data: {
-          owner: bidderInfoRef.current?.bidderId,
-          price: bidderInfoRef.current?.amount,
+          owner: info?.bidderId,
+          price: info?.amount,
         },
       });
 
       const notificationData = {
         leagueId: leagueBasicInfo?._id,
         leagueCreatorId: leagueBasicInfo?.creatorId,
-        message: `${bidderInfoRef.current?.bidderName} bid ${bidderInfoRef.current?.amount} for ${selectedTeam?.name}`,
+        message: `${info?.bidderName} bid ${info?.amount} for ${selectedTeam?.name}`,
       };
 
       const notificationRes = await addNotification(notificationData);
@@ -163,18 +158,13 @@ const AuctionPanel = () => {
       toast.error("Bid rejected");
     } else {
       // setSeconds(auctionSettings?.auctionTime);
-      startTimer();
-      setBidderInfo({
-        bidderName: user?.name,
-        bidderId: user?._id,
-        amount: bidAmount,
-      });
-      bidderInfoRef.current = {
+      socket.emit("addBid", leagueBasicInfo?._id, {
         bidderName: user?.name,
         bidderId: user?._id,
         amount: bidAmount,
         auctionId: leagueAuctions[0]?._id,
-      };
+      });
+      startTimer();
       setBidAmount(null);
     }
   };
@@ -185,6 +175,7 @@ const AuctionPanel = () => {
     if (seconds === 0) {
       startTimer();
     }
+    console.log(seconds, "dfdf");
   };
 
   const highBitHandler = (e) => {
@@ -282,7 +273,7 @@ const AuctionPanel = () => {
               <button
                 className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
                 onClick={handleResetClock}
-                disabled={!selectedTeam}
+                disabled={!selectedTeam || seconds !== 0}
               >
                 Reset Clock
               </button>
@@ -303,12 +294,12 @@ const AuctionPanel = () => {
             <div className=" flex justify-between items-center mt-[15px]">
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
                 $
-                {/* {bidderInfo?.amount
+                {bidderInfo?.amount
                   ? bidderInfo?.amount?.toFixed(2)
                   : leagueAuctions?.length > 0 && leagueAuctions[0]?.price
                     ? leagueAuctions[0].price.toFixed(2)
-                    : "00.00"} */}{" "}
-                {bidAmount}
+                    : "00.00"}
+                {/* {bidAmount} */}
               </p>
               <p className="text-xl font-medium font-sans text-text_dark_grey ">
                 {bidderInfo?.bidderName
@@ -371,8 +362,8 @@ const AuctionPanel = () => {
                 className="bg-light_sky text-center w-full"
                 min="1"
                 defaultValue={1}
-                // onChange={(e) => setBidAmount(Number(e.target.value))}
-                onChange={(e) => highBitHandler(e)}
+                onChange={(e) => setBidAmount(Number(e.target.value))}
+                // onChange={(e) => highBitHandler(e)}
               />
               <button
                 disabled={!bidAmount || seconds === 0}

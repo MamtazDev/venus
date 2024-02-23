@@ -97,7 +97,7 @@ const DashboardSidebar = ({ toggle, isMobile }) => {
                   location.pathname.includes("/league")
                     ? `hover:text-white flex items-center gap-[12px] bg-base  rounded-[5px] text-[#FFF] text-[16px] pl-[10px] py-[10px] mb-[15px] 
                ${!toggle ? "lg:me-[47px] me-[10px]" : "me-[15px]"}`
-                    : "flex items-center text-[16px] text-[#9AA8D1] hover:text-[#9AA8D1]  font-[400] gap-[12px] pl-[10px] py-[10px] mb-[15px]"
+                    : "hidden"
                 }
               >
                 {location.pathname.includes("/league") ? (
