@@ -35,13 +35,13 @@ const Topbar = ({ toggle, isMobile, handleToggle }) => {
           )}
           <div className="flex  gap-20 items-center">
             <div className="dropdown dropdown-bottom dropdown-end">
-              <div
+              {/* <div
                 tabIndex={0}
                 role="button"
                 className=" border-none p-0 h-[24px]"
               >
                 <img src={notification} alt="notification" />
-              </div>
+              </div> */}
               <div
                 tabIndex={0}
                 className="dropdown-content z-[1] menu bg-white rounded-3 w-[425px] pt-[32px] px-[24px] pb-[24px] drop-shadow-lg"
