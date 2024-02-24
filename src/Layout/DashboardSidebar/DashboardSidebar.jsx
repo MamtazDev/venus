@@ -30,12 +30,12 @@ const navlinks = [
     imgActive: leagueActive,
     to: "/league",
   },
-  {
-    title: "Tournament Tracking",
-    img: tracking,
-    imgActive: tournamentactive,
-    to: "/tournamentTracking",
-  },
+  // {
+  //   title: "Tournament Tracking",
+  //   img: tracking,
+  //   imgActive: tournamentactive,
+  //   to: "/tournamentTracking",
+  // },
   {
     title: "Bidding History",
     img: timing,

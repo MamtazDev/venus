@@ -64,22 +64,31 @@ const AuctionPanel = () => {
         setAuctionMessages((current) => [...current, msg?.msg]);
       }
     });
-    // socket.on("message", (msg) => {
-    //   const newMessages = msg.filter(
-    //     (m) => m.leagueId === leagueBasicInfo?._id,
-    //   );
-
-    //   setAuctionMessages((current) => [
-    //     ...current,
-    //     newMessages[newMessages.length - 1]?.msg,
-    //   ]);
-    // });
 
     socket.on("counter", (count, info) => {
       if (count === "Auction End") {
-        handleTimerEnd(info);
+        if (info?.bidderId === user?._id) {
+          handleTimerEnd(info);
+        } else {
+          fetchAllTeams();
+          fetchLeagueAuctions();
+          fetchLeagueInfo();
+        }
       } else {
         setSeconds(count);
+      }
+    });
+
+    socket.on("auctionStarted", (auction) => {
+      if (auction === leagueBasicInfo?._id) {
+        fetchLeagueAuctions();
+      }
+    });
+    socket.on("getWinner", (winnerLeagueId) => {
+      if (winnerLeagueId === leagueBasicInfo?._id) {
+        fetchAllTeams();
+        fetchLeagueAuctions();
+        fetchLeagueInfo();
       }
     });
 
@@ -119,6 +128,7 @@ const AuctionPanel = () => {
         fetchAllTeams();
         fetchLeagueAuctions();
         fetchLeagueInfo();
+        socket.emit("winnerSelected", leagueBasicInfo?._id);
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -209,6 +219,10 @@ const AuctionPanel = () => {
     } finally {
       setSettingTeam(false);
     }
+  };
+
+  const handleResetTeam = (item) => {
+    console.log(item, "item");
   };
 
   useEffect(() => {
@@ -403,9 +417,9 @@ const AuctionPanel = () => {
             Admin Panel
           </h3>
           <div className="flex  justify-around">
-            <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton">
+            {/* <button className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton">
               Admin Panel
-            </button>
+            </button> */}
             <button
               className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton"
               onClick={handleRandomItem}
@@ -461,13 +475,14 @@ const AuctionPanel = () => {
                         </td>
                         <td className="text-right  py-[17px]">
                           {isBidded ? (
-                            <button
-                              className="p-10 bg-[#ff2500] text-white rounded-3"
-                              // onClick={() => handleSelectTeam(data)}
-                              // disabled={settingTeam}
-                            >
-                              Reset
-                            </button>
+                            // <button
+                            //   className="p-10 bg-[#ff2500] text-white rounded-3"
+                            //   onClick={() => handleResetTeam(data)}
+                            //   // disabled={settingTeam}
+                            // >
+                            //   Reset
+                            // </button>
+                            <></>
                           ) : (
                             <button
                               className="p-10 bg-base text-white rounded-3 customButton"
@@ -486,9 +501,9 @@ const AuctionPanel = () => {
               </tbody>
             </table>
             <div className="text-center mt-[50px]">
-              <button className="py-10 px-23 bg-base text-white rounded-3">
+              {/* <button className="py-10 px-23 bg-base text-white rounded-3">
                 Reset All Auction Data
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

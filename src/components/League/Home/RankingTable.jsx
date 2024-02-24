@@ -3,6 +3,9 @@ import active from "../../../assets/icons/active.png";
 import NoFoundData from "../../NoFoundData/NoFoundData";
 
 const RankingTable = ({ leagueUsersdata, loading }) => {
+  const handleSort = (a, b) => {
+    return b.buyIn - a.buyIn;
+  };
   return (
     <>
       <div className="my-[20px]">
@@ -53,10 +56,10 @@ const RankingTable = ({ leagueUsersdata, loading }) => {
                 {/* row 1 */}
                 {leagueUsersdata &&
                   leagueUsersdata?.length > 0 &&
-                  leagueUsersdata?.map((item, idx) => (
+                  leagueUsersdata?.sort(handleSort)?.map((item, idx) => (
                     <tr className="bg-sky border border-[#F0F0F0] " key={idx}>
                       <th className="font-medium text-sm text-text_color1 text-center">
-                        1
+                        {idx + 1}
                       </th>
                       <td className="font-medium text-sm text-text_color1 text-center">
                         {item?.user?.name}
@@ -71,7 +74,7 @@ const RankingTable = ({ leagueUsersdata, loading }) => {
                         ${(item?.netReturn).toFixed(2)}
                       </td>
                       <td className="font-medium text-sm text-text_color1 text-center">
-                        <img src={active} alt="" />
+                        {/* <img src={active} alt="" /> */}
                       </td>
                     </tr>
                   ))}
