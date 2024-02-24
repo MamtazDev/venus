@@ -56,27 +56,29 @@ const AuctionPanel = () => {
     });
 
     socket.on("getBidInfo", (info) => {
-      console.log(info, "bidinfo");
       setBidderInfo(info);
     });
 
     socket.on("message", (msg) => {
-      const newMessages = msg.filter(
-        (m) => m.leagueId === leagueBasicInfo?._id,
-      );
-
-      setAuctionMessages((current) => [
-        ...current,
-        newMessages[newMessages.length - 1]?.msg,
-      ]);
+      if (msg?.leagueId === leagueBasicInfo?._id) {
+        setAuctionMessages((current) => [...current, msg?.msg]);
+      }
     });
+    // socket.on("message", (msg) => {
+    //   const newMessages = msg.filter(
+    //     (m) => m.leagueId === leagueBasicInfo?._id,
+    //   );
+
+    //   setAuctionMessages((current) => [
+    //     ...current,
+    //     newMessages[newMessages.length - 1]?.msg,
+    //   ]);
+    // });
 
     socket.on("counter", (count, info) => {
-      console.log(count, "timerrr");
       if (count === "Auction End") {
         handleTimerEnd(info);
       } else {
-        console.log("count", count);
         setSeconds(count);
       }
     });
@@ -87,7 +89,6 @@ const AuctionPanel = () => {
   }, []);
 
   const startTimer = () => {
-    console.log("fsjfskf");
     socket.emit(
       "startTimer",
       leagueBasicInfo?._id,
@@ -95,16 +96,14 @@ const AuctionPanel = () => {
     );
   };
 
-  console.log(bidderInfo, "dddd");
-
   const handleTimerEnd = async (info) => {
-    console.log(bidderInfo, "dddd");
     try {
       const res = await setTeamOwner({
         auctionId: info?.auctionId,
         data: {
           owner: info?.bidderId,
           price: info?.amount,
+          leagueId: leagueBasicInfo?._id,
         },
       });
 
@@ -142,6 +141,7 @@ const AuctionPanel = () => {
         fetchLeagueAuctions();
 
         startTimer();
+        socket.emit("addBid", leagueBasicInfo?._id, null);
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -176,11 +176,6 @@ const AuctionPanel = () => {
     if (seconds === 0) {
       startTimer();
     }
-    console.log(seconds, "dfdf");
-  };
-
-  const highBitHandler = (e) => {
-    socket.emit("addHigherBid", Number(e.target.value));
   };
 
   // const filteredTeam = allTeamsInfo?.filter((i) =>
@@ -204,9 +199,10 @@ const AuctionPanel = () => {
       const res = await createAuction(info);
       if (res?.data?.success) {
         setSelectedTeam(selectedObject);
-        // setSeconds(auctionSettings?.auctionTime);
-        startTimer();
         document.getElementById("admin_modal").close();
+        fetchLeagueAuctions();
+        startTimer();
+        socket.emit("addBid", leagueBasicInfo?._id, null);
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -218,18 +214,6 @@ const AuctionPanel = () => {
   useEffect(() => {
     fetchLeagueInfo();
   }, [socketUser]);
-
-  // console.log(bidderInfoRef, "hjkhjk");
-
-  // useEffect(() => {
-  //   bidderInfoRef.current = bidderInfo;
-  // }, [bidderInfo]);
-
-  // useEffect(() => {
-  //   if (bidderInfo) {
-  //     // startTimer();
-  //   }
-  // }, [bidderInfo]);
 
   return (
     <>
@@ -267,7 +251,10 @@ const AuctionPanel = () => {
               <button
                 className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 disabled:bg-dark_sky customButton"
                 disabled={seconds > 0 || settingTeam}
-                onClick={handleRandomItem}
+                onClick={() => {
+                  handleRandomItem();
+                  socket.emit("addBid", leagueBasicInfo?._id, null);
+                }}
               >
                 Next Item ( Random)
               </button>
@@ -321,10 +308,10 @@ const AuctionPanel = () => {
                   {formatTime(seconds)}
                 </p>
               </div>
-              {bidderInfo && (
+              {bidderInfo?.bidderName === user?.name && seconds !== 0 && (
                 <button
                   onClick={() => {
-                    setBidderInfo(null);
+                    socket.emit("addBid", leagueBasicInfo?._id, null);
                     setBidAmount(null);
                   }}
                   className="py-10 px-23 bg-base text-[12px] font-semibold text-white font-sans rounded-3 customButton"
