@@ -43,7 +43,7 @@ const RankingTable = ({ leagueUsersdata, loading }) => {
                     Buy In
                   </th>
                   <th className="text-sm font-medium text-text_color1 text-center">
-                    Comment Payout
+                    Current Payout
                   </th>
                   <th className="text-sm font-medium text-text_color1 text-center">
                     Net Return

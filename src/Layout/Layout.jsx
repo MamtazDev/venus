@@ -35,10 +35,7 @@ const Layout = () => {
           isMobile={isMobile}
         />
       </div>
-      <div
-        className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar bg-light_sky pt-20
-       "
-      >
+      <div className=" w-full h-screen overflow-y-auto overflow-x-hidden no-scrollbar bg-light_sky pt-20">
         <Topbar
           handleToggle={handleToggle}
           toggle={toggle}

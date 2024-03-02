@@ -97,7 +97,7 @@ const Preferences = () => {
             >
               Setting to help you keep your account secure
             </p>
-            <div className="flex  justify-between items-center">
+            {/* <div className="flex  justify-between items-center">
               <div>
                 <h4 className="text5">Email addresses</h4>
                 <p
@@ -118,7 +118,7 @@ const Preferences = () => {
                   1 email address
                 </p>
               </div>
-            </div>
+            </div> */}
             <div className="flex  justify-between items-center">
               <div>
                 <h4 className="text5">Change password</h4>
@@ -148,7 +148,7 @@ const Preferences = () => {
                 </p>
               </div>
             </div>
-            <div className="flex  justify-between items-center">
+            {/* <div className="flex  justify-between items-center">
               <div>
                 <h4 className="text5">Two-step verification</h4>
                 <p
@@ -174,8 +174,8 @@ const Preferences = () => {
                   Off
                 </p>
               </div>
-            </div>
-            <div className="flex  justify-between items-center">
+            </div> */}
+            {/* <div className="flex  justify-between items-center">
               <div>
                 <h4 className="text5">Notification Settings</h4>
                 <p
@@ -196,7 +196,7 @@ const Preferences = () => {
                   Off
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
           {/* change pass modal */}
           <dialog id="change_pass" className="modal">

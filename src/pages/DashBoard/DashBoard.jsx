@@ -249,7 +249,7 @@ const DashBoard = () => {
           )}
         </div>
       </div>
-      <div className="pt-[26px] px-31 pb-49  rounded-3 bg-white">
+      {/* <div className="pt-[26px] px-31 pb-49  rounded-3 bg-white">
         <h2 className="lg:text-[28px] text-[20px] font-bold">Past League</h2>
         <p className="text-text_color2 text-sm font-medium mb-5">
           Active League
@@ -299,7 +299,7 @@ const DashBoard = () => {
             </>
           )}
         </div>
-      </div>
+      </div> */}
       {/* start league modal */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box bg-white h-[630px] rounded-3">

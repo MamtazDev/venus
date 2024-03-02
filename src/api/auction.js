@@ -42,3 +42,20 @@ export const getMyBidInfo = async () => {
   const res = await AXIOS.get("/api/auction/getMybidInfo");
   return res;
 };
+
+export const addPayout = async (data) => {
+  const res = await AXIOS.post("/api/payout/add", data);
+  return res;
+};
+
+export const getTeamPayoutInfo = async ({ leagueId, teamId, reciverId }) => {
+  const res = await AXIOS.get(
+    `/api/payout/info/${leagueId}/${teamId}/${reciverId}`,
+  );
+  return res;
+};
+
+export const deletePayoutInfo = async (id) => {
+  const res = await AXIOS.delete(`/api/payout/delete/${id}`);
+  return res;
+};

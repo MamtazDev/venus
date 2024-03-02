@@ -26,6 +26,27 @@ const Home = () => {
           (auction) => auction.team.id === team.id && auction.price,
         ),
     ) || [];
+
+  // {
+  //   leagueAuctions
+  //     ? `$${leagueAuctions
+  //         ?.filter((i) => i.price)
+  //         ?.reduce((total, current) => total + current?.price, 0)
+  //         .toFixed(2)}`
+  //     : "$0.00";
+  // }
+
+  const moneySpend = leagueAuctions
+    ?.filter((i) => i.price)
+    ?.reduce((total, current) => total + current?.price, 0);
+
+  const moneyGained = leagueAuctions?.reduce(
+    (total, current) => total + current?.payout,
+    0,
+  );
+
+  const roi = ((moneyGained - moneySpend) / moneySpend) * 100;
+  console.log(leagueAuctions, "leagueAuctions");
   return (
     <>
       <div className="flex justify-between items-center pe-[30px] mt-[10px] mb-[30px]">
@@ -68,7 +89,7 @@ const Home = () => {
         <div className="flex justify-center items-center flex-col rounded-3 bg-white w-full pt-[18px] pb-[24px]">
           <img className="mb-[10px]" src={roi} alt="" />
           <h3 className="text-2xl text-text_dark_grey mb-[8px] font-semibold">
-            0.0%
+            {roi.toFixed(1)}%
           </h3>
           <p className="text-dark_sky text-sm font-normal ">ROI</p>
         </div>
